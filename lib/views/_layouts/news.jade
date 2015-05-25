@@ -1,0 +1,41 @@
+extends ./normal
+
+block append content
+  #layout-content.clearfix
+    .container
+      #top-pcl
+        .ref-bg.domain-
+        .ref-bg.domain-10
+        .ref-bg.domain-20
+        .ref-bg.domain-30
+        .ref-bg.domain-40
+        .ref-bg.domain-50
+        .ref-bg.domain-60
+        .ref-bg.domain-70
+        .ref-bg.domain-80
+        .ref-bg.domain-90
+      .page-container
+        .row
+          //- main content
+          .col-sm-8.col-md-6
+            block main_content
+
+          //- second content
+          .col-sm-4.col-md-4
+            block second_content
+            
+          //- right content
+          .col-md-2
+            .tab.clearfix
+              .tab-title
+                span.pull-right 24 ore
+                h4 Tendințe
+              .tab-content
+                .list.ot-topic.view-trending
+                  each item in trendingTopics
+                    .item.media
+                      a.pull-left(href=links.topic(item.uniqueName))
+                        img.media-object.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-original='//cdn.entipic.com/'+currentCulture.country+'/'+item.uniqueName+'.jpg')
+                      .media-body
+                        a(title=item.name, href=links.topic(item.uniqueName))= (item.abbr || item.name)
+                        .details= '+'+item.counts.trend24h

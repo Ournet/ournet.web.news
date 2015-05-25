@@ -2,6 +2,6 @@
   "home": "/",
   "item": "/item/${0}-${1}",
   "story": "/story/${0}-${1}",
-  "topic": "/topic/${0}"
-  }
+  "topic": "/topic/${0}",
+  "search": "/search"
 }

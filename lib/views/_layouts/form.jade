@@ -1,0 +1,20 @@
+extends ./layout
+
+block content_header
+  .row
+    .col-xs-14.col-sm-4
+      #header-logo
+        a(title=project.name, href=links.home({ul: currentCulture.language}))
+    .col-sm-10.hidden-xs
+      #header-search
+        form#q-form(method='get', action=links.weather.search({ul: currentCulture.language}))
+          input#q(name='q', type='text', placeholder=__('search_text'))
+          a#search-btn(onclick="$('#q-form').submit();")
+            span.icon
+
+block content
+  #layout-content.clearfix
+    .container
+      #page-data.view-form
+        #page-data-inner
+          block form_content

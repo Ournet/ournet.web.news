@@ -1,0 +1,16 @@
+mixin storiesRowView(list)
+  .list.ot-story.view-row.row
+    each item in list
+      - var url=links.story(item.uniqueName, item.id)
+      .list-item.ot-story.col-sm-6.col-xs-4
+        .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+item.category)
+          a.item-image(href=url)
+            img(src='//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/news/medium/'+item.imageId+'.jpg')
+          .item-body
+            h3
+              a(href=url)= item.title
+            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              | , 
+              span.stats-badge(title=__('views'))= item.countViews
+                |  
+                span.icon.icon-views
