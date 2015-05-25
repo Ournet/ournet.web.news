@@ -24,7 +24,7 @@ block append content
                   .row
                     .col-xs-6.col-sm-12
                       a.item-image(href=links.story(mainStory.uniqueName, mainStory.id))
-                        img.story-img(alt='', src='//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/news/large/'+mainStory.imageId+'.jpg')
+                        img.story-img(alt='', src=links.wi('large', mainStory.imageId))
                     .item-body.col-xs-6.col-sm-12
                       h3
                         a(href=links.story(mainStory.uniqueName, mainStory.id))= mainStory.title

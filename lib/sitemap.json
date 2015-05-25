@@ -3,5 +3,13 @@
   "item": "/item/${0}-${1}",
   "story": "/story/${0}-${1}",
   "topic": "/topic/${0}",
-  "search": "/search"
+  "search": "/search",
+  "wi": {
+    "$absolute": true,
+    "$url": "//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/stories/${0}/${1}.jpg"
+  },
+  "url": {
+    "$url": "/url/${0}",
+    "news": "/news/${0}"
+  }
 }

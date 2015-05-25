@@ -54,4 +54,4 @@ block content
           ul#main-menu
             each item in categories
               li
-                a.ref-bg_hover(href='/'+item.name, class=('domain_'+item.id)+(category && category.id==item.id?' active':null))= item[currentCulture.lang]
+                a.ref-bg_hover(href='/'+item.name, class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
