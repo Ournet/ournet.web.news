@@ -14,3 +14,19 @@ mixin storiesRowView(list)
               span.stats-badge(title=__('views'))= item.countViews
                 |  
                 span.icon.icon-views
+
+mixin newsSimpleView(list)
+  .list.ot-news.view-simple
+    each item in list
+      - var url=links.item(item.uniqueName, item.id)
+      .list-item.ot-news
+        .item.media.ot-news
+          .pull-left
+            img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=links.wi.news('square', item.imageId))
+          .item-body.media-body
+            a.item-name(href=url)= item.title
+            p= util.wrapAt(item.summary, 200)
+            .details
+              a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
+              |  - 
+              = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)

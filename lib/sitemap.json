@@ -6,7 +6,8 @@
   "search": "/search",
   "wi": {
     "$absolute": true,
-    "$url": "//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/stories/${0}/${1}.jpg"
+    "$url": "//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/stories/${0}/${1}.jpg",
+    "news": "//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/news/${0}/${1}.jpg"
   },
   "url": {
     "$url": "/url/${0}",

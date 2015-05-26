@@ -51,3 +51,37 @@ block append content
                       .media-body
                         a(title=item.name, href=links.topic(item.uniqueName))= (item.abbr || item.name)
                         .details= '+'+item.counts.trend24h
+
+
+    .container
+      .row
+        //- left content
+        .col-md-2.hidden-sm.hidden-xs
+          .grid-control
+            .grid-header
+              h4= __('ads')
+            .grid-content
+
+        //- center content
+        .col-md-6.col-sm-8
+          .grid-control
+            .grid-header
+              h2= __('latest_news')
+            .grid-content
+              +newsSimpleView(latestNews)
+        //- right content
+        .col-md-4.col-sm-4
+          .grid-control.view-ads
+            .grid-content
+              // Ournet v2.0 300x250
+              ins.adsbygoogle(style='display:inline-block;width:300px;height:250px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='9372961467')
+              script.
+                (adsbygoogle = window.adsbygoogle || []).push({});
+
+          .grid-control.view-ads
+            .grid-content
+              // Ournet v2.0 300x250
+              ins.adsbygoogle(style='display:inline-block;width:300px;height:250px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='9372961467')
+              script.
+                (adsbygoogle = window.adsbygoogle || []).push({});
+

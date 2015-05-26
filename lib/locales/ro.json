@@ -15,5 +15,7 @@
 	"views": "views",
 	"images": "images",
 	"photo": "photo",
-	"related_news": "related_news"
+	"related_news": "related_news",
+	"ads": "ads",
+	"latest_news": "latest_news"
 }

@@ -35,12 +35,12 @@ block main_content
     .item-body
       p!= util.htmlText(story.summary)
         |  – 
-        a.source(rel='nofollow', target='_blank', href=links.url(util.crypto.encrypt(story.host+story.path)))= story.host.replace(/^www\./, '')
+        a.source(rel='nofollow', target='_blank', href=util.toUrl(story))= story.host.replace(/^www\./, '')
       each item in story.news
         p!= util.htmlText(item.summary)
           if (item.host)
             |  – 
-            a.source(rel='nofollow', target='_blank', href=links.url(util.crypto.encrypt(item.host+item.path)))= item.host.replace(/^www\./, '')
+            a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
   br
   .fb-comments(data-href=site.head.canonical, data-width='100%', data-numposts='5', data-colorscheme='light')
 block append second_content
