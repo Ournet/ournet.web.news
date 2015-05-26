@@ -41,3 +41,30 @@ block main_content
           if (item.host)
             |  – 
             a.source(rel='nofollow', target='_blank', href=links.url(util.crypto.encrypt(item.host+item.path)))= item.host.replace(/^www\./, '')
+  br
+  .fb-comments(data-href=site.head.canonical, data-width='100%', data-numposts='5', data-colorscheme='light')
+block append second_content
+  .tab
+    h4.tab-title= __('related_news')
+    .tab-content
+      .list.ot-news.view-simple
+        each item in relatedNews
+          .list-item.ot-news
+            .item.media.ot-news
+              .pull-left
+                img.story-img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', alt='', data-original=links.wi('square', item.imageId))
+              .item-body.media-body
+                a.item-name(href=links.story(item.uniqueName, item.id))= item.title
+                p= util.wrapAt(item.summary, 80)
+                .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+
+block scripts
+  -var fbCulture = currentCulture.lang+'_'+currentCulture.lang.toUpperCase()
+  script.
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/#{fbCulture}/sdk.js#xfbml=1&version=v2.3&appId=#{config.facebookId}";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));

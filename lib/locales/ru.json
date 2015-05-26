@@ -1,1 +1,8 @@
-{}
+{
+	"language_ru": "language_ru",
+	"country_md": "country_md",
+	"news": "news",
+	"weather": "weather",
+	"opinia": "opinia",
+	"exchange": "exchange"
+}
