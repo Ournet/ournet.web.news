@@ -20,20 +20,21 @@ block append content
           .col-sm-12.col-md-10
             .row
               .col-sm-6
-                .item.view-main.ot-story.hover-action.ref-border-top_hover(class='domain-'+mainStory.category)
-                  .row
-                    .col-xs-6.col-sm-12
-                      a.item-image(href=links.story(mainStory.uniqueName, mainStory.id))
-                        img.story-img(alt='', src=links.wi('large', mainStory.imageId))
-                    .item-body.col-xs-6.col-sm-12
-                      h3
-                        a(href=links.story(mainStory.uniqueName, mainStory.id))= mainStory.title
-                      p= util.wrapAt(mainStory.summary, 250)
-                      .details= util.moment(mainStory.createdAt).locale(currentCulture.lang).from(currentDate, true)
-                        | , 
-                        span.stats-badge(title=__('views'))= mainStory.countViews
-                          |  
-                          span.icon.icon-views
+                .list.ot-story.view-main
+                  .item.ot-story
+                    .row
+                      .col-xs-6.col-sm-12
+                        a.item-image(href=links.story(mainStory.uniqueName, mainStory.id))
+                          img.story-img(alt='', src=links.wi('large', mainStory.imageId))
+                      .item-body.col-xs-6.col-sm-12
+                        h3
+                          a(href=links.story(mainStory.uniqueName, mainStory.id))= mainStory.title
+                        p= util.wrapAt(mainStory.summary, 250)
+                        .details= util.moment(mainStory.createdAt).locale(currentCulture.lang).from(currentDate, true)
+                          | , 
+                          span.stats-badge(title=__('views'))= mainStory.countViews
+                            |  
+                            span.icon.icon-views
               .col-sm-6
                 +storiesRowView(stories)
           //- right content
@@ -53,35 +54,4 @@ block append content
                         .details= '+'+item.counts.trend24h
 
 
-    .container
-      .row
-        //- left content
-        .col-md-2.hidden-sm.hidden-xs
-          .grid-control
-            .grid-header
-              h4= __('ads')
-            .grid-content
-
-        //- center content
-        .col-md-6.col-sm-8
-          .grid-control
-            .grid-header
-              h2= __('latest_news')
-            .grid-content
-              +newsSimpleView(latestNews)
-        //- right content
-        .col-md-4.col-sm-4
-          .grid-control.view-ads
-            .grid-content
-              // Ournet v2.0 300x250
-              ins.adsbygoogle(style='display:inline-block;width:300px;height:250px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='9372961467')
-              script.
-                (adsbygoogle = window.adsbygoogle || []).push({});
-
-          .grid-control.view-ads
-            .grid-content
-              // Ournet v2.0 300x250
-              ins.adsbygoogle(style='display:inline-block;width:300px;height:250px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='9372961467')
-              script.
-                (adsbygoogle = window.adsbygoogle || []).push({});
 

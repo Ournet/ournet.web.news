@@ -1,9 +1,9 @@
-mixin storiesRowView(list)
+mixin storiesRowView(list, itemClass)
   .list.ot-story.view-row.row
     each item in list
       - var url=links.story(item.uniqueName, item.id)
-      .list-item.ot-story.col-sm-6.col-xs-4
-        .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+item.category)
+      .list-item.ot-story(class=(itemClass || 'col-sm-6 col-xs-4'))
+        .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+(item.category||''))
           a.item-image(href=url)
             img(src=links.wi('medium', item.imageId))
           .item-body
@@ -15,10 +15,10 @@ mixin storiesRowView(list)
                 |  
                 span.icon.icon-views
 
-mixin newsSimpleView(list)
+mixin newsSimpleView(list, isStory)
   .list.ot-news.view-simple
     each item in list
-      - var url=links.item(item.uniqueName, item.id)
+      - var url= isStory ? links.story(item.uniqueName, item.id) : links.item(item.uniqueName, item.id)
       .list-item.ot-news
         .item.media.ot-news
           .pull-left

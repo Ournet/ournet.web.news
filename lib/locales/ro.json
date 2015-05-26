@@ -17,5 +17,9 @@
 	"photo": "photo",
 	"related_news": "related_news",
 	"ads": "ads",
-	"latest_news": "latest_news"
+	"latest_news": "latest_news",
+	"page_topic_title": "page_topic_title",
+	"topic_description": "topic_description",
+	"stories": "stories",
+	"topic_title": "topic_title"
 }

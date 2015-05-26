@@ -15,7 +15,7 @@ block main_content
       time= util.moment(story.createdAt).locale(currentCulture.lang).format('lll')
     .row
       .col-sm-8
-        .image
+        .item-image
           img.story-img(alt=story.title, src=links.wi('large', story.imageId))
           .details= __('photo')
             | : 
@@ -26,7 +26,7 @@ block main_content
             each item in story.topics
               a(title=item.name, href=links.topic(item.uniqueName))= (item.abbr || item.name)
         .col-sm-12.col-xs-5
-          .our-sharedata(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
+          .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
             each service in config.shareDataServices
               a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
                 span.share-icon
