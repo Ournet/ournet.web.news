@@ -1,6 +1,6 @@
 extends ./normal
 
-block append content
+block normal_content
   #layout-content.clearfix
     .container
       #top-pcl
@@ -44,5 +44,3 @@ block append content
                       .media-body
                         a(title=item.name, href=links.topic(item.uniqueName))= (item.abbr || item.name)
                         .details= '+'+item.counts.trend24h
-
-  block more_content

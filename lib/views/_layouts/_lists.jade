@@ -19,10 +19,11 @@ mixin newsSimpleView(list, isStory)
   .list.ot-news.view-simple
     each item in list
       - var url= isStory ? links.story(item.uniqueName, item.id) : links.item(item.uniqueName, item.id)
+      - var imageUrl = isStory? links.wi('square', item.imageId) : links.wi.news('square', item.imageId);
       .list-item.ot-news
         .item.media.ot-news
           .pull-left
-            img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=links.wi.news('square', item.imageId))
+            img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
           .item-body.media-body
             a.item-name(href=url)= item.title
             p= util.wrapAt(item.summary, 200)
@@ -30,3 +31,21 @@ mixin newsSimpleView(list, isStory)
               a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
               |  - 
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+
+mixin newsLargeViewItem(item, isStory)
+  - var url = isStory ? links.story(item.uniqueName, item.id) : links.item(item.uniqueName, item.id)
+  - var imageUrl = isStory? links.wi('medium', item.imageId) : links.wi.news('medium', item.imageId);
+  .item.ot-news.view-large.clearfix
+    .item-media
+      a(href=url)
+        img.story-img(alt='', src=imageUrl)
+    .item-body
+      h3
+        a.item-name(href=url)= item.title
+      p= util.wrapAt(item.summary, 300)
+        span.details
+          |  - 
+          a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
+          |  - 
+          = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+

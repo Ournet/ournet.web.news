@@ -8,8 +8,24 @@ block main_content
       h1= title
       .details= subtitle
 
+  if (mainItem)
+    +newsLargeViewItem(mainItem)
+    br
+  else if(mainStory)
+    +newsLargeViewItem(mainStory, true)
+    br
+
   +storiesRowView(stories, 'col-xs-6 col-sm-4')
-//- block append second_content
+
+  br
+  .tab.view-ads.view-fill.gads-468.no-margin
+    // Ournet 468x60
+    ins.adsbygoogle(data-ad-client='ca-pub-3959589883092051', data-ad-slot='3749376618')
+    script.
+      (adsbygoogle = window.adsbygoogle || []).push({});
+
+block second_content
+  p.topic-informer= topic.description
 
 block more_content
   .container
@@ -25,7 +41,7 @@ block more_content
       .col-md-6.col-sm-8
         .grid-control
           .grid-header
-            h2= __('latest_news')
+            h2= util.format(__('topic_latest_news'), topic.name)
           .grid-content
             +newsSimpleView(latestNews)
       //- right content
