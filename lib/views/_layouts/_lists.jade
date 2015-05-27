@@ -49,3 +49,22 @@ mixin newsLargeViewItem(item, isStory)
           |  - 
           = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
+mixin quotesRowView(list)
+  .list.ot-quote.view-row.row
+    each item in list
+      .list-item.ot-quote.col-sm-6
+        .item.ot-quote(class='domain-'+(item.category || ''))
+          .item-body
+            a.item-name(href=links.quote(item.id))
+              h4
+                span.quote-mark “
+                = util.wrapAt(item.text, 200)
+            i
+          .item-author.media
+            a.pull-left(href=links.topic(item.author.uniqueName))
+              img.media-object(src='http://cdn.entipic.com/'+currentCulture.country+'/'+item.author.uniqueName+'.jpg', alt='')
+            .media-body
+              a.author-name(href=links.topic(item.author.uniqueName))= item.author.name
+              span.details , 
+                = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              .details= item.webpage.title

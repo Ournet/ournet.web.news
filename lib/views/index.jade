@@ -37,6 +37,8 @@ block append content
                             span.icon.icon-views
               .col-sm-6
                 +storiesRowView(stories)
+            br
+            +quotesRowView(quotes)
           //- right content
           .col-sm-12.col-md-2
             .tab.clearfix
@@ -62,6 +64,10 @@ block append content
             .grid-header
               h4= __('ads')
             .grid-content
+              // Ournet 150x
+              ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-3959589883092051', data-ad-slot='4687909432', data-ad-format='auto')
+              script.
+                (adsbygoogle = window.adsbygoogle || []).push({});
 
         //- center content
         .col-md-6.col-sm-8

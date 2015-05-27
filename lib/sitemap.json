@@ -3,6 +3,7 @@
   "item": "/item/${0}-${1}",
   "story": "/story/${0}-${1}",
   "topic": "/topic/${0}",
+  "quote": "/quote/${0}",
   "search": "/search",
   "wi": {
     "$absolute": true,
