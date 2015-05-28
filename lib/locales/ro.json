@@ -1,7 +1,7 @@
 {
-	"language_ro": "language_ro",
-	"country_md": "country_md",
-	"news": "Știri",
+	"language_ro": "Română",
+	"country_md": "Moldova",
+	"news": "știri",
 	"weather": "Vremea",
 	"opinia": "Opinia",
 	"exchange": "Curs valutar",
@@ -18,9 +18,14 @@
 	"related_news": "Știri asemănătoare",
 	"ads": "Publicitate",
 	"latest_news": "Ultimele știri",
-	"page_topic_title": "%s ultimele știri",
+	"page_topic_title": "%s - Ultimele stiri",
 	"topic_description": "Ultimele stiri si evenimente din presa despre %s",
 	"stories": "Evenimente",
 	"topic_title": "Știri despre %s",
-	"topic_latest_news": "%s - Ultimele știri"
+	"topic_latest_news": "%s - Ultimele știri",
+	"quotes": "Declatații",
+	"24_hrs": "24 ore",
+	"trending": "Tendințe",
+	"search_result": "Rezultate: %s",
+	"more_stories": "Mai multe evenimente"
 }

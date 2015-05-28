@@ -8,7 +8,7 @@ html(lang=currentCulture.language)
     meta(name='description', content=site.head.description)
     meta(name='keywords', content=site.head.keywords)
     block styles
-    link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/news/main-3edf12a8.min.css')
+    link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/news/main-b6705b5b.min.css')
     if (site.head.canonical)
       link(rel='canonical', href=site.head.canonical)
     link(rel='shortcut icon', href=config.favicon)
@@ -42,7 +42,7 @@ html(lang=currentCulture.language)
         #page-footer
           .container
             .page-load-divider
-              span.domain-World.ref-color &#9679;&#9679;&#9679;
+              span.domain-.ref-color &#9679;&#9679;&#9679;
               span.domain-Live.ref-color &#9679;&#9679;&#9679;
               span.domain-Politics.ref-color &#9679;&#9679;&#9679;&#9679;
               span.domain-Entertainment.ref-color &#9679;&#9679;&#9679;&#9679;
@@ -62,15 +62,13 @@ html(lang=currentCulture.language)
               span.domain-Arts.ref-color &#9679;&#9679;&#9679;&#9679;
               span.domain-Justice.ref-color &#9679;&#9679;&#9679;
             .row
-              #page-footer-info.col-sm-5.col-xs-14
+              #page-footer-info.col-sm-4.col-xs-12
                 div= __('contact')+': '
                   a=  config.email
                 div
                 | Version 
                 = project.version
-                div
-                  a(href='http://www.yr.no', rel='nofollow', target='_blank')= __('weather_cright')
-              #page-footer-portals.col-sm-5.col-xs-14.clearfix
+              #page-footer-portals.col-sm-4.col-xs-12.clearfix
                 h4= __('international')
                 each id in config.internationalIds
                   - var item = config.international[id]
@@ -79,9 +77,9 @@ html(lang=currentCulture.language)
                       i.flag-icon(class='flag-'+id)
                       = item[currentCulture.language]
 
-              #page-footer-social.col-sm-4.col-xs-14
+              #page-footer-social.col-sm-4.col-xs-12
                 if (shareInfo)
-                  .our-sharedata(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
+                  .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
                     each service in config.shareDataServices
                       a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
                         span.share-icon

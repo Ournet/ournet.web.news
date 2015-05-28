@@ -3,6 +3,8 @@
   "item": "/item/${0}-${1}",
   "story": "/story/${0}-${1}",
   "topic": "/topic/${0}",
+  "topicStories": "/topic/${0}/stories",
+  "topicQuotes": "/topic/${0}/quotes",
   "quote": "/quote/${0}",
   "search": "/search",
   "wi": {

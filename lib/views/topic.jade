@@ -17,50 +17,23 @@ block main_content
 
   +storiesRowView(stories, 'col-xs-6 col-sm-4')
 
-  br
-  .tab.view-ads.view-fill.gads-468.no-margin
-    // Ournet 468x60
-    ins.adsbygoogle(data-ad-client='ca-pub-3959589883092051', data-ad-slot='3749376618')
-    script.
-      (adsbygoogle = window.adsbygoogle || []).push({});
+  if (stories.length>2)
+    .list-footer
+      a.more(href=links.topicStories(topic.uniqueName, {ul: currentCulture.lang}))= __('more_stories')
+        |  &rsaquo;
+  else
+    br
+    .tab.view-ads.view-fill.gads-468.no-margin
+      include controls/ads_468
 
 block second_content
-  p.topic-informer= topic.description
-
-block more_content
-  .container
-    .row
-      //- left content
-      .col-md-2.hidden-sm.hidden-xs
-        .grid-control
-          .grid-header
-            h4= __('ads')
-          .grid-content
-            // Ournet 150x
-            ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-3959589883092051', data-ad-slot='4687909432', data-ad-format='auto')
-            script.
-              (adsbygoogle = window.adsbygoogle || []).push({});
-
-      //- center content
-      .col-md-6.col-sm-8
-        .grid-control
-          .grid-header
-            h2= util.format(__('topic_latest_news'), topic.name)
-          .grid-content
-            +newsSimpleView(latestNews)
-      //- right content
-      .col-md-4.col-sm-4
-        .grid-control.view-ads
-          .grid-content
-            // Ournet v2.0 300x250
-            ins.adsbygoogle(style='display:inline-block;width:300px;height:250px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='9372961467')
-            script.
-              (adsbygoogle = window.adsbygoogle || []).push({});
-
-        .grid-control.view-ads
-          .grid-content
-            // Ournet v2.0 300x250
-            ins.adsbygoogle(style='display:inline-block;width:300px;height:250px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='9372961467')
-            script.
-              (adsbygoogle = window.adsbygoogle || []).push({});
-
+  if (topic.description)
+    p.topic-informer= topic.description
+  if (quotes && quotes.length>0)
+    .tab
+      //- h4.tab-title= __('quotes')
+      .tab-content
+        +quotesList(quotes)
+  else
+    .tab.view-ads.view-fill.gads-300-250
+      include controls/ads_300
