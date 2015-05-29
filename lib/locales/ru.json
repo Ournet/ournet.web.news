@@ -4,5 +4,7 @@
 	"news": "news",
 	"weather": "weather",
 	"opinia": "opinia",
-	"exchange": "exchange"
+	"exchange": "exchange",
+	"site_title": "site_title",
+	"in_country_md": "in_country_md"
 }

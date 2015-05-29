@@ -17,6 +17,7 @@
     "news": "/news/${0}"
   },
   "actions": {
-    "viewStory": "/view_story/${0}"
+    "$absolute": true,
+    "viewStory": "/actions/view_story/${0}"
   }
 }

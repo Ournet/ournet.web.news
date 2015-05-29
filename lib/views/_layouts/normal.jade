@@ -5,7 +5,7 @@ block content_header
   .row
     .col-md-6.col-sm-8.col-xs-12
       #header-logo.pull-left
-        a(title=project.name, href=links.home({ul: currentCulture.language}))
+        a(title=config.name, href=links.home({ul: currentCulture.language}))
       #header-search.col-md-7.col-xs-7.col-sm-5
         form#q-form(method='get', action=links.search())
           if (currentCulture.language!=config.language)

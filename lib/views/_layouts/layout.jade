@@ -20,14 +20,14 @@ html(lang=currentCulture.language)
         #sys-top-bar
           .container
             .row
-              #sys-menu.col-sm-8.col-xs-14
+              #sys-menu.col-sm-8.col-xs-12
                 each item in topBarMenu
                   a(href=item.href, class=item.cssClass)
                     = item.text
                     if (item.label)
                       span.count= item.label
 
-              #sys-user.col-sm-6.hidden-xs
+              #sys-user.col-sm-4.hidden-xs
                 if (config.languages.length>1)
                   each key in config.languages
                     if (key!=currentCulture.language)
