@@ -34,6 +34,11 @@ block second_content
       //- h4.tab-title= __('quotes')
       .tab-content
         +quotesList(quotes)
+
+    if (quotes.length>2)
+      .list-footer
+        a.more(href=links.topicQuotes(topic.uniqueName, {ul: currentCulture.lang}))= __('more_quotes')
+          |  &rsaquo;
   else
     .tab.view-ads.view-fill.gads-300-250
       include controls/ads_300

@@ -13,7 +13,10 @@
     "news": "//s3.eu-central-1.amazonaws.com/wi.ournetcdn.net/news/${0}/${1}.jpg"
   },
   "url": {
-    "$url": "/url/${0}",
+    "$url": "/url",
     "news": "/news/${0}"
+  },
+  "actions": {
+    "viewStory": "/view_story/${0}"
   }
 }

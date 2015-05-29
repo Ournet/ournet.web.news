@@ -1,7 +1,9 @@
 {
+	"site_title": "Ultimele stiri din %s",
 	"language_ro": "Română",
 	"country_md": "Moldova",
-	"news": "știri",
+	"in_country_md": "Moldova",
+	"news": "Știri",
 	"weather": "Vremea",
 	"opinia": "Opinia",
 	"exchange": "Curs valutar",
@@ -27,5 +29,8 @@
 	"24_hrs": "24 ore",
 	"trending": "Tendințe",
 	"search_result": "Rezultate: %s",
-	"more_stories": "Mai multe evenimente"
+	"more_stories": "Mai multe evenimente",
+	"page_topic_quotes_title": "%s - Declaratii",
+	"page_topic_stories_title": "%s - Evenimente",
+	"more_quotes": "Mai multe declatații"
 }

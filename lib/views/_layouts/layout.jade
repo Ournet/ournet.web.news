@@ -8,7 +8,7 @@ html(lang=currentCulture.language)
     meta(name='description', content=site.head.description)
     meta(name='keywords', content=site.head.keywords)
     block styles
-    link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/news/main-b6705b5b.min.css')
+    link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/news/main-c891a4f6.min.css')
     if (site.head.canonical)
       link(rel='canonical', href=site.head.canonical)
     link(rel='shortcut icon', href=config.favicon)
@@ -91,8 +91,13 @@ html(lang=currentCulture.language)
     script.
       window.globalInitData={cn: '#{config.country}',ul:'#{currentCulture.language}'};
     script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-    script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/weather/main-295c601a.min.js')
+    script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/news/main-bfec47de.min.js')
     block scripts
+    script.
+      $(document).ready(function(){
+        $("img.lazy").lazyload({effect:"fadeIn"});
+      });
+
     
     script.
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

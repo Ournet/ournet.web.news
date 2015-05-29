@@ -4,10 +4,6 @@ block main_content
   .item.ot-story.view-item
     h1= story.title
     .item-details
-      span.stats-badge(title=__('views'))= story.countViews
-        |  
-        span.icon.icon-views
-      | , 
       time= util.moment(story.createdAt).locale(currentCulture.lang).format('lll')
     .row
       if (story.imageId)
