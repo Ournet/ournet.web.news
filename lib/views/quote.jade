@@ -1,0 +1,56 @@
+extends _layouts/news
+
+block main_content
+  .list-item.ot-quote
+    .item.ot-quote(class='domain-'+(quote.category || ''))
+      .item-body
+        .item-name
+          h4
+            span.quote-mark “
+            = quote.text
+        i
+      .item-author.media
+        a.pull-left(href=links.topic(quote.author.uniqueName))
+          img.media-object(src='http://cdn.entipic.com/'+currentCulture.country+'/'+quote.author.uniqueName+'.jpg', alt='')
+        .media-body
+          a.author-name(href=links.topic(quote.author.uniqueName))= quote.author.name
+          span.details , 
+            = util.moment(quote.createdAt).locale(currentCulture.lang).from(currentDate, true)
+            .details= util.wrapAt(quote.webpage.title, 100)
+  .clearfix
+    .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
+      each service in config.shareDataServices
+        a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
+          span.share-icon
+            i
+          span.share-count.hidden
+
+  br
+  .fb-comments(data-href=site.head.canonical, data-width='100%', data-numposts='5', data-colorscheme='light')
+  br
+  br
+  +storiesRowView(stories, 'col-xs-4')
+block append second_content
+  if (quotes && quotes.length>0)
+    .tab
+      h4.tab-title
+        a(href=links.topicQuotes(quote.author.uniqueName))= __('quotes_by_author')
+      .tab-content
+        +quotesList(quotes)
+
+block scripts
+  -var fbCulture = currentCulture.lang+'_'+currentCulture.lang.toUpperCase()
+  script.
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/#{fbCulture}/sdk.js#xfbml=1&version=v2.3&appId=#{config.facebookId}";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  //- script.
+  //-   (function() {
+  //-   var img = new Image();
+  //-   img.src = '#{links.actions.viewStory(story.id)}';
+  //-   }());
