@@ -7,6 +7,7 @@ mixin storiesRowView(list, itemClass)
           a.item-image(href=url)
             img(src=links.wi('medium', item.imageId))
           .item-body
+            = item.videos
             h3
               a(href=url)= item.title
             .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
@@ -28,12 +29,13 @@ mixin newsSimpleView(list, options)
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
           .item-body(class=(item.imageId? 'media-body': null))
             a.item-name(href=url)= item.title
+            = item.videos
             p= util.wrapAt(item.summary, options.wrapAt||200)
             .details
               if (item.host)
                 a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
               |  - 
-              = util.moment(item.publishedAt || item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
 mixin newsLargeViewItem(item, isStory)
   - var url = isStory ? links.story(item.uniqueName, item.id) : links.item(item.uniqueName, item.id)
