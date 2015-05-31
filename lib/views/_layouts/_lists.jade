@@ -1,13 +1,12 @@
 mixin storiesRowView(list, itemClass)
   .list.ot-story.view-row.row
     each item in list
-      - var url=links.story(item.uniqueName, item.id)
+      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
       .list-item.ot-story(class=(itemClass || 'col-sm-6 col-xs-4'))
         .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+(item.category||''))
           a.item-image(href=url)
             img(src=links.wi('medium', item.imageId))
           .item-body
-            = item.videos
             h3
               a(href=url)= item.title
             .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
@@ -15,12 +14,17 @@ mixin storiesRowView(list, itemClass)
               span.stats-badge(title=__('views'))= item.countViews
                 |  
                 span.icon.icon-views
+              if (item.videos)
+                | , 
+                span.stats-badge(title=__('video'))= item.videos.length
+                  |  
+                  span.icon.icon-video
 
 mixin newsSimpleView(list, options)
   - options = options || {};
   .list.ot-news.view-simple
     each item in list
-      - var url= options.isStory ? links.story(item.uniqueName, item.id) : links.item(item.uniqueName, item.id)
+      - var url= options.isStory ? links.story(item.uniqueName, item.id, {ul: currentCulture.lang}) : links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
       - var imageUrl = options.isStory? links.wi('square', item.imageId) : links.wi.news('square', item.imageId);
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
@@ -29,7 +33,6 @@ mixin newsSimpleView(list, options)
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
           .item-body(class=(item.imageId? 'media-body': null))
             a.item-name(href=url)= item.title
-            = item.videos
             p= util.wrapAt(item.summary, options.wrapAt||200)
             .details
               if (item.host)
@@ -38,7 +41,7 @@ mixin newsSimpleView(list, options)
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
 mixin newsLargeViewItem(item, isStory)
-  - var url = isStory ? links.story(item.uniqueName, item.id) : links.item(item.uniqueName, item.id)
+  - var url = isStory ? links.story(item.uniqueName, item.id, {ul: currentCulture.lang}) : links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
   - var imageUrl = isStory? links.wi('medium', item.imageId) : links.wi.news('medium', item.imageId);
   .item.ot-news.view-large.clearfix
     .item-media
@@ -70,16 +73,16 @@ mixin quoteListItem(item, options)
   .list-item.ot-quote(class=(options.cssClass || null))
     .item.ot-quote(class='domain-'+(item.category || ''))
       .item-body
-        a.item-name(href=links.quote(item.id))
+        a.item-name(href=links.quote(item.id, {ul: currentCulture.lang}))
           h4
             span.quote-mark “
             = util.wrapAt(item.text, options.wrapAt || 200)
         i
       .item-author.media
-        a.pull-left(href=links.topic(item.author.uniqueName))
+        a.pull-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
           img.media-object(src='http://cdn.entipic.com/'+currentCulture.country+'/'+item.author.uniqueName+'.jpg', alt='')
         .media-body
-          a.author-name(href=links.topic(item.author.uniqueName))= item.author.name
+          a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name
           span.details , 
             = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
           if (!options.noPage)

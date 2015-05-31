@@ -3,15 +3,12 @@ extends _layouts/news
 block main_content
   .item.ot-story.view-item
     h1= story.title
-    .item-details +
-      = story.countNews
-      |  
-      = __('news')
+    .item-details= util.format(__('news_count'), story.countNews)
       |,  
       span.stats-badge(title=__('views'))= story.countViews
         |  
         span.icon.icon-views
-      | , 
+      |  
       time= util.moment(story.createdAt).locale(currentCulture.lang).format('lll')
     .row
       .col-sm-8
@@ -20,11 +17,13 @@ block main_content
           .details= __('photo')
             | : 
             = story.imageHost
+            br
+            = story.videos
       .col-sm-4
         .col-sm-12.col-xs-7
           .list.ot-topic.view-alist
             each item in story.topics
-              a(title=item.name, href=links.topic(item.uniqueName))= (item.abbr || item.name)
+              a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
         .col-sm-12.col-xs-5
           .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
             each service in config.shareDataServices
@@ -37,14 +36,14 @@ block main_content
       p!= util.htmlText(story.summary)
         |  – 
         a.source(rel='nofollow', target='_blank', href=util.toUrl(story))= story.host.replace(/^www\./, '')
-
-      each item in story.news
-        if (textLength < 800)
-          - textLength += item.summary.length;
-          p!= util.htmlText(item.summary)
-            if (item.host)
-              |  – 
-              a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
+      if (story.news)
+        each item in story.news
+          if (textLength < 800)
+            - textLength += item.summary.length;
+            p!= util.htmlText(item.summary)
+              if (item.host)
+                |  – 
+                a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
   br
   .fb-comments(data-href=site.head.canonical, data-width='100%', data-numposts='5', data-colorscheme='light')
 block append second_content

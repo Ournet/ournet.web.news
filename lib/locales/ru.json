@@ -6,5 +6,19 @@
 	"opinia": "opinia",
 	"exchange": "exchange",
 	"site_title": "site_title",
-	"in_country_md": "in_country_md"
+	"in_country_md": "in_country_md",
+	"latest_news": "latest_news",
+	"search_text": "search_text",
+	"exchange_rates": "exchange_rates",
+	"ads": "ads",
+	"contact": "contact",
+	"international": "international",
+	"share_on_format": "share_on_format",
+	"24_hrs": "24_hrs",
+	"trending": "trending",
+	"page_topic_title": "page_topic_title",
+	"topic_description": "topic_description",
+	"stories": "stories",
+	"topic_title": "topic_title",
+	"topic_latest_news": "topic_latest_news"
 }

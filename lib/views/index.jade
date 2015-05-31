@@ -20,21 +20,22 @@ block append content
           .col-sm-12.col-md-10
             .row
               .col-sm-6
-                .list.ot-story.view-main
-                  .item.ot-story
-                    .row
-                      .col-xs-6.col-sm-12
-                        a.item-image(href=links.story(mainStory.uniqueName, mainStory.id))
-                          img.story-img(alt='', src=links.wi('large', mainStory.imageId))
-                      .item-body.col-xs-6.col-sm-12
-                        h3
-                          a(href=links.story(mainStory.uniqueName, mainStory.id))= mainStory.title
-                        p= util.wrapAt(mainStory.summary, 250)
-                        .details= util.moment(mainStory.createdAt).locale(currentCulture.lang).from(currentDate, true)
-                          | , 
-                          span.stats-badge(title=__('views'))= mainStory.countViews
-                            |  
-                            span.icon.icon-views
+                if (mainStory)
+                  .list.ot-story.view-main
+                    .item.ot-story
+                      .row
+                        .col-xs-6.col-sm-12
+                          a.item-image(href=links.story(mainStory.uniqueName, mainStory.id, {ul: currentCulture.lang}))
+                            img.story-img(alt='', src=links.wi('large', mainStory.imageId))
+                        .item-body.col-xs-6.col-sm-12
+                          h3
+                            a(href=links.story(mainStory.uniqueName, mainStory.id, {ul: currentCulture.lang}))= mainStory.title
+                          p= util.wrapAt(mainStory.summary, 250)
+                          .details= util.moment(mainStory.createdAt).locale(currentCulture.lang).from(currentDate, true)
+                            | , 
+                            span.stats-badge(title=__('views'))= mainStory.countViews
+                              |  
+                              span.icon.icon-views
               .col-sm-6
                 +storiesRowView(stories)
             br
@@ -49,10 +50,10 @@ block append content
                 .list.ot-topic.view-trending
                   each item in trendingTopics
                     .item.media
-                      a.pull-left(href=links.topic(item.uniqueName))
+                      a.pull-left(href=links.topic(item.uniqueName, {ul: currentCulture.lang}))
                         img.media-object.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-original='//cdn.entipic.com/'+currentCulture.country+'/'+item.uniqueName+'.jpg')
                       .media-body
-                        a(title=item.name, href=links.topic(item.uniqueName))= (item.abbr || item.name)
+                        a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
                         .details= '+'+item.counts.trend24h
 
 

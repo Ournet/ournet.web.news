@@ -10,10 +10,10 @@ block main_content
             = quote.text
         i
       .item-author.media
-        a.pull-left(href=links.topic(quote.author.uniqueName))
+        a.pull-left(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))
           img.media-object(src='http://cdn.entipic.com/'+currentCulture.country+'/'+quote.author.uniqueName+'.jpg', alt='')
         .media-body
-          a.author-name(href=links.topic(quote.author.uniqueName))= quote.author.name
+          a.author-name(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))= quote.author.name
           span.details , 
             = util.moment(quote.createdAt).locale(currentCulture.lang).from(currentDate, true)
             .details= util.wrapAt(quote.webpage.title, 100)
@@ -34,7 +34,7 @@ block append second_content
   if (quotes && quotes.length>0)
     .tab
       h4.tab-title
-        a(href=links.topicQuotes(quote.author.uniqueName))= __('quotes_by_author')
+        a(href=links.topicQuotes(quote.author.uniqueName, {ul: currentCulture.lang}))= __('quotes_by_author')
       .tab-content
         +quotesList(quotes)
 
