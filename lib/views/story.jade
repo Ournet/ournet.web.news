@@ -9,7 +9,7 @@ block main_content
         |  
         span.icon.icon-views
       |  
-      time= util.moment(story.createdAt).locale(currentCulture.lang).format('lll')
+      time= util.moment(util.date(new Date(story.createdAt).getTime(), config.timezone)).locale(currentCulture.lang).format('lll')
     .row
       .col-sm-8
         .item-image
@@ -17,8 +17,6 @@ block main_content
           .details= __('photo')
             | : 
             = story.imageHost
-            br
-            = story.videos
       .col-sm-4
         .col-sm-12.col-xs-7
           .list.ot-topic.view-alist

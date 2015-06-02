@@ -35,5 +35,6 @@
 	"more_quotes": "Mai multe declatații",
 	"quotes_by_author": "De același autor",
 	"news_count": "%d știri",
-	"video": "video"
+	"video": "video",
+	"category_title" : "%s - ultimele stiri"
 }

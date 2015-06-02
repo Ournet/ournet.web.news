@@ -17,7 +17,6 @@
     "news",
     "web"
   ],
-
   "author": "Dumitru Cantea",
   "license": "ISC",
   "dependencies": {
@@ -32,6 +31,12 @@
     "morgan": "^1.5.1",
     "response-time": "^2.2.0",
     "urlset": "^0.4.0",
-    "chroma-js": "^0.6.3"
+    "chroma-js": "^0.6.3",
+    "ournet.core": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.core/-/latest.tgz",
+    "ournet.data": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data/-/latest.tgz",
+    "ournet.data.quotes": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.quotes/-/latest.tgz",
+    "ournet.data.stories": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.stories/-/latest.tgz",
+    "ournet.data.topics": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.topics/-/latest.tgz",
+    "ournet.data.webdata": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.webdata/-/latest.tgz"
   }
 }
