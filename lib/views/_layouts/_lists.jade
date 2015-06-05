@@ -86,7 +86,11 @@ mixin quoteListItem(item, options)
           span.details , 
             = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
           if (!options.noPage)
-            .details= util.wrapAt(item.webpage.title, 100)
+            if (currentDate.getTime() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
+              .details
+                a(href=links.item(item.webpage.uniqueName, item.webpage.id))= util.wrapAt(item.webpage.title, 100)
+            else
+              .details= util.wrapAt(item.webpage.title, 100)
 
 mixin storyNewsTitle(list)
   ul.news-line
