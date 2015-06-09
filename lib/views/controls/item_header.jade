@@ -1,0 +1,30 @@
+.row
+  if (story.imageId)
+    .col-sm-8
+      .item-image
+        img.story-img(alt=story.title, src=links.wi.news('large', story.imageId))
+        .details
+    .col-sm-4
+      .col-sm-12.col-xs-7
+        .list.ot-topic.view-alist
+          each item in story.topics
+            a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
+      .col-sm-12.col-xs-5
+        .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
+          each service in config.shareDataServices
+            a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
+              span.share-icon
+                i
+              span.share-count.hidden
+  else
+    .col-xs-7
+        .list.ot-topic.view-alist
+          each item in story.topics
+            a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
+      .col-xs-5
+        .our-sharedata(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
+          each service in config.shareDataServices
+            a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
+              span.share-icon
+                i
+              span.share-count.hidden
