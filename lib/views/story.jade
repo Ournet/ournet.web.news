@@ -54,14 +54,17 @@ block main_content
     })();
 
 block append second_content
-  if (quotes && quotes.length>0)
-    .tab
-      h4.tab-title= __('quotes')
-      .tab-content
-        +quotesList(quotes, {item: {noPage:true}})
-  else
+  if (news && news.length>0)
     .tab
       h4.tab-title= __('related_news')
+      .tab-content
+        +newsLineView(news)
+
+  if (quotes && quotes.length>0)
+    +quotesList(quotes, {item: {noPage:true}})
+  else
+    .tab
+      h4.tab-title= __('latest_news')
       .tab-content
         +newsSimpleView(relatedNews, {wrapAt: 100, isStory: true})
 

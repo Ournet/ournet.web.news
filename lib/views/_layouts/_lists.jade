@@ -33,7 +33,27 @@ mixin newsSimpleView(list, options)
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
           .item-body(class=(item.imageId? 'media-body': null))
             a.item-name(href=url)= item.title
-            p= util.wrapAt(item.summary, options.wrapAt||200)
+            if (!options.noSummary)
+              p= util.wrapAt(item.summary, options.wrapAt||200)
+            .details
+              if (item.host)
+                a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
+              |  - 
+              = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+
+mixin newsLineView(list, options)
+  - options = options || {};
+  .list.ot-news.view-line
+    each item in list
+      - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var imageUrl = links.wi.news('square', item.imageId);
+      .list-item.ot-news
+        .item.ot-news(class=(item.imageId? 'media': null))
+          if (item.imageId)
+            .pull-left
+              img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
+          .item-body(class=(item.imageId? 'media-body': null))
+            a.item-name(href=url)= item.title
             .details
               if (item.host)
                 a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
