@@ -20,5 +20,6 @@
   "actions": {
     "$absolute": true,
     "viewStory": "/actions/view_story/${0}"
-  }
+  },
+  "videoFrame": "/controls/video_frame/${0}"
 }

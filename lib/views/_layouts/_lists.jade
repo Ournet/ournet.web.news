@@ -2,10 +2,14 @@ mixin storiesRowView(list, itemClass)
   .list.ot-story.view-row.row
     each item in list
       - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var hasVideo = item.videos && item.videos.length > 0
       .list-item.ot-story(class=(itemClass || 'col-sm-6 col-xs-4'))
         .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+(item.category||''))
-          a.item-image(href=url)
+          a.item-image(href=url, class=(hasVideo ? 'video-image' : null))
             img(src=links.wi('medium', item.imageId))
+            if (hasVideo)
+              span.video-icon
+                i
           .item-body
             h3
               a(href=url)= item.title

@@ -12,6 +12,38 @@ html(lang=currentCulture.language)
     if (site.head.canonical)
       link(rel='canonical', href=site.head.canonical)
     link(rel='shortcut icon', href=config.favicon)
+    style.
+      .video-icon:hover{
+        background-color: rgba(10,10,10,0.3);
+        cursor: pointer;
+      }
+      .video-icon {
+        position: absolute;
+        left:0px;
+        top:0px;
+        bottom: 0px;
+        right: 0px;
+      }
+      .video-icon i{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: inline-block;
+        width: 54px;
+        height: 54px;
+        margin-top: -26px;
+        margin-left: -26px;
+        background: url('http://assets.ournetcdn.net/ournet/img/media-sprite.png') 0 0 no-repeat;
+      }
+      .video-image iframe{
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        height: 100%;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+      }
 
   body(class=('country-'+currentCulture.country+' project-'+project.name+' language-'+currentCulture.language))
     #fb-root

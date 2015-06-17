@@ -69,6 +69,14 @@ block append second_content
         +newsSimpleView(relatedNews, {wrapAt: 100, isStory: true})
 
 block scripts
+  if (story.videos)
+    - var videoFrame = links.videoFrame(story.videos.join(','),{ul: currentCulture.lang});
+      script.
+        $(document).ready(function(){
+          $('.story-image.video-image').click(function(){
+            $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>')
+          });
+        });
   script.
     (function() {
     var img = new Image();
