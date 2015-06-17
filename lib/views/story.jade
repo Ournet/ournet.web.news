@@ -1,18 +1,5 @@
 extends _layouts/news
 
-block append styles
-  style.
-    .story-image{
-      position: relative;
-      padding: 0 0 54%;
-      overflow: hidden;
-      height: 0px;
-      margin-bottom: 10px;
-    }
-    .story-image .story-img{
-      width: 100%;
-    }
-
 block main_content
   .item.ot-story.view-item
     h1= story.title
