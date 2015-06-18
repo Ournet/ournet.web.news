@@ -30,5 +30,6 @@
   "quotes_by_author": "Tego samego autora",
   "news_count": "%d nowości",
   "video": "Wideo",
-  "category_title" : "%s - Najnowsze wiadomości"
+  "category_title" : "%s - Najnowsze wiadomości",
+  "news_sources": "Źródeł informacji"
 }

@@ -42,16 +42,10 @@ block append content
                       .media-body
                         a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
                         .details= '+'+item.counts.trend24h
-            if (sources)
-              .tab.clearfix
-                .tab-title
-                  h4
-                    a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
-                .tab-content
-                  ul.list.ot-sources.view-line
-                    each item in sources
-                      li
-                        a(href=links.source(item.host, {ul: currentCulture.lang}))= util.wrapAt(item.title, 30)
+            .tab.clearfix
+              .tab-title
+                h4
+                  a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
 
 
     include ./controls/one_list_container

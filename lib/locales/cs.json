@@ -30,5 +30,6 @@
   "quotes_by_author": "Z tohoto autora",
   "news_count": "%d novinky",
   "video": "video",
-  "category_title" : "%s - Poslední zprávy"
+  "category_title" : "%s - Poslední zprávy",
+  "news_sources": "Zprávy zdroje"
 }

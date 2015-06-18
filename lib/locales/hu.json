@@ -30,5 +30,6 @@
 	"quotes_by_author": "Ugyanattól a szerzőtől",
 	"news_count": "%d hírek",
 	"video": "Videó",
-	"category_title" : "%s - Friss hírek"
+	"category_title" : "%s - Friss hírek",
+  "news_sources": "Hírforrások"
 }
