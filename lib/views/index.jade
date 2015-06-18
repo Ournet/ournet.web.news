@@ -21,21 +21,8 @@ block append content
             .row
               .col-sm-6
                 if (mainStory)
-                  .list.ot-story.view-main
-                    .item.ot-story
-                      .row
-                        .col-xs-6.col-sm-12
-                          a.item-image(href=links.story(mainStory.uniqueName, mainStory.id, {ul: currentCulture.lang}))
-                            img.story-img(alt='', src=links.wi('large', mainStory.imageId))
-                        .item-body.col-xs-6.col-sm-12
-                          h3
-                            a(href=links.story(mainStory.uniqueName, mainStory.id, {ul: currentCulture.lang}))= mainStory.title
-                          p= util.wrapAt(mainStory.summary, 250)
-                          .details= util.moment(mainStory.createdAt).locale(currentCulture.lang).from(currentDate, true)
-                            | , 
-                            span.stats-badge(title=__('views'))= mainStory.countViews
-                              |  
-                              span.icon.icon-views
+                  .list.view-main
+                    +storyMainViewItem(mainStory)
               .col-sm-6
                 +storiesRowView(stories)
             br

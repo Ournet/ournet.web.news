@@ -32,3 +32,12 @@ block append second_content
     .tab-content
       +newsSimpleView(relatedNews, {isStory: true, wrapAt: 100})
 
+block scripts
+  if (story.videoId)
+    - var videoFrame = links.videoFrame(story.videoId,{ul: currentCulture.lang});
+    script.
+      $(document).ready(function(){
+        $('.story-image.video-image').click(function(){
+          $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>')
+        });
+      });

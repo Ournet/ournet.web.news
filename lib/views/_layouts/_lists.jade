@@ -5,7 +5,7 @@ mixin storiesRowView(list, itemClass)
       - var hasVideo = item.videos && item.videos.length > 0
       .list-item.ot-story(class=(itemClass || 'col-sm-6 col-xs-4'))
         .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+(item.category||''))
-          a.item-image(href=url, class=(hasVideo ? 'video-image' : null))
+          a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
             img(src=links.wi('medium', item.imageId))
             if (hasVideo)
               span.video-icon
@@ -24,17 +24,105 @@ mixin storiesRowView(list, itemClass)
                   |  
                   span.icon.icon-video
 
+mixin storiesFineView(list, options)
+  - options = options || {};
+  .list.ot-story.view-fine.row
+    each item in list
+      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var hasVideo = item.videos && item.videos.length > 0
+      .list-item.ot-story
+        .item
+          div(class=(options.cssClass || 'col-xs-6'))
+            a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
+              img(src=links.wi('medium', item.imageId))
+              if (hasVideo)
+                span.video-icon
+                  i
+          .item-body(class=(options.cssClass || 'col-xs-6'))
+            h3
+              a(href=url)= item.title
+            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              | , 
+              span.stats-badge(title=__('views'))= item.countViews
+                |  
+                span.icon.icon-views
+              if (hasVideo)
+                | , 
+                span.stats-badge(title=__('video'))= item.videos.length
+                  |  
+                  span.icon.icon-video
+            p= util.wrapAt(item.summary, options.wrapAt || 160)
+
+mixin newsFineView(list, options)
+  - options = options || {};
+  .list.ot-story.view-fine.row
+    each item in list
+      - var url=links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var hasVideo = item.videoId
+      .list-item.ot-story
+        .item
+          div(class=(options.cssClass || 'col-xs-6'))
+            a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
+              img(src=links.wi.news('medium', item.imageId))
+              if (hasVideo)
+                span.video-icon
+                  i
+          .item-body(class=(options.cssClass || 'col-xs-6'))
+            h3
+              a(href=url)= item.title
+            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              | , 
+              span.stats-badge(title=__('views'))= item.countViews
+                |  
+                span.icon.icon-views
+              if (hasVideo)
+                | , 
+                span.stats-badge(title=__('video'))
+                  |  
+                  span.icon.icon-video
+            p= util.wrapAt(item.summary, options.wrapAt || 160)
+
+mixin storyMainViewItem(item, options)
+  - options = options || {};
+  - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+  - var hasVideo = item.videos && item.videos.length > 0
+  .list-item.ot-story.view-main
+    .item.ot-story
+      a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
+        img(src=links.wi('large', item.imageId))
+        if (hasVideo)
+          span.video-icon
+            i
+      .item-body
+        h3
+          a(href=url)= item.title
+        .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+          | , 
+          span.stats-badge(title=__('views'))= item.countViews
+            |  
+            span.icon.icon-views
+          if (item.videos)
+            | , 
+            span.stats-badge(title=__('video'))= item.videos.length
+              |  
+              span.icon.icon-video
+        p= util.wrapAt(item.summary, options.wrapAt || 400)
+
 mixin newsSimpleView(list, options)
   - options = options || {};
   .list.ot-news.view-simple
     each item in list
       - var url= options.isStory ? links.story(item.uniqueName, item.id, {ul: currentCulture.lang}) : links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
       - var imageUrl = options.isStory? links.wi('square', item.imageId) : links.wi.news('square', item.imageId);
+      - var hasVideo = item.videoId || item.videos && item.videos.length > 0;
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
-            .pull-left
+            .pull-left(class=hasVideo?'video-image':null)
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
+              if (hasVideo)
+                span.video-icon
+                  i
           .item-body(class=(item.imageId? 'media-body': null))
             a.item-name(href=url)= item.title
             if (!options.noSummary)

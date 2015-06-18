@@ -9,10 +9,10 @@ block main_content
       .details= subtitle
 
   if (mainItem)
-    +newsLargeViewItem(mainItem)
+    +newsFineView([mainItem])
     br
   else if(mainStory)
-    +newsLargeViewItem(mainStory, true)
+    +storiesFineView([mainStory])
     br
 
   +storiesRowView(stories, 'col-xs-4')
