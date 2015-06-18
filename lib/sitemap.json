@@ -21,5 +21,7 @@
     "$absolute": true,
     "viewStory": "/actions/view_story/${0}"
   },
-  "videoFrame": "/controls/video_frame/${0}"
+  "videoFrame": "/controls/video_frame/${0}",
+  "sources": "/sources",
+  "source": "/source/${0}"
 }

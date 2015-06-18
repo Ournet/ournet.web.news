@@ -34,5 +34,6 @@
 	"quotes_by_author": "Другие заявления",
 	"page_topic_quotes_title": "%s - Заявления",
 	"page_topic_stories_title": "%s - События",
-	"category_title": "%s - Новости"
+	"category_title": "%s - Новости",
+	"news_sources": "Источники новостей"
 }

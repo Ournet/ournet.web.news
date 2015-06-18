@@ -38,5 +38,6 @@
 	"quotes_by_author": "De același autor",
 	"news_count": "%d știri",
 	"video": "video",
-	"category_title" : "%s - ultimele stiri"
+	"category_title" : "%s - ultimele stiri",
+	"news_sources": "Surse de stiri"
 }

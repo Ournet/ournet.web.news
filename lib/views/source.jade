@@ -1,0 +1,43 @@
+extends ./_layouts/normal
+
+block normal_content
+  #layout-content.clearfix
+    .container
+      .row
+        //- left content
+        .col-md-2.hidden-sm.hidden-xs
+          .grid-control
+            .grid-header
+              h4= __('ads')
+            .grid-content
+              include ./controls/ads_150
+
+        //- center content
+        .col-md-6.col-sm-8
+          #top-pcl
+            .ref-bg.domain-
+            .ref-bg.domain-10
+            .ref-bg.domain-20
+            .ref-bg.domain-30
+            .ref-bg.domain-40
+            .ref-bg.domain-50
+            .ref-bg.domain-60
+            .ref-bg.domain-70
+            .ref-bg.domain-80
+            .ref-bg.domain-90
+          .grid-control
+            .grid-header
+              h2= title
+            .grid-content
+              +newsSimpleView(news)
+              
+        //- right content
+        .col-md-4.col-sm-4
+          .grid-control.view-ads
+            .grid-content
+              include ./controls/ads_300
+
+          .grid-control.view-ads
+            .grid-content
+              include ./controls/ads_300
+
