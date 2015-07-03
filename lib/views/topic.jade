@@ -3,7 +3,7 @@ extends _layouts/news
 block main_content
   .content-header.media
     .pull-left
-      img.media-object(alt='', src='http://cdn.entipic.com/'+currentCulture.country+'/'+topic.uniqueName+'.jpg')
+      img.media-object(alt='', src='http://i.entipic.com/' + currentCulture.language + '-' + currentCulture.country + '/' + encodeURIComponent(topic.name) + '.jpg')
     .media-body
       h1= title
       .details= subtitle
