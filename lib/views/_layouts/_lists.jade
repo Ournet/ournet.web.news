@@ -192,7 +192,7 @@ mixin quoteListItem(item, options)
         i
       .item-author.media
         a.pull-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
-          img.media-object(src='http://cdn.entipic.com/'+currentCulture.country+'/'+item.author.uniqueName+'.jpg', alt='')
+          img.media-object(src=util.entipicImage(item.author, currentCulture), alt='')
         .media-body
           a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name
           span.details , 

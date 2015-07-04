@@ -11,7 +11,7 @@ block main_content
         i
       .item-author.media
         a.pull-left(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))
-          img.media-object(src='http://cdn.entipic.com/'+currentCulture.country+'/'+quote.author.uniqueName+'.jpg', alt='')
+          img.media-object(src=util.entipicImage(item.author, currentCulture), alt='')
         .media-body
           a.author-name(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))= quote.author.name
           span.details , 
