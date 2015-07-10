@@ -21,7 +21,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.11.0",
+    "chroma-js": "^0.6.3",
     "dotenv": "^0.5.1",
+    "entipic.url": "0.0.1",
     "errorhandler": "^1.3.3",
     "express": "^4.11.2",
     "i18n": "^0.5.0",
@@ -29,16 +31,15 @@
     "method-override": "^2.3.1",
     "moment": "^2.9.0",
     "morgan": "^1.5.1",
-    "response-time": "^2.2.0",
-    "urlset": "^0.4.0",
-    "chroma-js": "^0.6.3",
     "ournet.core": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.core/-/latest.tgz",
     "ournet.data": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data/-/latest.tgz",
     "ournet.data.quotes": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.quotes/-/latest.tgz",
     "ournet.data.stories": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.stories/-/latest.tgz",
     "ournet.data.topics": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.topics/-/latest.tgz",
-    "ournet.data.webdata": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.webdata/-/latest.tgz",
     "ournet.data.videos": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.videos/-/latest.tgz",
-    "ournet.data.websites": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.websites/-/latest.tgz"
+    "ournet.data.webdata": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.webdata/-/latest.tgz",
+    "ournet.data.websites": "https://npm.fury.io/G4qSJ8SL1vn1TcQvP9KP/dumitru/ournet.data.websites/-/latest.tgz",
+    "response-time": "^2.2.0",
+    "urlset": "^0.4.0"
   }
 }
