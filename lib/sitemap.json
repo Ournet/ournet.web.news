@@ -8,11 +8,6 @@
   "quote": "/quote/${0}",
   "category": "/${0}",
   "search": "/search",
-  "wi": {
-    "$absolute": true,
-    "$url": "//web.ournetcdn.net/img/stories/${0}/${1}.jpg",
-    "news": "//web.ournetcdn.net/img/news/${0}/${1}.jpg"
-  },
   "url": {
     "$url": "/url",
     "news": "/news/${0}"
