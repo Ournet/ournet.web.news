@@ -19,7 +19,7 @@ block main_content
 
   if (stories.length>2)
     .list-footer
-      a.more(href=links.topicStories(topic.uniqueName, {ul: currentCulture.lang}))= __('more_stories')
+      a.more(href=links.topicStories(topic.uniqueName || topic.slug, {ul: currentCulture.lang}))= __('more_stories')
         |  &rsaquo;
   else
     br
@@ -37,7 +37,7 @@ block second_content
 
     if (quotes.length>2)
       .list-footer
-        a.more(href=links.topicQuotes(topic.uniqueName, {ul: currentCulture.lang}))= __('more_quotes')
+        a.more(href=links.topicQuotes(topic.uniqueName || topic.slug, {ul: currentCulture.lang}))= __('more_quotes')
           |  &rsaquo;
   else
     .tab.view-ads.view-fill.gads-300-250
