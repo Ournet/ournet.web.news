@@ -26,19 +26,31 @@ block main_content
     .tab.view-ads.view-fill.gads-468.no-margin
       include controls/ads_468
 
+  .tab
+    h3.tab-title= util.format(__('topic_latest_news'), topic.name)
+    .tab-content
+      +newsSimpleView(latestNews)
+
 block second_content
   if (topic.description)
     p.topic-informer= topic.description
+
+  .tab.view-ads.view-fill.gads-300-250
+      include controls/ads_300
+
   if (quotes && quotes.length>0)
     .tab
       //- h4.tab-title= __('quotes')
       .tab-content
-        +quotesList(quotes)
+        +quotesList(quotes, {item:{wrapAt:160}})
 
     if (quotes.length>2)
       .list-footer
         a.more(href=links.topicQuotes(topic.uniqueName || topic.slug, {ul: currentCulture.lang}))= __('more_quotes')
           |  &rsaquo;
-  else
-    .tab.view-ads.view-fill.gads-300-250
-      include controls/ads_300
+
+block right_content_bottom
+  .tab
+    h4.tab-title= __('ads')
+  .tab-content
+    include ./controls/ads_150

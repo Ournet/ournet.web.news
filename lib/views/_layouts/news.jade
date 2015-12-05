@@ -41,6 +41,7 @@ block normal_content
                       .media-body
                         a(title=item.name, href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))= (item.abbr || item.name)
                         .details= '+'+item.counts.trend24h
+            block right_content_bottom
 
     if (oneList)
       include ../controls/one_list_container
