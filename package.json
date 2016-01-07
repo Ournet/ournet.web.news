@@ -37,7 +37,7 @@
     "ournet.data.quotes": "^0.0.6",
     "ournet.data.stories": "^0.1.0",
     "ournet.data.videos": "^0.1.0",
-    "ournet.data.webdata": "^0.1.0",
+    "ournet.data.webdata": "^0.1.2",
     "ournet.data.websites": "^0.1.0",
     "response-time": "^2.2.0",
     "urlset": "^0.4.0"
