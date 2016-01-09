@@ -1,33 +1,27 @@
-extends _layouts/normal
+extends _layouts/news
 
-block normal_content
-  br
-  .container
-    .row
-      //- left content
-      .col-md-2.hidden-sm.hidden-xs
-        .grid-control
-          .grid-header
-            h4= __('ads')
-          .grid-content
-            include controls/ads_150
+block main_content
+  .content-header.media
+    .pull-left
+      img.media-object(alt='', src=util.entipicImage(topic, currentCulture))
+    .media-body
+      h1
+        a(href=links.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
+        |  /  
+        = __('quotes')
+      .details= subtitle
 
-      //- center content
-      .col-md-6.col-sm-8
-        .grid-control
-          .grid-header
-            h2= topic.name
-              |  - 
-              = __('quotes')
-          .grid-content
-            +quotesList(quotes)
-      //- right content
-      .col-md-4.col-sm-4
-        .grid-control.view-ads
-          .grid-content
-            include controls/ads_300
+  +quotesSimpleView(quotes)
 
-        .grid-control.view-ads
-          .grid-content
-            include controls/ads_300
+block append second_content
+  .tab
+    h4.tab-title= __('latest_news')
+    .tab-content
+      +newsSimpleView(latestNews, {isStory: true, wrapAt: 100})
+
+block right_content_bottom
+  .tab.hidden-xs.hidden-sm
+    h4.tab-title= __('ads')
+    .tab-content
+      include ./controls/ads_150
 

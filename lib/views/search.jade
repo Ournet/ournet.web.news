@@ -18,9 +18,7 @@ block normal_content
           .grid-header
             h2= title
           .grid-content
-            .list.ot-news.view-large
-              each item in list
-                +newsLargeViewItem(item, true)
+            +newsSimpleView(list, {isStory: true})
       //- right content
       .col-md-4.col-sm-4
         .grid-control.view-ads
