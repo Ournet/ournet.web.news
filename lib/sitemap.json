@@ -6,6 +6,7 @@
   "topicStories": "/topic/${0}/stories",
   "topicQuotes": "/topic/${0}/quotes",
   "quote": "/quote/${0}",
+  "quotes": "/quotes",
   "category": "/${0}",
   "search": "/search",
   "url": {

@@ -1,0 +1,20 @@
+extends _layouts/news
+
+block main_content
+  .content-header
+    h1= __('latest_quotes')
+    .details= subTitle
+
+  +quotesSimpleView(quotes)
+
+block append second_content
+  .tab
+    h4.tab-title= __('latest_news')
+    .tab-content
+      +newsSimpleView(latestNews, {isStory: true, wrapAt: 100})
+
+block right_content_bottom
+  .tab.hidden-xs.hidden-sm
+    h4.tab-title= __('ads')
+    .tab-content
+      include ./controls/ads_150

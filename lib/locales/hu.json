@@ -31,5 +31,9 @@
 	"news_count": "%d hírek",
 	"video": "Videó",
 	"category_title" : "%s - Friss hírek",
-  "news_sources": "Hírforrások"
+  "news_sources": "Hírforrások",
+  "popular_news": "Népszerű hírek",
+  "latest_quotes_in_media": "Legutóbbi nyilatkozatai/idézetek a médiában",
+  "latest_quotes_in_media_country_format": "Legutóbbi nyilatkozatai/idézetek a média - %s",
+  "latest_quotes": "Legutóbbi nyilatkozatai"
 }

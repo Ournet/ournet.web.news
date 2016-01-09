@@ -3,7 +3,7 @@ mixin storiesRowView(list, itemClass)
     each item in list
       - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
       - var hasVideo = item.videos && item.videos.length > 0
-      .list-item.ot-story(class=(itemClass || 'col-sm-6 col-xs-4'))
+      .list-item.ot-story(class=(itemClass || 'col-xs-6'))
         .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+(item.category||''))
           a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
             img(src=links.wi('medium', item.imageId))
@@ -152,6 +152,17 @@ mixin newsLineView(list, options)
               |  - 
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
+mixin newsCleanView(list, options)
+  - options = options || {};
+  .list.ot-news.view-clean
+    each item in list
+      - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
+      .list-item.ot-news
+        .item.ot-news
+          .item-body
+            a.item-name(href=url)= util.wrapAt(item.title, 90)
+            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+
 mixin newsLargeViewItem(item, isStory)
   - var url = isStory ? links.story(item.uniqueName, item.id, {ul: currentCulture.lang}) : links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
   - var imageUrl = isStory? links.wi('medium', item.imageId) : links.wi.news('medium', item.imageId);
@@ -175,10 +186,15 @@ mixin quotesList(list, options)
     each item in list
       +quoteListItem(item, options.item)
 
-mixin quotesRowView(list)
+mixin quotesRowView(list, options)
   .list.ot-quote.view-row.row
     each item in list
-      +quoteListItem(item, {cssClass: 'col-sm-6'})
+      +quoteListItem(item, options)
+
+mixin quotesSimpleView(list, options)
+  .list.ot-quote
+    each item in list
+      +quoteListItem(item, options)
 
 mixin quoteListItem(item, options)
   - options = options || {}

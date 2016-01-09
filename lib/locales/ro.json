@@ -38,6 +38,10 @@
 	"quotes_by_author": "De același autor",
 	"news_count": "%d știri",
 	"video": "video",
-	"category_title" : "%s - ultimele stiri",
-	"news_sources": "Surse de stiri"
+	"category_title": "%s - ultimele stiri",
+	"news_sources": "Surse de stiri",
+	"popular_news": "Știri populare",
+	"latest_quotes_in_media": "Ultimele declarații din presă",
+	"latest_quotes_in_media_country_format": "Ultimele declarații/citate din presă - %s",
+	"latest_quotes": "Ultimele declarații"
 }

@@ -33,5 +33,9 @@
 	"video": "видео",
 	"category_title": "%s - Последни новини",
 	"language_bg": "Български",
-	"news_sources": "Новини източници"
+	"news_sources": "Новини източници",
+	"popular_news": "Популярни новини",
+	"latest_quotes_in_media": "Последни изявления за пресата",
+	"latest_quotes_in_media_country_format": "Последните изявления/цитати от пресата - %s",
+	"latest_quotes": "Последните изявления"
 }

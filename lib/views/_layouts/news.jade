@@ -37,7 +37,7 @@ block normal_content
                   each item in trendingTopics
                     .item.media
                       a.pull-left(href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))
-                        img.media-object.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-original=util.entipicImage(item, currentCulture))
+                        img.media-object(alt='' src=util.entipicImage(item, currentCulture))
                       .media-body
                         a(title=item.name, href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))= (item.abbr || item.name)
                         .details= '+'+item.counts.trend24h

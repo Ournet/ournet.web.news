@@ -31,5 +31,9 @@
   "news_count": "%d news",
   "video": "Video",
   "category_title" : "%s - Latest news",
-  "news_sources": "News sources"
+  "news_sources": "News sources",
+  "popular_news": "Popular news",
+  "latest_quotes": "Latest Quotes",
+  "latest_quotes_in_media": "Latest Quotes in the Media",
+  "latest_quotes_in_media_country_format": "Latest Quotes in the Media - %s"
 }

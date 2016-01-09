@@ -35,5 +35,9 @@
 	"page_topic_quotes_title": "%s - Заявления",
 	"page_topic_stories_title": "%s - События",
 	"category_title": "%s - Новости",
-	"news_sources": "Источники новостей"
+	"news_sources": "Источники новостей",
+	"popular_news": "Популярные новости",
+  "latest_quotes": "Последние заявления",
+  "latest_quotes_in_media": "Последние заявления из прессы",
+  "latest_quotes_in_media_country_format": "Последние заявления/цитаты из прессы - %s"
 }

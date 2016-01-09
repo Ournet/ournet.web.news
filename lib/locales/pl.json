@@ -31,5 +31,9 @@
   "news_count": "%d nowości",
   "video": "Wideo",
   "category_title" : "%s - Najnowsze wiadomości",
-  "news_sources": "Źródeł informacji"
+  "news_sources": "Źródeł informacji",
+  "popular_news": "Popularne wiadomości",
+  "latest_quotes": "Najnowsze cytaty",
+  "latest_quotes_in_media": "Najnowsze notowania w mediach",
+  "latest_quotes_in_media_country_format": "Najnowsze notowania w mediach - %s"
 }
