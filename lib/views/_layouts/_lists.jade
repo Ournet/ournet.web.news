@@ -89,7 +89,7 @@ mixin storyMainViewItem(item, options)
   .list-item.ot-story.view-main
     .item.ot-story
       a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
-        img(src=links.wi('large', item.imageId))
+        img(src=links.wi('master', item.imageId))
         if (hasVideo)
           span.video-icon
             i

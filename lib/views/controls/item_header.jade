@@ -2,7 +2,7 @@
 
 if (story.imageId)
   .story-image.fine-image.clearfix(class=(hasVideo ? 'video-image': null))
-    img.story-img(alt=story.title, src=links.wi.news('large', story.imageId))
+    img.story-img(alt=story.title, src=links.wi.news('master', story.imageId))
     if (hasVideo)
       .video-icon
         i
