@@ -31,13 +31,11 @@ block main_content
     .tab-content
       +newsSimpleView(latestNews)
 
-block second_content
+block prepend second_content
   if (topic.description)
     p.topic-informer= topic.description
 
-  .tab.view-ads.view-fill.gads-300-250
-      include controls/ads_300
-
+block append second_content
   if (quotes && quotes.length>0)
     .tab
       //- h4.tab-title= __('quotes')
