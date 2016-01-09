@@ -55,6 +55,12 @@ block append second_content
       .tab-content
         +newsSimpleView(relatedNews, {wrapAt: 100, isStory: true})
 
+block right_content_bottom
+  .tab.hidden-xs.hidden-sm
+    h4.tab-title= __('ads')
+    .tab-content
+      include ./controls/ads_150
+
 block scripts
   if (story.videos)
     - var videoFrame = links.videoFrame(story.videos.join(','),{ul: currentCulture.lang});

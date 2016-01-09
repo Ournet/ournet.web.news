@@ -22,12 +22,12 @@ block main_content
             else
               .details= util.wrapAt(quote.webpage.title, 100)
   .clearfix
-    .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
-      each service in config.shareDataServices
-        a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
-          span.share-icon
-            i
-          span.share-count.hidden
+    //- .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
+    //-   each service in config.shareDataServices
+    //-     a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
+    //-       span.share-icon
+    //-         i
+    //-       span.share-count.hidden
 
   br
   #disqus_thread

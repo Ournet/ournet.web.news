@@ -12,7 +12,7 @@ mixin storiesRowView(list, itemClass)
                 i
           .item-body
             h3
-              a(href=url)= item.title
+              a(href=url)= util.wrapAt(item.title, 80)
             .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
               | , 
               span.stats-badge(title=__('views'))= item.countViews
