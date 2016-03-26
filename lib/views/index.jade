@@ -2,62 +2,61 @@ extends _layouts/normal
 
 block append content
   #layout-content.clearfix
-    .container
-      #top-pcl
-        .ref-bg.domain-
-        .ref-bg.domain-10
-        .ref-bg.domain-20
-        .ref-bg.domain-30
-        .ref-bg.domain-40
-        .ref-bg.domain-50
-        .ref-bg.domain-60
-        .ref-bg.domain-70
-        .ref-bg.domain-80
-        .ref-bg.domain-90
-      .page-container
-        .row
-          //- main content
-          .col-sm-12.col-md-10
-            .row
-              .col-sm-6
-                if (mainStory)
-                  .list.view-main
-                    +storyMainViewItem(mainStory)
-                    br
-              .col-sm-6
-                +storiesRowView(stories)
-          //- right content
-          .col-sm-12.col-md-2
-            .tab.clearfix
-              .tab-title
-                span.pull-right= __('24_hrs')
-                h4= __('trending')
-              .tab-content
-                .list.ot-topic.view-trending
-                  each item in trendingTopics
-                    .item.media
-                      a.pull-left(href=links.topic(item.uniqueName, {ul: currentCulture.lang}))
-                        img.media-object(alt='' src=util.entipicImage(item, currentCulture))
-                      .media-body
-                        a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
-                        .details= '+'+item.counts.trend24h
-            //- .tab.clearfix
-            //-   .tab-title
-            //-     h4
-            //-       a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
-        br
-        .row
-          .col-md-5.col-sm-6.col-xs-12
-            .tab
-              +quotesSimpleView(quotes)
-              .list-footer
-                a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')
-          .col-md-5.col-sm-6.col-xs-12
-            .tab
-              .tab-title
-                h3= __('popular_news')
-              .tab-content
-                +storiesRowView(popularStories)
-          .col-md-2.hidden-xs.hidden-sm
-            .tab
-              include ./controls/ads_150
+    #top-pcl
+      .ref-bg.domain-
+      .ref-bg.domain-10
+      .ref-bg.domain-20
+      .ref-bg.domain-30
+      .ref-bg.domain-40
+      .ref-bg.domain-50
+      .ref-bg.domain-60
+      .ref-bg.domain-70
+      .ref-bg.domain-80
+      .ref-bg.domain-90
+    .page-container
+      .row
+        //- main content
+        .col-sm-12.col-md-10
+          .row
+            .col-sm-6
+              if (mainStory)
+                .list.view-main
+                  +storyMainViewItem(mainStory)
+                  br
+            .col-sm-6
+              +storiesRowView(stories)
+        //- right content
+        .col-sm-12.col-md-2
+          .tab.clearfix
+            .tab-title
+              span.pull-right= __('24_hrs')
+              h4= __('trending')
+            .tab-content
+              .list.ot-topic.view-trending
+                each item in trendingTopics
+                  .item.media
+                    a.pull-left(href=links.topic(item.uniqueName, {ul: currentCulture.lang}))
+                      img.media-object(alt='' src=util.entipicImage(item, currentCulture))
+                    .media-body
+                      a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
+                      .details= '+'+item.counts.trend24h
+          //- .tab.clearfix
+          //-   .tab-title
+          //-     h4
+          //-       a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
+      br
+      .row
+        .col-md-5.col-sm-6.col-xs-12
+          .tab
+            +quotesSimpleView(quotes)
+            .list-footer
+              a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')
+        .col-md-5.col-sm-6.col-xs-12
+          .tab
+            .tab-title
+              h3= __('popular_news')
+            .tab-content
+              +storiesRowView(popularStories)
+        .col-md-2.hidden-xs.hidden-sm
+          .tab
+            include ./controls/ads_150

@@ -43,5 +43,7 @@
 	"popular_news": "Știri populare",
 	"latest_quotes_in_media": "Ultimele declarații din presă",
 	"latest_quotes_in_media_country_format": "Ultimele declarații/citate din presă - %s",
-	"latest_quotes": "Ultimele declarații"
+	"latest_quotes": "Ultimele declarații",
+	"info": "info",
+	"useful": "useful"
 }

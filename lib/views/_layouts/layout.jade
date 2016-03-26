@@ -1,117 +1,61 @@
-doctype html
-html(lang=currentCulture.language)
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title= (site.head.title || site.title)
-    meta(name='description', content=site.head.description)
-    meta(name='keywords', content=site.head.keywords)
-    block styles
-    link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/news/main-ce5a06d284.min.css')
-    //- link(type='text/css', rel='stylesheet', href='http://localhost:8044/css/news/main.min.css')
-    if (site.head.canonical)
-      link(rel='canonical', href=site.head.canonical)
-    link(rel='shortcut icon', href=config.favicon)
+extends ./root
 
-  body(class=('country-'+currentCulture.country+' project-'+project.name+' language-'+currentCulture.language))
-    #fb-root
-    #page(class=site.pageLayoutCss)
-      if (showTopPageBar)
-        #sys-top-bar
-          .container
-            .row
-              #sys-menu.col-sm-8.col-xs-12
-                each item in topBarMenu
-                  a(href=item.href, class=item.cssClass)
-                    = item.text
-                    if (item.label)
-                      span.count= item.label
+block page_header_content
+  .row
+    .col-xs-5.col-sm-2
+      #header-logo
+        a#logo(title=__(project.name), href=links.home({ul: currentCulture.language}))
+        if (config.projects.length > 1)
+          ul#header-projects
+            each host, key in config.projects
+              li
+                a(target='_blank', href='http://'+host)= __(key)
+    .col-xs-7.col-sm-4.col-md-3
+      #header-search
+        form#search-form(method='get', action=links.search({ul: currentCulture.language}))
+          input#q(name='q', type='text', placeholder=__('search_text'))
+          a#search-btn
+            i.icon
+    .col-sm-6.col-md-7.hidden-xs
+      #header-widgets
+        .col-md-6.hidden-sm
+          if (exchangeWidget && exchangeWidget.rates)
+            #widget-exchange
+              each item, i in exchangeWidget.rates
+                if (i<2)
+                  - var value = item.buy
+                  - var diff = value - item.buy1d
+                  - var diffCss = diff>0 ? "view-plus": "view-minus"
+                  - diffCss = diff==0 || diff==NaN?'view-no-change': diffCss
+                  div(class="item "+diffCss)
+                    .symbol= item.currency.symbol
+                    span(class="value")= util.numberFormat(value, 2, currentCulture.language)
+                    .popover
+                      small(class="details")= util.moment(exchangeWidget.date).locale(currentCulture.language).format(config.monthFormat)
+                      .item-source(title=exchangeWidget.source.name)= exchangeWidget.source.abbr
+                      .item-value= util.numberFormat(value, 4, currentCulture.language)
+                      if(diff)
+                        small(class="item-diff")= util.numberFormat(diff, 4, currentCulture.language)
+                      .item-details
+                        a(href=exchangeWidget.url)= __('exchange_rates')
+                          |  ›
+        .col-md-6.col-sm-12
+          if (weatherWidget && weatherWidget.forecast)
+            #widget-weather
+              //- .shadow
+              span.symbol.w-icon(class='wi-'+weatherWidget.forecast.symbol.id, title=weatherWidget.forecast.symbol.name)
+              span.name
+                a(href=weatherWidget.place.url)= weatherWidget.place.name
+                span.no= weatherWidget.forecast.temperature + '°C'
 
-              #sys-user.col-sm-4.hidden-xs
-                if (config.languages.length>1)
-                  each key in config.languages
-                    if (key!=currentCulture.language)
-                      a.bar-item(href=links.home({ul:key}))= config.languagesNames[key]
+block page_main_content
+  section#page-content
+    block content
 
-      #page-wrapper
-        #page-header
-          .container
-            block content_header
-        #page-content.clearfix
-          block content
-        #page-footer
-          .container
-            .page-load-divider
-              span.domain-.ref-color &#9679;&#9679;&#9679;
-              span.domain-Live.ref-color &#9679;&#9679;&#9679;
-              span.domain-Politics.ref-color &#9679;&#9679;&#9679;&#9679;
-              span.domain-Entertainment.ref-color &#9679;&#9679;&#9679;&#9679;
-              span.domain-Sports.ref-color &#9679;&#9679;&#9679;
-              span.domain-Business.ref-color &#9679;&#9679;&#9679;
-              span.domain-Tech.ref-color &#9679;&#9679;&#9679;&#9679;
-              span.domain-Science.ref-color &#9679;&#9679;&#9679;
-              span.domain-Arts.ref-color &#9679;&#9679;&#9679;
-              span.domain-Justice.ref-color &#9679;&#9679;&#9679;
-              span.domain-Live.ref-color &#9679;&#9679;&#9679;
-              span.domain-Politics.ref-color &#9679;&#9679;&#9679;&#9679;
-              span.domain-Entertainment.ref-color &#9679;&#9679;&#9679;
-              span.domain-Sports.ref-color &#9679;&#9679;&#9679;
-              span.domain-Business.ref-color &#9679;&#9679;&#9679;&#9679;
-              span.domain-Tech.ref-color &#9679;&#9679;&#9679;
-              span.domain-Science.ref-color &#9679;&#9679;&#9679;
-              span.domain-Arts.ref-color &#9679;&#9679;&#9679;&#9679;
-              span.domain-Justice.ref-color &#9679;&#9679;&#9679;
-            .row
-              #page-footer-info.col-sm-4.col-xs-12
-                div= __('contact')+': '
-                  a=  config.email
-                div
-                | Version 
-                = project.version
-              #page-footer-portals.col-sm-4.col-xs-12.clearfix
-                h4= __('international')
-                each id in config.internationalIds
-                  - var item = config.international[id]
-                  div
-                    a(href=item.url, target='_blank')
-                      i.flag-icon(class='flag-'+id)
-                      = item[currentCulture.language]
-
-              #page-footer-social.col-sm-4.col-xs-12
-                //- if (shareInfo)
-                //-   .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
-                //-     each service in config.shareDataServices
-                //-       a.our-share-item(class=service, data-service=service, href=shareInfo.getShareUrl(service), rel='nofollow', target='_blank', title=util.format(__('share_on_format'),util.startWithUpperCase(service)))
-                //-         span.share-icon
-                //-           i
-
-    if (!noGoogleAds)
-      script(async='', src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
-    script.
-      window.globalInitData={cn: '#{config.country}',ul:'#{currentCulture.language}'};
-    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
-    script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/news/main-75578efdd4.min.js')
-    block scripts
-    script.
-      $(document).ready(function(){
-        $("img.lazy").lazyload({effect:"fadeIn"});
-      });
-
-    
-    script.
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', '#{config.googleAnalyticsId}', '#{config.domain}');
-      ga('set', 'dimension1', '#{project.name}');
-      ga('send', 'pageview');
-    script(async='', src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-559bd1344703b48a")
-      
-    if (_events.length > 0)
-      script
-        each a in _events
-          = "ga('send', 'event', '"+a.category+"', '"+a.action+"', '"+a.label+"', '"+a.value+"')"
-    if (config.htmlFooter)
-      != config.htmlFooter
+block scripts
+  script(type='text/javascript').
+    var addthis_config = {
+      data_ga_property: '#{config.googleAnalyticsId}',
+      data_ga_social: true
+    };
+  script(async='', src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-559bd1344703b48a")

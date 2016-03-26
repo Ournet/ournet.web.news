@@ -16,11 +16,11 @@ block main_content
           a.author-name(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))= quote.author.name
           span.details , 
             = util.moment(quote.createdAt).locale(currentCulture.lang).from(currentDate, true)
-            if (currentDate.getTime() - new Date(quote.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
-              .details
-                a(href=links.item(quote.webpage.uniqueName, quote.webpage.id))= util.wrapAt(quote.webpage.title, 100)
-            else
-              .details= util.wrapAt(quote.webpage.title, 100)
+          if (currentDate.getTime() - new Date(quote.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
+            .details
+              a(href=links.item(quote.webpage.uniqueName, quote.webpage.id))= util.wrapAt(quote.webpage.title, 100)
+          else
+            .details= util.wrapAt(quote.webpage.title, 100)
   .clearfix
     //- .our-sharedata.pull-right(data-appname='ournet', data-identifier=shareInfo.identifier, data-title=shareInfo.title, data-cid=shareInfo.clientId)
     //-   each service in config.shareDataServices

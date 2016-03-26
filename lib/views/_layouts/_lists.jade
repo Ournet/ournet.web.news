@@ -207,7 +207,7 @@ mixin quoteListItem(item, options)
             = util.wrapAt(item.text, options.wrapAt || 200)
         i
       .item-author.media
-        a.pull-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
+        a.media-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
           img.media-object(src=util.entipicImage(item.author, currentCulture), alt='')
         .media-body
           a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name

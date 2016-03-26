@@ -9,7 +9,7 @@ block main_content
         |  
         span.icon.icon-views
       |  
-      time= util.moment(util.date(new Date(story.createdAt).getTime(), config.timezone)).locale(currentCulture.lang).format('lll')
+      time= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
     include ./controls/story_header
     .item-body
       - var textLength = story.summary.length;

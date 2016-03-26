@@ -1,0 +1,120 @@
+doctype html
+html(lang=currentCulture.language)
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= (site.head.title || site.title)
+    meta(name='description', content=site.head.description)
+    meta(name='keywords', content=site.head.keywords)
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,700%7CRoboto+Slab:300,400,700')
+    block styles
+    if (NODE_ENV==='production')
+      if (site.platform === 'mobile')
+        link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/' + project.name + '/mobile/main-'+ config.assets.css.mainMobile +'.min.css')
+      else
+        link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/' + project.name + '/desktop/main-'+ config.assets.css.main +'.min.css')
+    else
+      link(type='text/css', rel='stylesheet', href='http://localhost:8044/css/' + project.name + '/'+site.platform+'/main.css')
+    if (site.head.canonical)
+      link(rel='canonical', href=site.head.canonical)
+    link(rel='shortcut icon', href=config.favicon)
+
+    if (config.fbId)
+      meta(property='fb:app_id', content=config.fbId)
+
+    link(rel='publisher', href='https://facebook.com/'+ config.domain)
+    meta(property='og:site_name', content=config.name)
+    meta(property='og:updated_time', content=currentDate.toISOString())
+    meta(property='og:locale', content=currentCulture.language+'_'+currentCulture.country.toUpperCase())
+
+    link(rel='dns-prefetch', href='//assets.ournetcdn.net')
+    link(rel='dns-prefetch', href='//wi.ournetcdn.net')
+    link(rel='dns-prefetch', href='//ajax.googleapis.com')
+    link(rel='dns-prefetch', href='//fonts.googleapis.com')
+    link(rel='dns-prefetch', href='//7s.addthis.com')
+    link(rel='dns-prefetch', href='//tpc.googlesyndication.com')
+    link(rel='dns-prefetch', href='//pagead2.googlesyndication.com')
+
+  body(class=('country-'+currentCulture.country+' project-'+project.name+' language-'+currentCulture.language + ' '+site.platform + ' '+(site.pageLayoutCss||'')))
+    #fb-root
+
+    #page-top
+      #top-ads
+      #top-line
+        svg.accent-line
+          g#svg-accent-line
+            rect(height='100%', width='10%', fill='#9db49f')
+            rect(height='100%', width='10%', x='10%', fill='#e46f61')
+            rect(height='100%', width='10%', x='20%', fill='#875f8d')
+            rect(height='100%', width='10%', x='30%', fill='#c84697')
+            rect(height='100%', width='10%', x='40%', fill='#95b464')
+            rect(height='100%', width='10%', x='50%', fill='#2e9b97')
+            rect(height='100%', width='10%', x='60%', fill='#db7723')
+            rect(height='100%', width='10%', x='70%', fill='#6f85bf')
+            rect(height='100%', width='10%', x='80%', fill='#3d80b9')
+            rect(height='100%', width='10%', x='90%', fill='#72778c')
+    header#page-header
+      .container
+        block page_header_content
+    main#page-main
+      .container
+        block page_main_content
+    footer#page-footer
+      .container
+        .row
+          .col-sm-4.col-xs-12
+            h4= __('info')
+            div= __('contact')+': '
+              a=  config.email
+            div
+              | Version 
+              = project.version
+              if (config.languages.length>1)
+                |,  
+                each key in config.languages
+                  if (key!=currentCulture.language)
+                    a(href=links.home({ul:key}))= config.languagesNames[key]
+
+          #page-footer-portals.col-sm-4.col-xs-12
+            h4= __('international')
+            each id in config.internationalIds
+              - var item = config.international[id]
+              div
+                a(href=item.url, target='_blank')
+                  i.flag-icon(class='flag-'+id)
+                  = item[currentCulture.language]
+          .col-sm-4.col-xs-12
+            h4= __('useful')
+            each host, key in config.projects
+              div
+                a(href='http://'+host)= __(key)
+
+    if (!noGoogleAds)
+      script(async='', src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+    script.
+      window.globalInitData={cn: '#{config.country}',ul:'#{currentCulture.language}'};
+    script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')
+    if (NODE_ENV==='production')
+      if (site.platform === 'mobile')
+        script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/' + project.name + '/mobile/main-'+ config.assets.js.mainMobile +'.min.js')
+      else
+        script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/' + project.name + '/desktop/main-'+ config.assets.js.main +'.min.js')
+    else
+      script(type='text/javascript', src='http://localhost:8044/js/' + project.name + '/'+site.platform+'/main.js')
+    block scripts
+    
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', '#{config.googleAnalyticsId}', '#{config.domain}');
+      ga('set', 'dimension1', '#{project.name}');
+      ga('set', 'dimension2', '#{site.platform}');
+      ga('send', 'pageview');
+      
+    if (_events && _events.length > 0)
+      script
+        each a in _events
+          = "ga('send', 'event', '"+a.category+"', '"+a.action+"', '"+a.label+"', '"+a.value+"')"

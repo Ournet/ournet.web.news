@@ -1,49 +1,6 @@
 extends ./layout
 include ./_lists
 
-block content_header
-  .row
-    .col-md-6.col-sm-8.col-xs-12
-      #header-logo.pull-left
-        a(title=config.name, href=links.home({ul: currentCulture.language}))
-      #header-search.col-md-7.col-xs-7.col-sm-5
-        form#q-form(method='get', action=links.search({ul: currentCulture.language}))
-          input#q(name='q', type='text', placeholder=__('search_text'))
-          a#search-btn(onclick="$('#q-form').submit();")
-            span.icon
-    .col-md-6.col-sm-4.hidden-xs
-      #header-right-content
-        .row
-          .col-md-6.hidden-sm
-            if (exchangeWidget && exchangeWidget.rates)
-              #widget-exchange
-                each item, i in exchangeWidget.rates
-                  if (i<2)
-                    - var value = item.buy
-                    - var diff = value - item.buy1d
-                    - var diffCss = diff>0 ? "view-plus": "view-minus"
-                    - diffCss = diff==0 || diff==NaN?'view-no-change': diffCss
-                    div(class="item "+diffCss)
-                      .symbol= item.currency.symbol
-                      span(class="value")= util.numberFormat(value, 2, currentCulture.language)
-                      .popover
-                        small(class="details")= util.moment(exchangeWidget.date).locale(currentCulture.language).format(config.monthFormat)
-                        .item-source(title=exchangeWidget.source.name)= exchangeWidget.source.abbr
-                        .item-value= util.numberFormat(value, 4, currentCulture.language)
-                        if(diff)
-                          small(class="item-diff")= util.numberFormat(diff, 4, currentCulture.language)
-                        .item-details
-                          a(href=exchangeWidget.url)= __('exchange_rates')
-                            |  ›
-          .col-md-6.col-sm-12
-            if (weatherWidget && weatherWidget.forecast)
-              #widget-weather
-                span.symbol
-                  img(alt='', src='http://assets.ournetcdn.net/root/img/icons/weather/48/'+weatherWidget.forecast.symbol.id+'.png', title=weatherWidget.forecast.symbol.name)
-                span.name
-                  a(href=weatherWidget.place.url)= weatherWidget.place.name
-                  span.no= weatherWidget.forecast.temperature + '°C'
-
 block content
   if (categories)
     #layout-menu

@@ -2,7 +2,6 @@ extends ./normal
 
 block normal_content
   #layout-content.clearfix
-    .container
       #top-pcl
         .ref-bg.domain-
         .ref-bg.domain-10
@@ -14,10 +13,11 @@ block normal_content
         .ref-bg.domain-70
         .ref-bg.domain-80
         .ref-bg.domain-90
+
       .page-container
         .row
           //- main content
-          .col-sm-8.col-md-6
+          .col-sm-8.col-md-6.content-box
             block main_content
 
           //- second content
@@ -43,5 +43,5 @@ block normal_content
                         .details= '+'+item.counts.trend24h
             block right_content_bottom
 
-    if (oneList)
-      include ../controls/one_list_container
+  if (oneList)
+    include ../controls/one_list_container
