@@ -1,13 +1,11 @@
 extends ./layout
-include ./_lists
+include ../mixins/lists
 
 block content
   if (categories)
     #layout-menu
-      .container
-        #main-menu-container
-          ul#main-menu
-            each item in categories
-              li
-                a.ref-bg_hover(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
+      ul#main-menu
+        each item in categories
+          li
+            a(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
   block normal_content

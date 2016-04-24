@@ -1,12 +1,13 @@
-mixin storiesRowView(list, itemClass)
+mixin storiesRowView(list, options)
+  - options = options || {};
   .list.ot-story.view-row.row
     each item in list
       - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
       - var hasVideo = item.videos && item.videos.length > 0
-      .list-item.ot-story(class=(itemClass || 'col-xs-6'))
-        .item.ot-story.hover-action.ref-border-top_hover(class='domain-'+(item.category||''))
-          a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
-            img(src=links.wi('medium', item.imageId))
+      .list-item.ot-story(class=(options.itemClass || 'col-xs-6'))
+        .item.ot-story(class='domain-'+(item.category||''))
+          a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
+            img(src=links.wi(options.imageSize || 'medium', item.imageId))
             if (hasVideo)
               span.video-icon
                 i
@@ -17,70 +18,13 @@ mixin storiesRowView(list, itemClass)
               | , 
               span.stats-badge(title=__('views'))= item.countViews
                 |  
-                span.icon.icon-views
+                i.icon.icon-views
               if (item.videos)
                 | , 
                 span.stats-badge(title=__('video'))= item.videos.length
                   |  
-                  span.icon.icon-video
+                  i.icon.icon-video
 
-mixin storiesFineView(list, options)
-  - options = options || {};
-  .list.ot-story.view-fine.row
-    each item in list
-      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var hasVideo = item.videos && item.videos.length > 0
-      .list-item.ot-story
-        .item
-          div(class=(options.cssClass || 'col-xs-6'))
-            a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
-              img(src=links.wi('medium', item.imageId))
-              if (hasVideo)
-                span.video-icon
-                  i
-          .item-body(class=(options.cssClass || 'col-xs-6'))
-            h3
-              a(href=url)= item.title
-            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-              | , 
-              span.stats-badge(title=__('views'))= item.countViews
-                |  
-                span.icon.icon-views
-              if (hasVideo)
-                | , 
-                span.stats-badge(title=__('video'))= item.videos.length
-                  |  
-                  span.icon.icon-video
-            p= util.wrapAt(item.summary, options.wrapAt || 160)
-
-mixin newsFineView(list, options)
-  - options = options || {};
-  .list.ot-story.view-fine.row
-    each item in list
-      - var url=links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var hasVideo = item.videoId
-      .list-item.ot-story
-        .item
-          div(class=(options.cssClass || 'col-xs-6'))
-            a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
-              img(src=links.wi.news('medium', item.imageId))
-              if (hasVideo)
-                span.video-icon
-                  i
-          .item-body(class=(options.cssClass || 'col-xs-6'))
-            h3
-              a(href=url)= item.title
-            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-              | , 
-              span.stats-badge(title=__('views'))= item.countViews
-                |  
-                span.icon.icon-views
-              if (hasVideo)
-                | , 
-                span.stats-badge(title=__('video'))
-                  |  
-                  span.icon.icon-video
-            p= util.wrapAt(item.summary, options.wrapAt || 160)
 
 mixin storyMainViewItem(item, options)
   - options = options || {};
@@ -88,8 +32,8 @@ mixin storyMainViewItem(item, options)
   - var hasVideo = item.videos && item.videos.length > 0
   .list-item.ot-story.view-main
     .item.ot-story
-      a.item-image.fine-image(href=url, class=(hasVideo ? 'video-image' : null))
-        img(src=links.wi('master', item.imageId))
+      a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
+        img(src=links.wi(options.imageSize || 'master', item.imageId))
         if (hasVideo)
           span.video-icon
             i
@@ -108,17 +52,18 @@ mixin storyMainViewItem(item, options)
               span.icon.icon-video
         p= util.wrapAt(item.summary, options.wrapAt || 400)
 
-mixin newsSimpleView(list, options)
+
+mixin storiesSimpleView(list, options)
   - options = options || {};
   .list.ot-news.view-simple
     each item in list
-      - var url= options.isStory ? links.story(item.uniqueName, item.id, {ul: currentCulture.lang}) : links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var imageUrl = options.isStory? links.wi('square', item.imageId) : links.wi.news('square', item.imageId);
-      - var hasVideo = item.videoId || item.videos && item.videos.length > 0;
+      - var url= links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var imageUrl = links.wi('square', item.imageId)
+      - var hasVideo = item.videos && item.videos.length > 0;
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
-            .pull-left(class=hasVideo?'video-image':null)
+            .media-left(class=hasVideo?'has-video':null)
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
               if (hasVideo)
                 span.video-icon
@@ -128,10 +73,88 @@ mixin newsSimpleView(list, options)
             if (!options.noSummary)
               p= util.wrapAt(item.summary, options.wrapAt||200)
             .details
-              if (item.host)
-                a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
-              |  - 
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+
+
+mixin newsSimpleView(list, options)
+  - options = options || {};
+  .list.ot-news.view-simple
+    each item in list
+      - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var imageUrl = links.wi.news('square', item.imageId);
+      - var hasVideo = item.videoId || item.videos && item.videos.length > 0;
+      .list-item.ot-news
+        .item.ot-news(class=(item.imageId? 'media': null))
+          if (item.imageId)
+            .media-left(class=hasVideo?'has-video':null)
+              img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
+              if (hasVideo)
+                span.video-icon
+                  i
+          .item-body(class=(item.imageId? 'media-body': null))
+            a.item-name(href=url)= item.title
+            if (!options.noSummary)
+              p= util.wrapAt(item.summary, options.wrapAt||200)
+            .details
+              = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+
+mixin storiesFineView(list, options)
+  - options = options || {};
+  .list.ot-story.view-fine.row
+    each item in list
+      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var hasVideo = item.videos && item.videos.length > 0
+      .list-item.ot-story
+        .item
+          div(class=(options.cssClass || 'col-xs-6'))
+            a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
+              img(src=links.wi('medium', item.imageId))
+              if (hasVideo)
+                span.video-icon
+                  i
+          .item-body(class=(options.cssClass || 'col-xs-6'))
+            h3
+              a(href=url)= item.title
+            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              | , 
+              span.stats-badge(title=__('views'))= item.countViews
+                |  
+                i.icon.icon-views
+              if (hasVideo)
+                | , 
+                span.stats-badge(title=__('video'))= item.videos.length
+                  |  
+                  i.icon.icon-video
+            p= util.wrapAt(item.summary, options.wrapAt || 160)
+
+mixin newsFineView(list, options)
+  - options = options || {};
+  .list.ot-story.view-fine.row
+    each item in list
+      - var url=links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var hasVideo = item.videoId
+      .list-item.ot-story
+        .item
+          div(class=(options.cssClass || 'col-xs-6'))
+            a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
+              img(src=links.wi.news('medium', item.imageId))
+              if (hasVideo)
+                span.video-icon
+                  i
+          .item-body(class=(options.cssClass || 'col-xs-6'))
+            h3
+              a(href=url)= item.title
+            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+              | , 
+              span.stats-badge(title=__('views'))= item.countViews
+                |  
+                i.icon.icon-views
+              if (hasVideo)
+                | , 
+                span.stats-badge(title=__('video'))
+                  |  
+                  i.icon.icon-video
+            p= util.wrapAt(item.summary, options.wrapAt || 160)
 
 mixin newsLineView(list, options)
   - options = options || {};
@@ -142,14 +165,14 @@ mixin newsLineView(list, options)
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
-            .pull-left
+            .media-left
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
           .item-body(class=(item.imageId? 'media-body': null))
             a.item-name(href=url)= item.title
             .details
-              if (item.host)
-                a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
-              |  - 
+              //- if (item.host)
+              //-   a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
+              //- |  - 
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
 mixin newsCleanView(list, options)
@@ -162,23 +185,6 @@ mixin newsCleanView(list, options)
           .item-body
             a.item-name(href=url)= util.wrapAt(item.title, 90)
             .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-
-mixin newsLargeViewItem(item, isStory)
-  - var url = isStory ? links.story(item.uniqueName, item.id, {ul: currentCulture.lang}) : links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-  - var imageUrl = isStory? links.wi('medium', item.imageId) : links.wi.news('medium', item.imageId);
-  .item.ot-news.view-large.clearfix
-    .item-media
-      a(href=url)
-        img.story-img(alt='', src=imageUrl)
-    .item-body
-      h3
-        a.item-name(href=url)= item.title
-      p= util.wrapAt(item.summary, 300)
-        span.details
-          |  - 
-          a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
-          |  - 
-          = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
 mixin quotesList(list, options)
   - options = options || {}
@@ -219,11 +225,3 @@ mixin quoteListItem(item, options)
                 a(href=links.item(item.webpage.uniqueName, item.webpage.id))= util.wrapAt(item.webpage.title, 100)
             else
               .details= util.wrapAt(item.webpage.title, 100)
-
-mixin storyNewsTitle(list)
-  ul.news-line
-    each item in list
-      li
-        h3= util.wrapAt(item.title, 100)
-        | : 
-        a.source(rel="nofollow", target="_blank", href=util.toUrl(item))= item.host.replace(/^www\./, '')

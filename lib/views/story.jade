@@ -53,7 +53,7 @@ block append second_content
     .tab
       h4.tab-title= __('latest_news')
       .tab-content
-        +newsSimpleView(relatedNews, {wrapAt: 100, isStory: true})
+        +storiesSimpleView(relatedNews, {wrapAt: 100, isStory: true})
 
 block right_content_bottom
   .tab.hidden-xs.hidden-sm
