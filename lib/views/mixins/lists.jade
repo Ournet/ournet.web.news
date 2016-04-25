@@ -1,79 +1,62 @@
+mixin storyItem(item, options)
+  .item.ot-story(class='domain-' + (item.category || '0'))
+    if (item.imageId && options.image!==false)
+      - var imageSrc = links.wi(options.imageSize || 'medium', item.imageId)
+      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+      a.item-image(href=url, class=options.imageClass)
+        if (options.video)
+          div.has-video
+            if (options.lazyImage)
+              img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageSrc)
+            else
+              img(src=imageSrc)
+            span.video-icon
+              i
+        else
+          if (options.lazyImage)
+            img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageSrc)
+          else
+            img(src=imageSrc)
+    .item-body
+      h3
+        a(href=url)= util.wrapAt(item.title, options.titleLength || 150)
+      .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+        | , 
+        span.stats-badge(title=__('views'))= item.countViews
+          |  
+          i.icon.icon-views
+        if (item.videos)
+          | , 
+          span.stats-badge(title=__('video'))= item.videos.length
+            |  
+            i.icon.icon-video
+      if (item.summary && options.summary)
+        p= util.wrapAt(item.summary, options.summaryLength || 300)
+
 mixin storiesRowView(list, options)
   - options = options || {};
   .list.ot-story.view-row.row
     each item in list
-      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
       - var hasVideo = item.videos && item.videos.length > 0
       .list-item.ot-story(class=(options.itemClass || 'col-xs-6'))
-        .item.ot-story(class='domain-'+(item.category||''))
-          a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
-            img(src=links.wi(options.imageSize || 'medium', item.imageId))
-            if (hasVideo)
-              span.video-icon
-                i
-          .item-body
-            h3
-              a(href=url)= util.wrapAt(item.title, 80)
-            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-              | , 
-              span.stats-badge(title=__('views'))= item.countViews
-                |  
-                i.icon.icon-views
-              if (item.videos)
-                | , 
-                span.stats-badge(title=__('video'))= item.videos.length
-                  |  
-                  i.icon.icon-video
+        +storyItem(item, {video: !!item.videos, imageClass: 'fine-image'})
 
 
-mixin storyMainViewItem(item, options)
+mixin storiesLargeView(list, options)
   - options = options || {};
-  - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
-  - var hasVideo = item.videos && item.videos.length > 0
-  .list-item.ot-story.view-main
-    .item.ot-story
-      a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
-        img(src=links.wi(options.imageSize || 'master', item.imageId))
-        if (hasVideo)
-          span.video-icon
-            i
-      .item-body
-        h3
-          a(href=url)= item.title
-        .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-          | , 
-          span.stats-badge(title=__('views'))= item.countViews
-            |  
-            span.icon.icon-views
-          if (item.videos)
-            | , 
-            span.stats-badge(title=__('video'))= item.videos.length
-              |  
-              span.icon.icon-video
-        p= util.wrapAt(item.summary, options.wrapAt || 400)
+  .list.ot-story.view-large.row
+    each item in list
+      - var hasVideo = item.videos && item.videos.length > 0
+      .list-item.ot-story(class=(options.itemClass || 'col-sm-6 col-xs-12'))
+        +storyItem(item, {video: hasVideo, imageClass: 'fine-image', imageSize: 'large', summary: options.summary!==false, summaryLength: options.summaryLength, lazyImage: options.lazyImage})
 
 
 mixin storiesSimpleView(list, options)
   - options = options || {};
-  .list.ot-news.view-simple
+  .list.ot-story.view-simple(class=options.listClass)
     each item in list
-      - var url= links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var imageUrl = links.wi('square', item.imageId)
-      - var hasVideo = item.videos && item.videos.length > 0;
-      .list-item.ot-news
-        .item.ot-news(class=(item.imageId? 'media': null))
-          if (item.imageId)
-            .media-left(class=hasVideo?'has-video':null)
-              img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
-              if (hasVideo)
-                span.video-icon
-                  i
-          .item-body(class=(item.imageId? 'media-body': null))
-            a.item-name(href=url)= item.title
-            if (!options.noSummary)
-              p= util.wrapAt(item.summary, options.wrapAt||200)
-            .details
-              = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+      .list-item.ot-story(class=options.itemClass)
+        +storyItem(item, {video: false, imageSize: 'square', summary: options.summary, summaryLength: options.summaryLength || 200, lazyImage: true, image: options.image!==false})
 
 
 mixin newsSimpleView(list, options)
@@ -86,75 +69,14 @@ mixin newsSimpleView(list, options)
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
-            .media-left(class=hasVideo?'has-video':null)
+            .media-left
               img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
-              if (hasVideo)
-                span.video-icon
-                  i
           .item-body(class=(item.imageId? 'media-body': null))
             a.item-name(href=url)= item.title
             if (!options.noSummary)
               p= util.wrapAt(item.summary, options.wrapAt||200)
             .details
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-
-mixin storiesFineView(list, options)
-  - options = options || {};
-  .list.ot-story.view-fine.row
-    each item in list
-      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var hasVideo = item.videos && item.videos.length > 0
-      .list-item.ot-story
-        .item
-          div(class=(options.cssClass || 'col-xs-6'))
-            a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
-              img(src=links.wi('medium', item.imageId))
-              if (hasVideo)
-                span.video-icon
-                  i
-          .item-body(class=(options.cssClass || 'col-xs-6'))
-            h3
-              a(href=url)= item.title
-            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-              | , 
-              span.stats-badge(title=__('views'))= item.countViews
-                |  
-                i.icon.icon-views
-              if (hasVideo)
-                | , 
-                span.stats-badge(title=__('video'))= item.videos.length
-                  |  
-                  i.icon.icon-video
-            p= util.wrapAt(item.summary, options.wrapAt || 160)
-
-mixin newsFineView(list, options)
-  - options = options || {};
-  .list.ot-story.view-fine.row
-    each item in list
-      - var url=links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var hasVideo = item.videoId
-      .list-item.ot-story
-        .item
-          div(class=(options.cssClass || 'col-xs-6'))
-            a.item-image.fine-image(href=url, class=(hasVideo ? 'has-video' : null))
-              img(src=links.wi.news('medium', item.imageId))
-              if (hasVideo)
-                span.video-icon
-                  i
-          .item-body(class=(options.cssClass || 'col-xs-6'))
-            h3
-              a(href=url)= item.title
-            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-              | , 
-              span.stats-badge(title=__('views'))= item.countViews
-                |  
-                i.icon.icon-views
-              if (hasVideo)
-                | , 
-                span.stats-badge(title=__('video'))
-                  |  
-                  i.icon.icon-video
-            p= util.wrapAt(item.summary, options.wrapAt || 160)
 
 mixin newsLineView(list, options)
   - options = options || {};
@@ -188,40 +110,29 @@ mixin newsCleanView(list, options)
 
 mixin quotesList(list, options)
   - options = options || {}
-  .list.ot-quote(class=(options.cssClass || null))
+  .list.ot-quote(class=(options.listClass || null))
     each item in list
-      +quoteListItem(item, options.item)
+      .list-item.ot-quote(class=(options.itemClass || null))
+        +quoteItem(item, options)
 
-mixin quotesRowView(list, options)
-  .list.ot-quote.view-row.row
-    each item in list
-      +quoteListItem(item, options)
-
-mixin quotesSimpleView(list, options)
-  .list.ot-quote
-    each item in list
-      +quoteListItem(item, options)
-
-mixin quoteListItem(item, options)
-  - options = options || {}
-  .list-item.ot-quote(class=(options.cssClass || null))
-    .item.ot-quote(class='domain-'+(item.category || ''))
-      .item-body
-        a.item-name(href=links.quote(item.id, {ul: currentCulture.lang}))
-          h4
-            span.quote-mark “
-            = util.wrapAt(item.text, options.wrapAt || 200)
-        i
-      .item-author.media
-        a.media-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
-          img.media-object(src=util.entipicImage(item.author, currentCulture), alt='')
-        .media-body
-          a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name
-          span.details , 
-            = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-          if (!options.noPage)
-            if (currentDate.getTime() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
-              .details
-                a(href=links.item(item.webpage.uniqueName, item.webpage.id))= util.wrapAt(item.webpage.title, 100)
-            else
-              .details= util.wrapAt(item.webpage.title, 100)
+mixin quoteItem(item, options)
+  .item.ot-quote(class='domain-'+(item.category || '0'))
+    .item-body
+      a.item-name(href=links.quote(item.id, {ul: currentCulture.lang}))
+        h4
+          span.quote-mark “
+          = util.wrapAt(item.text, options.wrapAt || 200)
+      i
+    .item-author.media
+      a.media-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
+        img.media-object(src=util.entipicImage(item.author, currentCulture), alt='')
+      .media-body
+        a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name
+        span.details , 
+          = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
+        if (!options.noPage)
+          if (currentDate.getTime() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
+            .details
+              a(href=links.item(item.webpage.uniqueName, item.webpage.id))= util.wrapAt(item.webpage.title, 90)
+          else
+            .details= util.wrapAt(item.webpage.title, 90)

@@ -1,6 +1,6 @@
 - var hasVideo = story.videos && story.videos.length > 0
 
-.story-image.fine-image.clearfix(class=(hasVideo ? 'video-image': null))
+.story-image.fine-image.clearfix(class=(hasVideo ? 'has-video': null))
   img.story-img(alt=story.title, src=links.wi('master', story.imageId))
   if (hasVideo)
     .video-icon

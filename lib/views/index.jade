@@ -15,48 +15,26 @@ block append content
       .ref-bg.domain-90
     .page-container
       .row
-        //- main content
+        //- fresh news
         .col-sm-12.col-md-10
-          .row
-            .col-sm-6
-              if (mainStory)
-                .list.view-main
-                  +storyMainViewItem(mainStory)
-                  br
-            .col-sm-6
-              +storiesRowView(stories)
+          +storiesLargeView(stories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+          +storiesSimpleView(stories.slice(3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
         //- right content
         .col-sm-12.col-md-2
-          .tab.clearfix
-            .tab-title
-              span.pull-right= __('24_hrs')
-              h4= __('trending')
-            .tab-content
-              .list.ot-topic.view-trending
-                each item in trendingTopics
-                  .item.media
-                    a.media-left(href=links.topic(item.uniqueName, {ul: currentCulture.lang}))
-                      img.media-object(alt='' src=util.entipicImage(item, currentCulture))
-                    .media-body
-                      a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
-                      .details= '+'+item.counts.trend24h
+          include ./controls/trending_topics
           //- .tab.clearfix
           //-   .tab-title
           //-     h4
           //-       a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
-      br
+      h3= __('popular_news')
       .row
-        .col-md-5.col-sm-6.col-xs-12
-          .tab
-            +quotesSimpleView(quotes)
-            .list-footer
-              a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')
-        .col-md-5.col-sm-6.col-xs-12
-          .tab
-            .tab-title
-              h3= __('popular_news')
-            .tab-content
-              +storiesRowView(popularStories)
+        //- pupular news
+        .col-sm-12.col-md-10
+          +storiesLargeView(popularStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+          +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+          .list-footer
+            a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')
+        //- right content
         .col-md-2.hidden-xs.hidden-sm
           .tab
             include ./controls/ads_150

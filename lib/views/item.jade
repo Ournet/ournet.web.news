@@ -43,7 +43,7 @@ block scripts
     - var videoFrame = links.videoFrame(story.videoId,{ul: currentCulture.lang});
     script.
       $(document).ready(function(){
-        $('.story-image.video-image').click(function(){
+        $('.story-image.has-video').click(function(){
           $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>')
         });
       });
