@@ -39,5 +39,7 @@
 	"popular_news": "Популярные новости",
   "latest_quotes": "Последние заявления",
   "latest_quotes_in_media": "Последние заявления из прессы",
-  "latest_quotes_in_media_country_format": "Последние заявления/цитаты из прессы - %s"
+  "latest_quotes_in_media_country_format": "Последние заявления/цитаты из прессы - %s",
+  "info": "Информация",
+	"useful": "Полезно"
 }

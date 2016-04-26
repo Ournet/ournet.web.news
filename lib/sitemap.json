@@ -9,6 +9,9 @@
   "quotes": "/quotes",
   "category": "/${0}",
   "search": "/search",
+  "important": "/important",
+  "popular": "/popular",
+  "video": "/video",
   "url": {
     "$url": "/url",
     "news": "/news/${0}"

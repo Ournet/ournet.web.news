@@ -13,8 +13,7 @@
 	"search_text": "Caută știri...",
 	"exchange_rates": "Curs valutar",
 	"contact": "Contact",
-	"weather_cright": "weather_cright",
-	"international": "international",
+	"international": "Internațional",
 	"share_on_format": "Trimite pe %s",
 	"views": "vizualizări",
 	"images": "imagini",
@@ -37,13 +36,15 @@
 	"more_quotes": "Mai multe declatații",
 	"quotes_by_author": "De același autor",
 	"news_count": "%d știri",
-	"video": "video",
+	"video": "Video",
 	"category_title": "%s - ultimele stiri",
 	"news_sources": "Surse de stiri",
 	"popular_news": "Știri populare",
 	"latest_quotes_in_media": "Ultimele declarații din presă",
 	"latest_quotes_in_media_country_format": "Ultimele declarații/citate din presă - %s",
 	"latest_quotes": "Ultimele declarații",
-	"info": "info",
-	"useful": "useful"
+	"info": "Info",
+	"useful": "Util",
+	"popular": "Popular",
+	"important": "Important"
 }

@@ -35,5 +35,7 @@
   "popular_news": "Popular news",
   "latest_quotes": "Latest Quotes",
   "latest_quotes_in_media": "Latest Quotes in the Media",
-  "latest_quotes_in_media_country_format": "Latest Quotes in the Media - %s"
+  "latest_quotes_in_media_country_format": "Latest Quotes in the Media - %s",
+  "info": "Info",
+  "useful": "Useful"
 }
