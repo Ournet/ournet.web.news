@@ -2,7 +2,7 @@ extends ./root
 
 block page_header_content
   .row
-    .col-xs-5.col-sm-2
+    .col-xs-4.col-sm-2
       #header-logo
         a#logo(title=__(project.name), href=links.home({ul: currentCulture.language}))
         if (config.projects.length > 1)
@@ -10,43 +10,39 @@ block page_header_content
             each host, key in config.projects
               li
                 a(target='_blank', href='http://'+host)= __(key)
-    .col-xs-7.col-sm-4.col-md-3
-      #header-search
-        form#search-form(method='get', action=links.search({ul: currentCulture.language}))
-          input#q(name='q', type='text', placeholder=__('search_text'))
-          a#search-btn
-            i.icon
-    .col-sm-6.col-md-7.hidden-xs
+    .col-xs-8.col-sm-7
+      ul#header-menu
+        li.dropdown
+          if (category)
+            a.type-news.dropdown-toggle(class=('domain-'+category.id), type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= category[currentCulture.lang]
+              |  
+              span.caret
+          else
+            a.type-news.dropdown-toggle(type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= __('news')
+              |  
+              span.caret
+          if (categories)
+            ul.dropdown-menu#dropdown-cats
+              each item in categories
+                li
+                  a(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
+        li
+          a.type-popular(href=links.popular({ul: currentCulture.lang}))= __('popular')
+        li
+          a.type-important(href=links.important({ul: currentCulture.lang}))= __('important')
+        li
+          a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
+        li
+          a.type-quotes(href=links.quotes({ul: currentCulture.lang}))= __('quotes')
+    .col-sm-3.hidden-xs
       #header-widgets
-        .col-md-6.hidden-sm
-          if (exchangeWidget && exchangeWidget.rates)
-            #widget-exchange
-              each item, i in exchangeWidget.rates
-                if (i<2)
-                  - var value = item.buy
-                  - var diff = value - item.buy1d
-                  - var diffCss = diff>0 ? "view-plus": "view-minus"
-                  - diffCss = diff==0 || diff==NaN?'view-no-change': diffCss
-                  div(class="item "+diffCss)
-                    .symbol= item.currency.symbol
-                    span(class="value")= util.numberFormat(value, 2, currentCulture.language)
-                    .popover
-                      small(class="details")= util.moment(exchangeWidget.date).locale(currentCulture.language).format(config.monthFormat)
-                      .item-source(title=exchangeWidget.source.name)= exchangeWidget.source.abbr
-                      .item-value= util.numberFormat(value, 4, currentCulture.language)
-                      if(diff)
-                        small(class="item-diff")= util.numberFormat(diff, 4, currentCulture.language)
-                      .item-details
-                        a(href=exchangeWidget.url)= __('exchange_rates')
-                          |  ›
-        .col-md-6.col-sm-12
-          if (weatherWidget && weatherWidget.forecast)
-            #widget-weather
-              //- .shadow
-              span.symbol.w-icon(class='wi-'+weatherWidget.forecast.symbol.id, title=weatherWidget.forecast.symbol.name)
-              span.name
-                a(href=weatherWidget.place.url)= weatherWidget.place.name
-                span.no= weatherWidget.forecast.temperature + '°C'
+        if (weatherWidget && weatherWidget.forecast)
+          #widget-weather
+            //- .shadow
+            span.symbol.w-icon(class='wi-'+weatherWidget.forecast.symbol.id, title=weatherWidget.forecast.symbol.name)
+            span.name
+              a(href=weatherWidget.place.url)= weatherWidget.place.name
+              span.no= weatherWidget.forecast.temperature + '°C'
 
 block page_main_content
   section#page-content

@@ -2,28 +2,4 @@ extends ./layout
 include ../mixins/lists
 
 block content
-  #layout-menu
-    ul#main-menu
-      li.dropdown
-        if (category)
-          a.type-news.dropdown-toggle(class=('domain-'+category.id), type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= category[currentCulture.lang]
-            |  
-            span.caret
-        else
-          a.type-news.dropdown-toggle(type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= __('news')
-            |  
-            span.caret
-        if (categories)
-          ul.dropdown-menu#dropdown-cats
-            each item in categories
-              li
-                a(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
-      li
-        a.type-popular(href=links.popular({ul: currentCulture.lang}))= __('popular')
-      li
-        a.type-important(href=links.important({ul: currentCulture.lang}))= __('important')
-      li
-        a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
-      li
-        a.type-quotes(href=links.quotes({ul: currentCulture.lang}))= __('quotes')
   block normal_content
