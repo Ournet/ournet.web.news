@@ -1,44 +1,16 @@
 extends _layouts/normal
 
-block append content
-  #layout-content.clearfix
-    #top-pcl
-      .ref-bg.domain-
-      .ref-bg.domain-10
-      .ref-bg.domain-20
-      .ref-bg.domain-30
-      .ref-bg.domain-40
-      .ref-bg.domain-50
-      .ref-bg.domain-60
-      .ref-bg.domain-70
-      .ref-bg.domain-80
-      .ref-bg.domain-90
-    .page-container
-      .row
-        //- fresh news
-        .col-sm-12.col-md-10
-          +storiesLargeView(stories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
-          +storiesSimpleView(stories.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
-          if (stories.length>6)
-            +storiesSimpleView(stories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
-        //- right content
-        .col-sm-12.col-md-2
-          include ./controls/trending_topics
-          //- .tab.clearfix
-          //-   .tab-title
-          //-     h4
-          //-       a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
-      .row
-        //- pupular news
-        .col-sm-12.col-md-10
-          .section-header
-            h3.type-popular= __('popular_news')
-              //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
-          +storiesLargeView(popularStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
-          +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
-          .list-footer
-            a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')
-        //- right content
-        .col-md-2.hidden-xs.hidden-sm
-          .tab
-            include ./controls/ads_150
+block normal_content
+  //- fresh news
+  +storiesLargeView(stories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+  +storiesSimpleView(stories.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
+  if (stories.length>6)
+    +storiesSimpleView(stories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
+  //- pupular news
+  .section-header
+    h3.type-popular= __('popular_news')
+      //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
+  +storiesLargeView(popularStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+  +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  .list-footer
+    a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')

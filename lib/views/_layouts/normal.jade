@@ -1,5 +1,13 @@
 extends ./layout
-include ../mixins/lists
 
 block content
-  block normal_content
+  .row
+    .col-sm-12.col-md-10
+      block normal_content
+    .col-sm-12.col-md-2
+      include ../controls/trending_topics
+      .group.hidden-sm.hidden-xs
+        .group-title
+          h4= __('ads')
+        .group-content
+          include ../controls/ads_right

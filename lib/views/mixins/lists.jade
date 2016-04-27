@@ -125,7 +125,7 @@ mixin quoteItem(item, options)
       i
     .item-author.media
       a.media-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
-        img.media-object(src=util.entipicImage(item.author, currentCulture), alt='')
+        img.media-object.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=util.entipicImage(item.author, currentCulture))
       .media-body
         a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name
         span.details , 
