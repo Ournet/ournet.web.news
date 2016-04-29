@@ -9,15 +9,6 @@ block main_content
         h1= title
         .details= subtitle
 
-    //- if (mainItem)
-    //-   +newsFineView([mainItem])
-    //-   br
-    //- else if(mainStory)
-    //-   +storiesFineView([mainStory])
-    //-   br
-    //- if (stories && stories.length>1)
-    //-   +storiesLargeView(stories.slice(0, 2), {itemClass: 'col-sm-6 col-xs-12', lazyImage: true})
-
     +storiesRowView(stories, {itemClass:'col-xs-4'})
 
     if (stories.length>5)
@@ -48,4 +39,10 @@ block append second_content
               = util.format(__('quotes_about'), (topic.abbr || topic.name))
       .group-content
         +quotesList(quotes, {item:{wrapAt:160}})
+  if (!quotes || quotes.length<3)
+    .group
+      .group-title
+        h4= __('latest_news')
+      .tab-content
+        +storiesSimpleView(latestStories)
 

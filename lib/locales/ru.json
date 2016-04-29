@@ -31,7 +31,7 @@
 	"more_stories": "Другие события",
 	"more_quotes": "Другие заявления",
 	"quotes": "Заявления",
-	"quotes_by_author": "Другие заявления",
+	"quotes_by_author": "%s - Заявления",
 	"page_topic_quotes_title": "%s - Заявления",
 	"page_topic_stories_title": "%s - События",
 	"category_title": "%s - Новости",
@@ -42,6 +42,9 @@
 	"latest_quotes_in_media_country_format": "Последние заявления/цитаты из прессы - %s",
 	"info": "Информация",
 	"useful": "Полезно",
-	"popular": "popular",
-	"important": "important"
+	"popular": "Популярные",
+	"important": "Важные",
+	"video_news": "Видео новости",
+	"read_more_on_source": "Читайте на %s",
+	"quotes_about": "%s - Заявления"
 }
