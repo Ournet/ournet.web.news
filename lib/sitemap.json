@@ -22,5 +22,8 @@
   },
   "videoFrame": "/controls/video_frame/${0}",
   "sources": "/sources",
-  "source": "/source/${0}"
+  "source": "/source/${0}",
+  "controls": {
+    "videoFrame": "/video_frame/${0}"
+  }
 }

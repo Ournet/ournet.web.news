@@ -1,31 +1,71 @@
 extends _layouts/news
 
 block main_content
-  .item.ot-story.view-item
-    h1= story.title
-    .item-details= util.format(__('news_count'), story.countNews)
-      |,  
-      span.stats-badge(title=__('views'))= story.countViews
+  .content-box(class='domain-'+(category && category.id || '0'))
+    #story-page
+      h1
+        a(href=links.story(story.uniqueName, story.id))= story.title
+      .item-details= util.format(__('news_count'), story.countNews)
+        |,  
+        span.stats-badge(title=__('views'))= story.countViews
+          |  
+          i.icon.icon-views
         |  
-        i.icon.icon-views
-      |  
-      time= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
-    include ./controls/story_header
-    .item-body
-      - var textLength = story.summary.length;
-      p!= util.htmlText(story.summary)
-        |  – 
-        a.source(rel='nofollow', target='_blank', href=util.toUrl(story))= story.host.replace(/^www\./, '')
-      if (story.news)
-        each item in story.news
-          if (textLength < 800)
-            - textLength += item.summary.length;
-            p!= util.htmlText(item.summary)
-              if (item.host)
-                |  – 
-                a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
-  br
-  #disqus_thread
+        time= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
+      - var hasVideo = story.videos && story.videos.length > 0
+
+      .row
+        .col-sm-8.col-xs-12
+          .story-image
+            if (hasVideo)
+              .fine-image.has-video
+                img.story-img(alt=story.title, src=links.wi('master', story.imageId))
+                .video-icon
+                  i
+            else
+              .fine-image
+                a(rel='nofollow', href=links.wi('master', story.imageId), target='_blank')
+                  img.story-img(alt=story.title, src=links.wi('master', story.imageId))
+              .image-source=__('photo')+': '+ story.imageHost
+        .col-sm-4.col-xs-12
+          +topicListTags(story.topics)
+
+      .item-body
+        - var textLength = story.summary.length;
+        p!= util.htmlText(story.summary)
+        
+        a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
+        //- if (story.news)
+        //-   each item in story.news
+        //-     if (textLength < 800)
+        //-       - textLength += item.summary.length;
+        //-       p!= util.htmlText(item.summary)
+        //-       if (item.host)
+        //-         a.read-source(rel='nofollow', target='_blank', href=util.toUrl(item))= util.format(__('read_more_on_source'), item.host.replace(/^www\./, ''))
+    if (quotes && quotes.length>0)
+      br
+      +quotesList(quotes)
+    br
+    .group.text-center
+      include ./controls/ads_bottom
+    br
+    #disqus_thread
+
+block append second_content
+  if (relatedNews && relatedNews.length>0)
+    .group
+      .group-title
+        h4= __('related_news')
+      .group-content
+        +newsSimpleView(relatedNews)
+
+  .group
+    .group-title
+      h4= __('latest_news')
+    .tab-content
+      +storiesSimpleView(latestStories)
+
+block scripts
   script(type='text/javascript').
     var disqus_shortname = '#{config.disqusId}';
     var disqus_identifier = 'story-#{story.id}';
@@ -39,34 +79,11 @@ block main_content
     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-
-block append second_content
-  if (news && news.length>0)
-    .tab
-      h4.tab-title= __('related_news')
-      .tab-content
-        +newsLineView(news)
-
-  if (quotes && quotes.length>0)
-    +quotesList(quotes, {item: {noPage:true}})
-  else
-    .tab
-      h4.tab-title= __('latest_news')
-      .tab-content
-        +storiesSimpleView(relatedNews, {wrapAt: 100, isStory: true})
-
-block right_content_bottom
-  .tab.hidden-xs.hidden-sm
-    h4.tab-title= __('ads')
-    .tab-content
-      include ./controls/ads_150
-
-block scripts
   if (story.videos)
     - var videoFrame = links.videoFrame(story.videos.join(','),{ul: currentCulture.lang});
       script.
         $(document).ready(function(){
-          $('.story-image.has-video').click(function(){
+          $('.has-video', '.story-image').click(function(){
             $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>')
           });
         });

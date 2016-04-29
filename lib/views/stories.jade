@@ -1,0 +1,19 @@
+extends _layouts/normal
+
+block normal_content
+  .content-header
+    h1= __('popular_news')
+    .details= subTitle
+
+  - var pages = stories.length/3
+  - var i = 0
+  while i < pages
+    +storiesLargeView(stories.slice(i*3, i*3 + 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+    - i++
+    if (i===2)
+      .group.text-center
+        include ./controls/ads_center
+        
+  +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  .list-footer
+    a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')

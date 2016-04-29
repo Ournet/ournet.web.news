@@ -1,35 +1,36 @@
 extends _layouts/news
 
 block main_content
-  .content-header.media
-    .pull-left
-      img.media-object(alt='', src=util.entipicImage(topic, currentCulture))
-    .media-body
-      h1= title
-      .details= subtitle
+  .content-box(class='domain-'+(topic.category || '0'))
+    .content-header.media
+      .media-left
+        img.media-object(alt='', src=util.entipicImage(topic, currentCulture))
+      .media-body
+        h1= title
+        .details= subtitle
 
-  if (mainItem)
-    +newsFineView([mainItem])
-    br
-  else if(mainStory)
-    +storiesFineView([mainStory])
-    br
+    //- if (mainItem)
+    //-   +newsFineView([mainItem])
+    //-   br
+    //- else if(mainStory)
+    //-   +storiesFineView([mainStory])
+    //-   br
+    //- if (stories && stories.length>1)
+    //-   +storiesLargeView(stories.slice(0, 2), {itemClass: 'col-sm-6 col-xs-12', lazyImage: true})
 
-  +storiesRowView(stories, 'col-xs-4')
+    +storiesRowView(stories, {itemClass:'col-xs-4'})
 
-  if (stories.length>2)
-    .list-footer
-      a.more(href=links.topicStories(topic.uniqueName || topic.slug, {ul: currentCulture.lang}))= __('more_stories')
-        |  &rsaquo;
-  else
-    br
-    .tab.view-ads.view-fill.gads-468.no-margin
-      include controls/ads_468
+    if (stories.length>5)
+      .list-footer
+        a.more(href=links.topicStories(topic.uniqueName || topic.slug, {ul: currentCulture.lang}))= __('more_stories')
+          |  &rsaquo;
+      br
 
-  .tab
-    h3.tab-title= util.format(__('topic_latest_news'), topic.name)
-    .tab-content
-      +newsSimpleView(latestNews)
+    .group.view-accent
+      .group-title
+        h3= util.format(__('topic_latest_news'), topic.name)
+      .group-content
+        +newsSimpleView(latestNews, {summary: true})
 
 block prepend second_content
   if (topic.description)
@@ -37,18 +38,14 @@ block prepend second_content
 
 block append second_content
   if (quotes && quotes.length>0)
-    .tab
-      //- h4.tab-title= __('quotes')
-      .tab-content
+    .group
+      .group-title
+        h4
+          a(href=links.topicQuotes(topic.slug, {ul: currentCulture.lang}))
+            if (topic.type=='person')
+              = util.format(__('quotes_by_author'), topic.name)
+            else
+              = util.format(__('quotes_about'), (topic.abbr || topic.name))
+      .group-content
         +quotesList(quotes, {item:{wrapAt:160}})
 
-    if (quotes.length>2)
-      .list-footer
-        a.more(href=links.topicQuotes(topic.uniqueName || topic.slug, {ul: currentCulture.lang}))= __('more_quotes')
-          |  &rsaquo;
-
-block right_content_bottom
-  .tab.hidden-xs.hidden-sm
-    h4.tab-title= __('ads')
-    .tab-content
-      include ./controls/ads_150

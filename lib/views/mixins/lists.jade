@@ -41,7 +41,6 @@ mixin storiesRowView(list, options)
       .list-item.ot-story(class=(options.itemClass || 'col-xs-6'))
         +storyItem(item, {video: !!item.videos, imageClass: 'fine-image'})
 
-
 mixin storiesLargeView(list, options)
   - options = options || {};
   .list.ot-story.view-large.row
@@ -49,7 +48,6 @@ mixin storiesLargeView(list, options)
       - var hasVideo = item.videos && item.videos.length > 0
       .list-item.ot-story(class=(options.itemClass || 'col-sm-6 col-xs-12'))
         +storyItem(item, {video: hasVideo, imageClass: 'fine-image', imageSize: 'large', summary: options.summary!==false, summaryLength: options.summaryLength, lazyImage: options.lazyImage})
-
 
 mixin storiesSimpleView(list, options)
   - options = options || {};
@@ -65,48 +63,17 @@ mixin newsSimpleView(list, options)
     each item in list
       - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
       - var imageUrl = links.wi.news('square', item.imageId);
-      - var hasVideo = item.videoId || item.videos && item.videos.length > 0;
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
             .media-left
-              img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
+              img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
           .item-body(class=(item.imageId? 'media-body': null))
-            a.item-name(href=url)= item.title
-            if (!options.noSummary)
-              p= util.wrapAt(item.summary, options.wrapAt||200)
+            a.item-name(href=url)= util.wrapAt(item.title, 100)
+            if (options.summary)
+              p= util.wrapAt(item.summary, options.summaryLength || 200)
             .details
               = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-
-mixin newsLineView(list, options)
-  - options = options || {};
-  .list.ot-news.view-line
-    each item in list
-      - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var imageUrl = links.wi.news('square', item.imageId);
-      .list-item.ot-news
-        .item.ot-news(class=(item.imageId? 'media': null))
-          if (item.imageId)
-            .media-left
-              img.story-img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageUrl)
-          .item-body(class=(item.imageId? 'media-body': null))
-            a.item-name(href=url)= item.title
-            .details
-              //- if (item.host)
-              //-   a.source(rel='nofollow', target='_blank', href=util.toUrl(item))= item.host.replace(/^www\./, '')
-              //- |  - 
-              = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-
-mixin newsCleanView(list, options)
-  - options = options || {};
-  .list.ot-news.view-clean
-    each item in list
-      - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-      .list-item.ot-news
-        .item.ot-news
-          .item-body
-            a.item-name(href=url)= util.wrapAt(item.title, 90)
-            .details= util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
 
 mixin quotesList(list, options)
   - options = options || {}
@@ -136,3 +103,14 @@ mixin quoteItem(item, options)
               a(href=links.item(item.webpage.uniqueName, item.webpage.id))= util.wrapAt(item.webpage.title, 90)
           else
             .details= util.wrapAt(item.webpage.title, 90)
+
+mixin topicListTags(topics)
+  .list.ot-topic.view-tags
+    each item in topics
+      a(title=item.name, href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))
+        if (item.abbr)
+          = item.abbr
+        else if(item.name.length>30)
+          = item.name.substr(0, 25)+'...'
+        else
+          = item.name

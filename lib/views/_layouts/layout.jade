@@ -15,11 +15,11 @@ block page_header_content
       ul#header-menu
         li.dropdown
           if (category)
-            a.type-news.dropdown-toggle(class=('domain-'+category.id), type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= category[currentCulture.lang]
+            a.type-news.dropdown-toggle.selected(class=('domain-'+category.id), type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= category[currentCulture.lang]
               |  
               span.caret
           else
-            a.type-news.dropdown-toggle(type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= __('news')
+            a.type-news.dropdown-toggle(type='button', id='dropdown-cats', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true', class=selectedMenuType==='news' ? 'selected': null)= __('news')
               |  
               span.caret
           if (categories)
@@ -28,13 +28,13 @@ block page_header_content
                 li
                   a(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
         li
-          a.type-popular(href=links.popular({ul: currentCulture.lang}))= __('popular')
+          a.type-popular(href=links.popular({ul: currentCulture.lang}), class=selectedMenuType==='popular' ? 'selected': null)= __('popular')
+        //- li
+        //-   a.type-important(href=links.important({ul: currentCulture.lang}))= __('important')
+        //- li
+        //-   a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
         li
-          a.type-important(href=links.important({ul: currentCulture.lang}))= __('important')
-        li
-          a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
-        li
-          a.type-quotes(href=links.quotes({ul: currentCulture.lang}))= __('quotes')
+          a.type-quotes(href=links.quotes({ul: currentCulture.lang}), class=selectedMenuType==='quotes' ? 'selected': null)= __('quotes')
     .col-sm-3.hidden-xs
       #header-widgets
         if (weatherWidget && weatherWidget.forecast)

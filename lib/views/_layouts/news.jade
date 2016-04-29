@@ -2,47 +2,14 @@ extends ./normal
 
 block normal_content
   #layout-content.clearfix
-      #top-pcl
-        .ref-bg.domain-
-        .ref-bg.domain-10
-        .ref-bg.domain-20
-        .ref-bg.domain-30
-        .ref-bg.domain-40
-        .ref-bg.domain-50
-        .ref-bg.domain-60
-        .ref-bg.domain-70
-        .ref-bg.domain-80
-        .ref-bg.domain-90
-
       .page-container
         .row
           //- main content
-          .col-sm-8.col-md-6
-            .content-box
-              block main_content
+          .col-sm-8
+            block main_content
 
           //- second content
-          .col-sm-4.col-md-4
+          .col-sm-4
             block second_content
-              .tab.view-ads
-                include ../controls/ads_300
-            
-          //- right content
-          .col-md-2
-            .tab.clearfix
-              .tab-title
-                span.pull-right= __('24_hrs')
-                h4= __('trending')
-              .tab-content
-                .list.ot-topic.view-trending
-                  each item in trendingTopics
-                    .item.media
-                      a.media-left(href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))
-                        img.media-object(alt='' src=util.entipicImage(item, currentCulture))
-                      .media-body
-                        a(title=item.name, href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))= (item.abbr || item.name)
-                        .details= '+'+item.counts.trend24h
-            block right_content_bottom
-
-  if (oneList)
-    include ../controls/one_list_container
+              .group.text-center
+                include ../controls/ads_auto
