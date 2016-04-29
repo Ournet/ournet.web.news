@@ -50,7 +50,7 @@ block append second_content
   //-   img.src = '#{links.actions.viewStory(story.id)}';
   //-   }());
 
-block scripts
+block append scripts
   script(type='text/javascript').
     var disqus_shortname = '#{config.disqusId}';
     var disqus_identifier = 'quote-#{quote.id}';

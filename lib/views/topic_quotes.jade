@@ -1,27 +1,24 @@
 extends _layouts/news
 
 block main_content
-  .content-header.media
-    .pull-left
-      img.media-object(alt='', src=util.entipicImage(topic, currentCulture))
-    .media-body
-      h1
-        a(href=links.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
-        |  /  
-        = __('quotes')
-      .details= subtitle
+  .content-box
+    .content-header.media
+      .pull-left
+        img.media-object(alt='', src=util.entipicImage(topic, currentCulture))
+      .media-body
+        h1
+          a(href=links.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
+          |  /  
+          = __('quotes')
+        .details= subtitle
 
-  +quotesSimpleView(quotes)
+    +quotesList(quotes)
 
 block append second_content
-  .tab
-    h4.tab-title= __('latest_news')
+  .group
+    .group-title
+      h4= __('latest_news')
     .tab-content
-      +newsSimpleView(latestNews, {isStory: true, wrapAt: 100})
+      +storiesSimpleView(latestNews)
 
-block right_content_bottom
-  .tab.hidden-xs.hidden-sm
-    h4.tab-title= __('ads')
-    .tab-content
-      include ./controls/ads_150
 

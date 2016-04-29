@@ -71,7 +71,7 @@ block append second_content
       +storiesSimpleView(latestStories)
 
 
-block scripts
+block append scripts
   if (story.videoId)
     - var videoFrame = links.videoFrame(story.videoId,{ul: currentCulture.lang});
     script.

@@ -65,7 +65,7 @@ block append second_content
     .tab-content
       +storiesSimpleView(latestStories)
 
-block scripts
+block append scripts
   script(type='text/javascript').
     var disqus_shortname = '#{config.disqusId}';
     var disqus_identifier = 'story-#{story.id}';
