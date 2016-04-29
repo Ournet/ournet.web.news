@@ -47,7 +47,7 @@
 	"useful": "Util",
 	"popular": "Popular",
 	"important": "Important",
-	"video_news": "video_news",
-	"read_more_on_source": "Citește mai mult pe %s",
-	"quotes_about": "Declarații despre %s"
+	"video_news": "Video știri",
+	"read_more_on_source": "Citește pe %s",
+	"quotes_about": "%s - Declarații"
 }

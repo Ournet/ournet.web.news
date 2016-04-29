@@ -4,19 +4,13 @@ mixin storyItem(item, options)
       - var imageSrc = links.wi(options.imageSize || 'medium', item.imageId)
       - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
       a.item-image(href=url, class=options.imageClass)
-        if (options.video)
-          div.has-video
-            if (options.lazyImage)
-              img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageSrc)
-            else
-              img(src=imageSrc)
-            span.video-icon
-              i
+        if (options.lazyImage)
+          img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageSrc)
         else
-          if (options.lazyImage)
-            img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageSrc)
-          else
-            img(src=imageSrc)
+          img(src=imageSrc)
+        if (options.video)
+          span.video-icon
+            i
     .item-body
       h3
         a(href=url)= util.wrapAt(item.title, options.titleLength || 150)

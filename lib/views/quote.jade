@@ -31,7 +31,7 @@ block main_content
   .group
     .group-title
       h4
-        a(href=links.topicQuotes(quote.author.uniqueName, {ul: currentCulture.lang}))= __('quotes_by_author')
+        a(href=links.topicQuotes(quote.author.uniqueName, {ul: currentCulture.lang}))= util.format(__('quotes_by_author'), quote.author.name)
     .group-content
       +quotesList(quotes)
 
