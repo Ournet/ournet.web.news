@@ -33,7 +33,7 @@ mixin storiesRowView(list, options)
     each item in list
       - var hasVideo = item.videos && item.videos.length > 0
       .list-item.ot-story(class=(options.itemClass || 'col-xs-6'))
-        +storyItem(item, {video: !!item.videos, imageClass: 'fine-image'})
+        +storyItem(item, {video: !!item.videos, imageClass: 'fine-image', titleLength: options.titleLength || 100})
 
 mixin storiesLargeView(list, options)
   - options = options || {};

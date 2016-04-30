@@ -19,29 +19,20 @@ block main_content
           .story-image
             if (hasVideo)
               .fine-image.has-video
-                img.story-img(alt=story.title, src=links.wi('master', story.imageId))
+                img.story-img(alt=story.title, src=links.wi('large', story.imageId))
                 .video-icon
                   i
             else
               .fine-image
                 a(rel='nofollow', href=links.wi('master', story.imageId), target='_blank')
-                  img.story-img(alt=story.title, src=links.wi('master', story.imageId))
+                  img.story-img(alt=story.title, src=links.wi('large', story.imageId))
               .image-source=__('photo')+': '+ story.imageHost
         .col-sm-4.col-xs-12
           +topicListTags(story.topics)
 
       .item-body
-        - var textLength = story.summary.length;
         p!= util.htmlText(story.summary)
-        
         a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
-        //- if (story.news)
-        //-   each item in story.news
-        //-     if (textLength < 800)
-        //-       - textLength += item.summary.length;
-        //-       p!= util.htmlText(item.summary)
-        //-       if (item.host)
-        //-         a.read-source(rel='nofollow', target='_blank', href=util.toUrl(item))= util.format(__('read_more_on_source'), item.host.replace(/^www\./, ''))
     if (quotes && quotes.length>0)
       br
       +quotesList(quotes)
