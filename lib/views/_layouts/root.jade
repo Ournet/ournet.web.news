@@ -11,7 +11,7 @@ html(lang=currentCulture.language)
     block styles
     if (NODE_ENV==='production')
       if (site.platform === 'mobile')
-        link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/' + project.name + '/mobile/main-'+ config.assets.css.mainMobile +'.min.css')
+        link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/' + project.name + '/desktop/main-'+ config.assets.css.mainMobile +'.min.css')
       else
         link(type='text/css', rel='stylesheet', href='http://assets.ournetcdn.net/ournet/css/' + project.name + '/desktop/main-'+ config.assets.css.main +'.min.css')
     else
@@ -45,18 +45,17 @@ html(lang=currentCulture.language)
     #page-top
       #top-ads
       #top-line
-        svg.accent-line
-          g#svg-accent-line
-            rect(height='100%', width='10%', fill='#9db49f')
-            rect(height='100%', width='10%', x='10%', fill='#e46f61')
-            rect(height='100%', width='10%', x='20%', fill='#875f8d')
-            rect(height='100%', width='10%', x='30%', fill='#c84697')
-            rect(height='100%', width='10%', x='40%', fill='#95b464')
-            rect(height='100%', width='10%', x='50%', fill='#2e9b97')
-            rect(height='100%', width='10%', x='60%', fill='#db7723')
-            rect(height='100%', width='10%', x='70%', fill='#6f85bf')
-            rect(height='100%', width='10%', x='80%', fill='#3d80b9')
-            rect(height='100%', width='10%', x='90%', fill='#72778c')
+        .accent-line
+          .accent-item.domain-0
+          .accent-item.domain-1
+          .accent-item.domain-2
+          .accent-item.domain-3
+          .accent-item.domain-4
+          .accent-item.domain-5
+          .accent-item.domain-6
+          .accent-item.domain-7
+          .accent-item.domain-8
+          .accent-item.domain-9
     header#page-header
       .container
         block page_header_content
@@ -100,7 +99,7 @@ html(lang=currentCulture.language)
     script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')
     if (NODE_ENV==='production')
       if (site.platform === 'mobile')
-        script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/' + project.name + '/mobile/main-'+ config.assets.js.mainMobile +'.min.js')
+        script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/' + project.name + '/desktop/main-'+ config.assets.js.mainMobile +'.min.js')
       else
         script(type='text/javascript', src='http://assets.ournetcdn.net/ournet/js/' + project.name + '/desktop/main-'+ config.assets.js.main +'.min.js')
     else
@@ -114,7 +113,6 @@ html(lang=currentCulture.language)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', '#{config.googleAnalyticsId}', '#{config.domain}');
       ga('set', 'dimension1', '#{project.name}');
-      ga('set', 'dimension2', '#{site.platform}');
       ga('send', 'pageview');
       
     if (_events && _events.length > 0)

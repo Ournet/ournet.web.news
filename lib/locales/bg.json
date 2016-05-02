@@ -28,7 +28,7 @@
 	"page_topic_quotes_title": "%s - Изявления",
 	"page_topic_stories_title": "%s - Събития",
 	"more_quotes": "Още изявления",
-	"quotes_by_author": "От същия автор",
+	"quotes_by_author": "%s - Изявления",
 	"news_count": "%d новини",
 	"video": "видео",
 	"category_title": "%s - Последни новини",
@@ -39,5 +39,10 @@
 	"latest_quotes_in_media_country_format": "Последните изявления/цитати от пресата - %s",
 	"latest_quotes": "Последните изявления",
 	"info": "Информация",
-	"useful": "Полезен"
+	"useful": "Полезен",
+	"popular": "Популярен",
+	"important": "Важно",
+	"video_news": "Видео новини",
+	"read_more_on_source": "Повече за %s",
+	"quotes_about": "%s - Изявления"
 }
