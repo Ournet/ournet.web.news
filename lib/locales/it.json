@@ -27,7 +27,7 @@
   "page_topic_quotes_title": "%s - Dichiarazioni",
   "page_topic_stories_title": "%s - Eventi",
   "more_quotes": "Altre dichiarazioni",
-  "quotes_by_author": "Dello stesso autore",
+  "quotes_by_author": "%s - Dichiarazioni",
   "news_count": "%d notizie",
   "video": "video",
   "category_title" : "%s - Ultime notizie",
@@ -37,5 +37,10 @@
   "latest_quotes_in_media_country_format": "Ultime dichiarazione/citazioni dalla stampa - %s",
   "latest_quotes": "Le ultime dichiarazione",
   "info": "Informazione",
-  "useful": "Utile"
+  "useful": "Utile",
+  "popular": "Popolare",
+  "important": "Importante",
+  "video_news": "Video notizie",
+  "read_more_on_source": "Leggere sul %s",
+  "quotes_about": "%s - Dichiarazioni"
 }

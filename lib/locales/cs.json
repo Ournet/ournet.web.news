@@ -27,7 +27,7 @@
   "page_topic_quotes_title": "%s - Výroky",
   "page_topic_stories_title": "%s - Události",
   "more_quotes": "Další citáty",
-  "quotes_by_author": "Z tohoto autora",
+  "quotes_by_author": "%s - Výroky",
   "news_count": "%d novinky",
   "video": "video",
   "category_title" : "%s - Poslední zprávy",
@@ -37,5 +37,10 @@
   "latest_quotes_in_media_country_format": "Nejnovější prohlášení/citace z médií - %s",
   "latest_quotes": "Nejnovější prohlášení",
   "info": "Info",
-  "useful": "Užitečný"
+  "useful": "Užitečný",
+  "popular": "Populární",
+  "important": "Důležitý",
+  "video_news": "Video novinky",
+  "read_more_on_source": "Číst dál %s",
+  "quotes_about": "%s - Výroky"
 }

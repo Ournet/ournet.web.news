@@ -27,7 +27,7 @@
   "page_topic_quotes_title": "%s - Quotes",
   "page_topic_stories_title": "%s - Stories",
   "more_quotes": "More quotes",
-  "quotes_by_author": "By same author",
+  "quotes_by_author": "%s - Quotes",
   "news_count": "%d news",
   "video": "Video",
   "category_title" : "%s - Latest news",
@@ -37,5 +37,10 @@
   "latest_quotes_in_media": "Latest Quotes in the Media",
   "latest_quotes_in_media_country_format": "Latest Quotes in the Media - %s",
   "info": "Info",
-  "useful": "Useful"
+  "useful": "Useful",
+  "popular": "Popular",
+  "important": "Important",
+  "video_news": "Video news",
+  "read_more_on_source": "More on %s",
+  "quotes_about": "%s - Quotes"
 }

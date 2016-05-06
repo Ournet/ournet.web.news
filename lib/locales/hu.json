@@ -27,7 +27,7 @@
 	"page_topic_quotes_title": "%s - Idézetek",
 	"page_topic_stories_title": "%s - Események",
 	"more_quotes": "Több idézetek",
-	"quotes_by_author": "Ugyanattól a szerzőtől",
+	"quotes_by_author": "%s - Idézetek",
 	"news_count": "%d hírek",
 	"video": "Videó",
 	"category_title" : "%s - Friss hírek",
@@ -37,5 +37,10 @@
   "latest_quotes_in_media_country_format": "Legutóbbi nyilatkozatai/idézetek a média - %s",
   "latest_quotes": "Legutóbbi nyilatkozatai",
   "info": "Info",
-	"useful": "Hasznos"
+	"useful": "Hasznos",
+  "popular": "Népszerű",
+  "important": "Fontos",
+  "video_news": "Videó hírek",
+  "read_more_on_source": "Olvassa el: %s",
+  "quotes_about": "%s - Idézetek"
 }
