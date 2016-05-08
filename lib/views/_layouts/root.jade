@@ -26,7 +26,7 @@ html(lang=currentCulture.language)
     link(rel='publisher', href='https://facebook.com/'+ config.domain)
     meta(property='og:site_name', content=config.name)
     meta(property='og:updated_time', content=currentDate.toISOString())
-    meta(property='og:locale', content=currentCulture.language+'_'+currentCulture.country.toUpperCase())
+    //- meta(property='og:locale', content=currentCulture.language+'_'+currentCulture.country.toUpperCase())
     block meta
     if (metaFeeds)
       each item in metaFeeds
