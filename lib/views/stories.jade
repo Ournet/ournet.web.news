@@ -2,7 +2,7 @@ extends _layouts/normal
 
 block normal_content
   .content-header
-    h1= __('popular_news')
+    h1= title
     .details= subTitle
 
   - var pages = stories.length/3
@@ -13,7 +13,8 @@ block normal_content
     if (i===2)
       .group.text-center
         include ./controls/ads_center
-        
+  
+  .section-header
+    h3.type-quotes
+      a(href=links.quotes({ul: currentCulture.lang}))= __('latest_quotes')
   +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
-  .list-footer
-    a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')

@@ -44,5 +44,6 @@
 	"important": "Важно",
 	"video_news": "Видео новини",
 	"read_more_on_source": "Повече за %s",
-	"quotes_about": "%s - Изявления"
+	"quotes_about": "%s - Изявления",
+	"important_news": "Важно новини"
 }

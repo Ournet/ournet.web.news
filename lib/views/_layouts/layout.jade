@@ -29,8 +29,8 @@ block page_header_content
                   a(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
         li
           a.type-popular(href=links.popular({ul: currentCulture.lang}), class=selectedMenuType==='popular' ? 'selected': null)= __('popular')
-        //- li
-        //-   a.type-important(href=links.important({ul: currentCulture.lang}))= __('important')
+        li
+          a.type-important(href=links.important({ul: currentCulture.lang}), class=selectedMenuType==='important' ? 'selected': null)= __('important')
         //- li
         //-   a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
         li

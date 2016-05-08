@@ -34,7 +34,7 @@
     "morgan": "^1.5.1",
     "ournet.data": "^0.1.1",
     "ournet.data.quotes": "^0.1.1",
-    "ournet.data.stories": "^0.2.1",
+    "ournet.data.stories": "^0.2.2",
     "ournet.data.videos": "^0.2.0",
     "ournet.data.webdata": "^0.2.1",
     "ournet.data.websites": "^0.2.2",

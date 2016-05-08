@@ -8,9 +8,19 @@ block normal_content
     +storiesSimpleView(stories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
   //- pupular news
   .section-header
-    h3.type-popular= __('popular_news')
+    h3.type-popular
+      a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
       //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
   +storiesLargeView(popularStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
-  +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
-  .list-footer
-    a.more(href=links.quotes({ul: currentCulture.lang}))= __('more_quotes')
+  .section-header
+    h3.type-quotes
+      a(href=links.quotes({ul: currentCulture.lang}))= __('latest_quotes')
+  +quotesList(quotes.slice(0, 3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  +quotesList(quotes.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  //- important news
+  if (importantStories)
+    .section-header
+      h3.type-important
+        a(href=links.important({ul: currentCulture.lang}))= __('important_news')
+        //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
+    +storiesLargeView(importantStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})

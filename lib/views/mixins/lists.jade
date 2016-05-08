@@ -1,5 +1,5 @@
 mixin storyItem(item, options)
-  .item.ot-story(class='domain-' + (item.category || '0'))
+  .item.ot-story(class=('domain-' + (item.category || '0') + (item.importantKey ? ' is-important' : null)))
     if (item.imageId && options.image!==false)
       - var imageSrc = links.wi(options.imageSize || 'medium', item.imageId)
       - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})

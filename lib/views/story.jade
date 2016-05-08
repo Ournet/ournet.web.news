@@ -1,5 +1,20 @@
 extends _layouts/news
 
+block meta
+  meta(property='og:title', content=story.title)
+  meta(property='og:type', content='article')
+  meta(property='og:image', content=links.wi('large', story.imageId))
+
+  meta(property='article:published_time', content=story.createdAt.toISOString())
+  meta(property='article:publisher', content=config.name)
+  if (category)
+    meta(property='article:section', content=category[currentCulture.lang])
+  each item in story.topics
+    if (item.abbr)
+      meta(property='article:tag', content=item.abbr)  
+    meta(property='article:tag', content=item.name)
+
+
 block main_content
   .content-box(class='domain-'+(category && category.id || '0'))
     #story-page
@@ -28,6 +43,7 @@ block main_content
                   img.story-img(alt=story.title, src=links.wi('large', story.imageId))
               .image-source=__('photo')+': '+ story.imageHost
         .col-sm-4.col-xs-12
+          br
           +topicListTags(story.topics)
 
       .item-body

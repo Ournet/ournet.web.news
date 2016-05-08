@@ -46,5 +46,6 @@
 	"important": "Важные",
 	"video_news": "Видео новости",
 	"read_more_on_source": "Читайте на %s",
-	"quotes_about": "%s - Заявления"
+	"quotes_about": "%s - Заявления",
+  "important_news": "Важные новости"
 }
