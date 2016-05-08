@@ -1,6 +1,6 @@
 extends _layouts/news
 
-block meta
+block append meta
   meta(property='og:title', content=story.title)
   meta(property='og:type', content='article')
   meta(property='og:image', content=links.wi('large', story.imageId))
