@@ -19,7 +19,7 @@ mixin storyItem(item, options)
         span.stats-badge(title=__('views'))= item.countViews
           |  
           i.icon.icon-views
-        if (item.videos)
+        if (item.videos && item.videos.length>0)
           | , 
           span.stats-badge(title=__('video'))= item.videos.length
             |  
