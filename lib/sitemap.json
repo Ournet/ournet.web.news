@@ -25,5 +25,12 @@
   "source": "/source/${0}",
   "controls": {
     "videoFrame": "/video_frame/${0}"
+  },
+  "rss": {
+    "stories": {
+      "$url": "/stories.xml",
+      "topic": "/topic/${0}.xml",
+      "important": "/important.xml"
+    }
   }
 }

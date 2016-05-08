@@ -28,6 +28,9 @@ html(lang=currentCulture.language)
     meta(property='og:updated_time', content=currentDate.toISOString())
     meta(property='og:locale', content=currentCulture.language+'_'+currentCulture.country.toUpperCase())
     block meta
+    if (metaFeeds)
+      each item in metaFeeds
+        link(rel='alternate', type='application/rss+xml', title=item.title,href=item.url)
 
     link(rel='dns-prefetch', href='//assets.ournetcdn.net')
     link(rel='dns-prefetch', href='//wi.ournetcdn.net')

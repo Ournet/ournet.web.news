@@ -41,6 +41,7 @@
     "ournet.logger": "^0.1.0",
     "ournet.utils": "^0.1.1",
     "response-time": "^2.2.0",
+    "rss": "^1.2.1",
     "urlset": "^0.4.0"
   }
 }
