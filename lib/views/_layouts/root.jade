@@ -92,6 +92,8 @@ html(lang=currentCulture.language)
                   = item[currentCulture.language]
           .col-sm-4.col-xs-12
             h4= __('useful')
+            div
+              a(href=links.sources({ul: currentCulture.lang}))= __('news_sources')
             each host, key in config.projects
               div
                 a(href='http://'+host)= __(key)

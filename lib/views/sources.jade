@@ -1,50 +1,23 @@
-extends ./_layouts/normal
+extends ./_layouts/news
 
-block normal_content
-  #layout-content.clearfix
-    .container
-      .row
-        //- left content
-        .col-md-2.hidden-sm.hidden-xs
-          .grid-control
-            .grid-header
-              h4= __('ads')
-            .grid-content
-              include ./controls/ads_150
+block main_content
+  .content-box
+    .content-header
+      h1= title
+    ol.list.ot-sources.view-simple
+      each item in sources
+        li.item
+          h4
+            a(href=links.source(item.host, {ul: currentCulture.lang}))= item.title
+          div
+            a.accent(rel='nofollow', target='_blank', href=links.url({url:item.host}))= item.host
+            |  ›
 
-        //- center content
-        .col-md-6.col-sm-8
-          #top-pcl
-            .ref-bg.domain-
-            .ref-bg.domain-10
-            .ref-bg.domain-20
-            .ref-bg.domain-30
-            .ref-bg.domain-40
-            .ref-bg.domain-50
-            .ref-bg.domain-60
-            .ref-bg.domain-70
-            .ref-bg.domain-80
-            .ref-bg.domain-90
-          .grid-control
-            .grid-header
-              h2= title
-            .grid-content
-              ol.list.ot-sources.view-simple
-                each item in sources
-                  li.item
-                    h4
-                      a(href=links.source(item.host, {ul: currentCulture.lang}))= item.title
-                    div
-                      a.accent(rel='nofollow', target='_blank', href=links.url({url:item.host}))= item.host
-                      |  ›
-              
-        //- right content
-        .col-md-4.col-sm-4
-          .grid-control.view-ads
-            .grid-content
-              include ./controls/ads_300
-
-          .grid-control.view-ads
-            .grid-content
-              include ./controls/ads_300
-
+block append second_content
+  .group
+    .group-title
+      h4= __('latest_news')
+    .tab-content
+      +storiesSimpleView(latestStories)
+  .group.text-center
+    include ./controls/ads_auto
