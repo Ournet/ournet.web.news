@@ -51,5 +51,7 @@
 	"read_more_on_source": "Citește pe %s",
 	"quotes_about": "%s - Declarații",
 	"important_news": "Știri importante",
-	"latest_stories": "Ultimele evenimente"
+	"latest_stories": "Ultimele evenimente",
+	"latest_stories_from_country": "Ultimele evenimente din %s",
+	"stories_from_country": "Evenimente din %s"
 }
