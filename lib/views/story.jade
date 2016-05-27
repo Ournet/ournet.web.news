@@ -45,6 +45,8 @@ block main_content
         .col-sm-4.col-xs-12
           br
           +topicListTags(story.topics)
+          br
+          .fb-like(data-href=site.head.canonical, data-layout="button_count" data-action="like", data-show-faces="false", data-share="true")
 
       .item-body
         p!= util.htmlText(story.summary)
@@ -56,7 +58,7 @@ block main_content
     .group.text-center
       include ./controls/ads_bottom
     br
-    #disqus_thread
+    .fb-comments(data-href=site.head.canonical, data-numposts="5", data-width="100%")
 
 block append second_content
   if (relatedNews && relatedNews.length>0)
@@ -73,19 +75,6 @@ block append second_content
       +storiesSimpleView(latestStories)
 
 block append scripts
-  script(type='text/javascript').
-    var disqus_shortname = '#{config.disqusId}';
-    var disqus_identifier = 'story-#{story.id}';
-    var disqus_url = '#{site.head.canonical}';
-    var disqus_config = function() { this.language = '#{currentCulture.lang}'; };
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
   if (story.videos)
     - var videoFrame = links.videoFrame(story.videos.join(','),{ul: currentCulture.lang});
       script.

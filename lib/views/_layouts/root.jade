@@ -20,13 +20,13 @@ html(lang=currentCulture.language)
       link(rel='canonical', href=site.head.canonical)
     link(rel='shortcut icon', href=config.favicon)
 
-    if (config.fbId)
-      meta(property='fb:app_id', content=config.fbId)
+    if (config.facebookId)
+      meta(property='fb:app_id', content=config.facebookId)
 
     link(rel='publisher', href='https://facebook.com/'+ config.domain)
     meta(property='og:site_name', content=config.name)
     meta(property='og:updated_time', content=currentDate.toISOString())
-    //- meta(property='og:locale', content=currentCulture.language+'_'+currentCulture.country.toUpperCase())
+    meta(property='og:locale', content=site.simpleLocale)
     block meta
     if (metaFeeds)
       each item in metaFeeds
@@ -120,6 +120,15 @@ html(lang=currentCulture.language)
       ga('create', '#{config.googleAnalyticsId}', '#{config.domain}');
       ga('set', 'dimension1', '#{project.name}');
       ga('send', 'pageview');
+    if (config.facebookPlugins)
+      script.
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/#{site.simpleLocale}/sdk.js#xfbml=1&version=v2.6&appId=#{config.facebookId}";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
       
     if (_events && _events.length > 0)
       script

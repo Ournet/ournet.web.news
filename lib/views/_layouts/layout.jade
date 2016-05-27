@@ -48,11 +48,3 @@ block page_header_content
 block page_main_content
   section#page-content
     block content
-
-block scripts
-  script(type='text/javascript').
-    var addthis_config = {
-      data_ga_property: '#{config.googleAnalyticsId}',
-      data_ga_social: true
-    };
-  script(async='', src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-559bd1344703b48a")
