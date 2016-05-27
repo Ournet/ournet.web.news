@@ -22,6 +22,9 @@ html(lang=currentCulture.language)
 
     if (config.facebookId)
       meta(property='fb:app_id', content=config.facebookId)
+    meta(property='fb:admins', content='1264925659')
+    if (config.facebookPageId)
+      meta(property="fb:pages", content=config.facebookPageId)
 
     link(rel='publisher', href='https://facebook.com/'+ config.domain)
     meta(property='og:site_name', content=config.name)
