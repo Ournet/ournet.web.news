@@ -27,31 +27,32 @@ block main_content
             |  
             i.icon.icon-views
           |  
-          time.op-published(datetime=story.createdAt.toISOString())= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
+          time(datetime=story.createdAt.toISOString())= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
         - var hasVideo = story.videos && story.videos.length > 0
 
         .row
           .col-sm-8.col-xs-12
             .story-image
-              figure(data-feedback="fb:likes, fb:comments")
-                if (hasVideo)
-                  .fine-image.has-video
+              if (hasVideo)
+                .fine-image.has-video
+                  img.story-img(alt=story.title, src=links.wi('large', story.imageId))
+                  .video-icon
+                    i
+              else
+                .fine-image
+                  a(rel='nofollow', href=links.wi('master', story.imageId), target='_blank')
                     img.story-img(alt=story.title, src=links.wi('large', story.imageId))
-                    .video-icon
-                      i
-                else
-                  .fine-image
-                    a(rel='nofollow', href=links.wi('master', story.imageId), target='_blank')
-                      img.story-img(alt=story.title, src=links.wi('large', story.imageId))
-                  .image-source=__('photo')+': '+ story.imageHost
+                .image-source=__('photo')+': '+ story.imageHost
           .col-sm-4.col-xs-12
             br
             +topicListTags(story.topics)
             br
-            .fb-like(data-href=site.head.canonical, data-layout="button_count" data-action="like", data-show-faces="false", data-share="true")
+            //- .fb-like(data-href=site.head.canonical, data-layout="button_count" data-action="like", data-show-faces="false", data-share="true")
+            .social-likes(data-url=site.head.canonical)
+              each item in config.shareDataServices
+                div(class=item)
 
-      .item-body
-        p!= util.htmlText(story.summary)
+      .item-body!= util.summaryToParagraphs(story.summary)
     a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
     br
     if (quotes && quotes.length>0)

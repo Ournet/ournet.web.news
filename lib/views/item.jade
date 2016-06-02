@@ -27,18 +27,9 @@ block main_content
       else
         +topicListTags(story.topics)
 
-      .item-body
-        - var textLength = story.summary.length;
-        p!= util.htmlText(story.summary)
+      .item-body!= util.summaryToParagraphs(story.summary)
         
-        a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
-        //- if (story.news)
-        //-   each item in story.news
-        //-     if (textLength < 800)
-        //-       - textLength += item.summary.length;
-        //-       p!= util.htmlText(item.summary)
-        //-       if (item.host)
-        //-         a.read-source(rel='nofollow', target='_blank', href=util.toUrl(item))= util.format(__('read_more_on_source'), item.host.replace(/^www\./, ''))
+      a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
     if (quotes && quotes.length>0)
       br
       +quotesList(quotes)
