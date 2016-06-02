@@ -84,7 +84,8 @@ block append scripts
       script.
         $(document).ready(function(){
           $('.has-video', '.story-image').click(function(){
-            $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>')
+            $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>');
+            ga('send', 'event', 'video', 'play', '#videoFrame');
           });
         });
   script.

@@ -24,6 +24,10 @@ block main_content
                 .image-source=__('photo')+': '+ story.host
           .col-sm-4.col-xs-12
             +topicListTags(story.topics)
+            br
+            .social-likes(data-url=site.head.canonical)
+              each item in config.shareDataServices
+                div(class=item)
       else
         +topicListTags(story.topics)
 
@@ -68,6 +72,7 @@ block append scripts
     script.
       $(document).ready(function(){
         $('.has-video', '.story-image').click(function(){
-          $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>')
+          $(this).html('<iframe src="#{videoFrame}" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>');
+          ga('send', 'event', 'video', 'play', '#videoFrame');
         });
       });
