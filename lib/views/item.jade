@@ -2,7 +2,7 @@ extends _layouts/news
 
 block main_content
   .content-box(class='domain-'+(category && category.id || '0'))
-    #story-page
+    #item-page
       h1
         a(href=links.item(story.uniqueName, story.id))= story.title
       .item-details
