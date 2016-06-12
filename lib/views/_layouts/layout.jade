@@ -27,14 +27,28 @@ block page_header_content
               each item in categories
                 li
                   a(href=links.category(item.name,{ul: currentCulture.lang}), class=('domain-'+item.id)+(category && category.id==item.id?' active':''))= item[currentCulture.lang]
-        li
+        li.dd-item
           a.type-popular(href=links.popular({ul: currentCulture.lang}), class=selectedMenuType==='popular' ? 'selected': null)= __('popular')
-        li
+        li.dd-item
           a.type-important(href=links.important({ul: currentCulture.lang}), class=selectedMenuType==='important' ? 'selected': null)= __('important')
         //- li
         //-   a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
-        li
+        li.dd-item
           a.type-quotes(href=links.quotes({ul: currentCulture.lang}), class=selectedMenuType==='quotes' ? 'selected': null)= __('quotes')
+        li.dropdown#dd-more
+          a.type-more.dropdown-toggle(type='button', id='dropdown-more', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')= __('more')
+              |  
+              span.caret
+          ul.dropdown-menu#dropdown-more
+            li
+              a.type-popular(href=links.popular({ul: currentCulture.lang}), class=selectedMenuType==='popular' ? 'selected': null)= __('popular')
+            li
+              a.type-important(href=links.important({ul: currentCulture.lang}), class=selectedMenuType==='important' ? 'selected': null)= __('important')
+            //- li
+            //-   a.type-video(href=links.video({ul: currentCulture.lang}))= __('video')
+            li
+              a.type-quotes(href=links.quotes({ul: currentCulture.lang}), class=selectedMenuType==='quotes' ? 'selected': null)= __('quotes')
+
     .col-sm-3.hidden-xs
       #header-widgets
         if (weatherWidget && weatherWidget.forecast)
