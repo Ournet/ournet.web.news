@@ -16,8 +16,8 @@ block append meta
 
 
 block main_content
-  .content-box
-    article#story-page
+  .content-box#story-page
+    article
       - var hasVideo = story.videos && story.videos.length > 0
       header
         .story-image

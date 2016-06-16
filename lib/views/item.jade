@@ -7,12 +7,11 @@ block main_content
         a(href=links.item(story.uniqueName, story.id))= story.title
       .item-details
         time= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
-      - var hasVideo = story.videos && story.videos.length > 0
       if (story.imageId)
         .row
           .col-sm-8.col-xs-12
             .story-image
-              if (hasVideo)
+              if (story.videoId)
                 .fine-image.has-video
                   img.story-img(alt=story.title, src=links.wi.news('large', story.imageId))
                   .video-icon
