@@ -56,7 +56,12 @@ block page_header_content
             //- .shadow
             span.symbol.w-icon(class='wi-'+weatherWidget.forecast.symbol.id, title=weatherWidget.forecast.symbol.name)
             span.name
-              a(href=weatherWidget.place.url)= weatherWidget.place.name
+              - var weatherUrl = util.url.parse(weatherWidget.place.url, true);
+              - weatherUrl.query.utm_source='news';
+              - weatherUrl.query.utm_medium='link';
+              - weatherUrl.query.utm_campaign='header-weather';
+
+              a(href=util.url.format(weatherUrl))= weatherWidget.place.name
               span.no= weatherWidget.forecast.temperature + '°C'
 
 block page_main_content

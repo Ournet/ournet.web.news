@@ -2,10 +2,10 @@ extends _layouts/normal
 
 block normal_content
   //- fresh news
-  +storiesLargeView(stories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
-  +storiesSimpleView(stories.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
-  if (stories.length>6)
-    +storiesSimpleView(stories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
+  +storiesLargeView(latestStories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+  +storiesSimpleView(latestStories.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
+  if (latestStories.length>6)
+    +storiesSimpleView(latestStories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
   //- pupular news
   .section-header
     h3.type-popular
@@ -15,8 +15,8 @@ block normal_content
   .section-header
     h3.type-quotes
       a(href=links.quotes({ul: currentCulture.lang}))= __('latest_quotes')
-  +quotesList(quotes.slice(0, 3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
-  +quotesList(quotes.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  +quotesList(latestQuotes.slice(0, 3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  +quotesList(latestQuotes.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
   //- important news
   if (importantStories)
     .section-header

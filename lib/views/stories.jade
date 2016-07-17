@@ -17,4 +17,5 @@ block normal_content
   .section-header
     h3.type-quotes
       a(href=links.quotes({ul: currentCulture.lang}))= __('latest_quotes')
-  +quotesList(quotes, {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  +quotesList(quotes.slice(0, 3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  +quotesList(quotes.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
