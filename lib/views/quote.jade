@@ -26,7 +26,7 @@ block main_content
     .group.text-center
       include ./controls/ads_bottom
     br
-    #disqus_thread
+    .fb-comments(data-href=site.head.canonical, data-numposts="5", data-width="100%")
   br
   .group
     .group-title
@@ -42,25 +42,3 @@ block append second_content
         h4= __('latest_news')
       .group-content
         +storiesSimpleView(latestStories)
-
-
-  //- script.
-  //-   (function() {
-  //-   var img = new Image();
-  //-   img.src = '#{links.actions.viewStory(story.id)}';
-  //-   }());
-
-block append scripts
-  script(type='text/javascript').
-    var disqus_shortname = '#{config.disqusId}';
-    var disqus_identifier = 'quote-#{quote.id}';
-    var disqus_url = '#{site.head.canonical}';
-    var disqus_config = function() { this.language = '#{currentCulture.lang}'; };
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();

@@ -33,36 +33,32 @@ block main_content
             .image-source=__('photo')+': '+ story.imageHost
         h1
           a(href=links.story(story.uniqueName, story.id))= story.title
-        .item-details= util.format(__('news_count'), story.countNews)
-          |,  
-          span.stats-badge(title=__('views'))= story.countViews
-            |  
-            i.icon.icon-views
-          |  
-          time(datetime=story.createdAt.toISOString())= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
+        .row
+          .col-xs-6
+            .item-details= util.format(__('news_count'), story.countNews)
+              |,  
+              span.stats-badge(title=__('views'))= story.countViews
+                |  
+                i.icon.icon-views
+              |  
+              time(datetime=story.createdAt.toISOString())= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
+          .col-xs-6.text-right
+            .social-likes(data-url=site.head.canonical)
+              each item in config.shareDataServices
+                div(class=item)
+        .item-body!= util.summaryToParagraphs(story.summary)
 
-      .row
-        .col-sm-8.col-xs-12
-          .item-body!= util.summaryToParagraphs(story.summary)
-          a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
-        .col-sm-4.col-xs-12.text-center
-          +topicListTags(story.topics)
-          br
-          //- .fb-like(data-href=site.head.canonical, data-layout="button_count" data-action="like", data-show-faces="false", data-share="true")
-          .social-likes(data-url=site.head.canonical)
-            each item in config.shareDataServices
-              div(class=item)
-          br
-          br
-          .text-center
-            // Ournet news story aside 184x260
-            ins.adsbygoogle(style='display:inline-block;width:184px;height:260px', data-ad-client='ca-pub-3959589883092051', data-ad-slot='2691992633')
-            script.
-              (adsbygoogle = window.adsbygoogle || []).push({});
+    a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
+    br
+    br
+    +topicListTags(story.topics)
 
     if (quotes && quotes.length>0)
       br
       +quotesList(quotes)
+    br
+    .group.text-center
+      include ./controls/ads_bottom
     br
     .fb-comments(data-href=site.head.canonical, data-numposts="5", data-width="100%")
 
