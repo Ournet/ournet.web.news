@@ -29,6 +29,7 @@
     "express": "^4.11.2",
     "express-interceptor": "^1.2.0",
     "i18n": "^0.5.0",
+    "in-text-search": "^0.1.0",
     "jade": "^1.9.2",
     "method-override": "^2.3.1",
     "moment-timezone": "^0.5.3",

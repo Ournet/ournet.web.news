@@ -1,5 +1,7 @@
 extends _layouts/news
 
+- var hasVideo = story.videos && story.videos.length > 0
+
 block append meta
   meta(property='og:title', content=story.title)
   meta(property='og:type', content='article')
@@ -15,10 +17,10 @@ block append meta
     meta(property='article:tag', content=item.name)
 
 
+
 block main_content
   .content-box#story-page
     article
-      - var hasVideo = story.videos && story.videos.length > 0
       header
         .story-image
           if (hasVideo)
@@ -77,7 +79,7 @@ block append second_content
       +storiesSimpleView(latestStories)
 
 block append scripts
-  if (story.videos)
+  if (hasVideo)
     - var videoFrame = links.videoFrame(story.videos.join(','),{ul: currentCulture.lang});
       script.
         $(document).ready(function(){

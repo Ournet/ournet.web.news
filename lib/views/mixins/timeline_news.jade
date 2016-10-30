@@ -1,0 +1,9 @@
+mixin timeline(news, options)
+  ul.timeline
+    - var prevItem;
+    - for (var i = 0; i < news.length; i++)
+      - var item = news[i];
+      - if(!util.isNormalNewsTitle(item.title) || prevItem && util.compareTitles(prevItem.title, item.title)>0.7) continue;
+      - prevItem = item;
+      li
+        a(href=links.news.item(item.slug, item.id,{ul: currentCulture.lang})) item.title
