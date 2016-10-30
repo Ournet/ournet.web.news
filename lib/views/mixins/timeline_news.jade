@@ -14,13 +14,19 @@ mixin timelineNews(news, options)
             if (item.imageId)
               if (item.videoId)
                 .fine-image.has-video(data-videoId=item.videoId)
-                  img.story-img.lazy(alt=item.title, data-original=links.wi.news('master', item.imageId))
+                  if (i<3)
+                    img.story-img(alt=item.title, src=links.wi.news('master', item.imageId))
+                  else
+                    img.story-img.lazy(alt=item.title, data-original=links.wi.news('master', item.imageId))
                   .video-icon
                     i
               else
                 .fine-image
                   a(rel='nofollow', href=links.wi.news('master', item.imageId), target='_blank')
-                    img.story-img.lazy(alt=item.title, data-original=links.wi.news('master', item.imageId))
+                    if (i<3)
+                      img.story-img(alt=item.title, src=links.wi.news('master', item.imageId))
+                    else
+                      img.story-img.lazy(alt=item.title, data-original=links.wi.news('master', item.imageId))
                   .image-source=__('photo')+': '+ item.host
             h3.tl-title
               a(href=links.item(item.uniqueName, item.id, {ul: currentCulture.lang}))= item.title
