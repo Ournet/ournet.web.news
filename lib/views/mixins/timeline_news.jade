@@ -1,9 +1,36 @@
-mixin timeline(news, options)
-  ul.timeline
+mixin timelineNews(news, options)
+  ul.news-timeline
     - var prevItem;
-    - for (var i = 0; i < news.length; i++)
-      - var item = news[i];
-      - if(!util.isNormalNewsTitle(item.title) || prevItem && util.compareTitles(prevItem.title, item.title)>0.7) continue;
-      - prevItem = item;
-      li
-        a(href=links.news.item(item.slug, item.id,{ul: currentCulture.lang})) item.title
+    each item, i in news
+      if (true)
+        //- if (util.isNormalNewsTitle(item.title) || prevItem && util.compareTitles(prevItem.title, item.title)<0.9)
+        - prevItem = item;
+        li.tl-item
+          .tl-head
+            .tl-icon
+            .tl-time= util.moment(item.publishedAt).locale(currentCulture.lang).format('HH:mm')
+            .tl-date= util.moment(item.publishedAt).locale(currentCulture.lang).format('DD MMM')
+          .tl-body
+            if (item.imageId)
+              if (item.videoId)
+                .fine-image.has-video(data-videoId=item.videoId)
+                  img.story-img.lazy(alt=item.title, data-original=links.wi.news('master', item.imageId))
+                  .video-icon
+                    i
+              else
+                .fine-image
+                  a(rel='nofollow', href=links.wi.news('master', item.imageId), target='_blank')
+                    img.story-img.lazy(alt=item.title, data-original=links.wi.news('master', item.imageId))
+                  .image-source=__('photo')+': '+ item.host
+            h3.tl-title
+              a(href=links.item(item.uniqueName, item.id, {ul: currentCulture.lang}))= item.title
+            p.tl-summary= util.wrapAt(item.summary, 300)
+
+            if (item.quotes && item.quotes.length>0)
+              +quotesList(item.quotes, {noPage: true})
+          if (i===9)
+            li.tl-item
+              .tl-head
+              .tl-body
+                .group.text-center
+                  include ../controls/ads_center
