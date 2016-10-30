@@ -8,8 +8,8 @@ mixin timelineNews(news, options)
         li.tl-item
           .tl-head
             .tl-icon
-            .tl-time= util.moment(item.publishedAt).locale(currentCulture.lang).format('HH:mm')
-            .tl-date= util.moment(item.publishedAt).locale(currentCulture.lang).format('DD MMM')
+            .tl-time= util.moment.tz(item.publishedAt, config.timezone).locale(currentCulture.lang).format('HH:mm')
+            .tl-date= util.moment.tz(item.publishedAt, config.timezone).locale(currentCulture.lang).format('DD MMM')
           .tl-body
             if (item.imageId)
               if (item.videoId)
