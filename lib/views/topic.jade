@@ -1,6 +1,9 @@
 extends _layouts/news
 include ./mixins/timeline_news
 
+block append meta
+  meta(property="og:image", content=util.entipicImage(topic, currentCulture, 'f'))
+
 block main_content
   .content-box(class='domain-'+(topic.category || '0'))
     .content-header.media
@@ -38,7 +41,7 @@ block main_content
         .group-title
           h3= util.format(__('topic_latest_news'), topic.name)
         .group-content
-          +newsSimpleView(latestNews, {summary: true})
+          +newsSimpleView(latestNews.slice(0, 6), {summary: true})
 
 block prepend second_content
   if (topic.description)
@@ -71,6 +74,6 @@ block append scripts
           $('.fine-image.has-video').click(function(){
           var url = '#{videoFrame}'.replace('$videoid$', $(this).attr('data-videoId'));
             $(this).html('<iframe src="'+url+'" frameborder=0 scrolling="no" allowfullscreen="true"></iframe>');
-            ga('send', 'event', 'video', 'play', '#{videoFrame}');
+            ga('send', 'event', 'video', 'play', url);
           });
         });
