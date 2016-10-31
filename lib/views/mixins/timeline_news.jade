@@ -41,5 +41,6 @@ mixin timelineNews(news, options)
                     a(href=links.topic(topic.uniqueName), alt=topic.name)
                       img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=util.entipicImage(topic, currentCulture, 'x'))
             if (i===5)
+              br
               .group.text-center
                 include ../controls/ads_center
