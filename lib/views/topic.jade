@@ -8,10 +8,16 @@ block main_content
   .content-box(class='domain-'+(topic.category || '0'))
     .content-header.media
       .media-left
-        img.media-object(alt='', src=util.entipicImage(topic, currentCulture))
+        .media-object
+          img(alt='', src=util.entipicImage(topic, currentCulture, 'b'))
       .media-body
-        h1= title
+        h1
+          a(href=links.topic(topic.slug))= title
         .details= subtitle
+        .text-right
+          .social-likes(data-url=site.head.canonical)
+            each item in config.shareDataServices
+              div(class=item)
 
     if (isActive)
       +timelineNews(latestNews)

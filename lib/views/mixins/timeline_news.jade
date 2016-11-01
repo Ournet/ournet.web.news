@@ -34,10 +34,11 @@ mixin timelineNews(news, options)
 
             if (item.quotes && item.quotes.length>0)
               +quotesList(item.quotes, {noPage: true})
-            if (item.topics && item.topics.length>0)
+
+            else if (item.topics && item.topics.length>0)
               .topic-icons
                 each topic, ti in item.topics
-                  if (ti<6)
+                  if (ti<4)
                     a(href=links.topic(topic.uniqueName), alt=topic.name)
                       img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=util.entipicImage(topic, currentCulture, 'x'))
             if (i===5)
