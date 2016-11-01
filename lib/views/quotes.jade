@@ -1,9 +1,15 @@
 extends _layouts/normal
 
 block normal_content
-  .content-header
-    h1= __('latest_quotes')
-    .details= subTitle
+  .row
+    .col-xs-7
+      .content-header
+        h1= __('latest_quotes')
+        .details= subTitle
+    .col-xs-5.text-center
+      .social-likes(data-url=site.head.canonical)
+        each item in config.shareDataServices
+          div(class=item)
 
   - var pages = quotes.length/3
   - var i = 0

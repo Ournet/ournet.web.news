@@ -22,6 +22,10 @@ block main_content
                 a(href=links.item(quote.webpage.uniqueName, quote.webpage.id))= util.wrapAt(quote.webpage.title, 100)
             else
               .details= util.wrapAt(quote.webpage.title, 100)
+    .text-right
+      .social-likes(data-url=site.head.canonical)
+        each item in config.shareDataServices
+          div(class=item)
     br
     .group.text-center
       include ./controls/ads_bottom
