@@ -17,7 +17,7 @@ html(lang=currentCulture.language)
       link(type='text/css', rel='stylesheet', href='http://localhost:8044/css/' + project.name + '/'+site.platform+'/main.css')
     if (site.head.canonical)
       link(rel='canonical', href=site.head.canonical)
-    link(rel='shortcut icon', href=config.favicon)
+    include ../controls/favicons.jade
 
     if (config.facebookId)
       meta(property='fb:app_id', content=config.facebookId)
