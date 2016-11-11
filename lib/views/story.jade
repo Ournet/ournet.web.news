@@ -61,6 +61,9 @@ block main_content
       include ./controls/ads_bottom
     br
     .fb-comments(data-href=site.head.canonical, data-numposts="5", data-width="100%")
+    br
+    .group.text-center
+      include ./controls/ads_recomand
 
 block append second_content
   if (relatedNews && relatedNews.length>0)
