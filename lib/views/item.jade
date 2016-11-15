@@ -2,7 +2,7 @@ extends _layouts/news
 
 block append meta
   if (story.videoId)
-    meta(property='og:video', content='http://'+project.host+ links.videoFrame(story.videoId,{ul: currentCulture.lang}))
+    meta(property='og:video', content='http://'+config.host+ links.videoFrame(story.videoId,{ul: currentCulture.lang}))
 
 block main_content
   .content-box(class='domain-'+(category && category.id || '0'))
