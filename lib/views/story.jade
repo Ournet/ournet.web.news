@@ -13,6 +13,8 @@ block append meta
     if (item.abbr)
       meta(property='article:tag', content=item.abbr)  
     meta(property='article:tag', content=item.name)
+  if (hasVideo)
+    meta(property='og:video', content='http://'+project.host+ links.videoFrame(story.videos.join(','),{ul: currentCulture.lang}))
 
 
 
