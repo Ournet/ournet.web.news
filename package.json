@@ -40,9 +40,6 @@
     "ournet.web.data": "^0.1.3",
     "response-time": "^2.2.0",
     "rss": "^1.2.1",
-    "text-to-paragraphs": "0.0.1",
-    "transparentcache": "^1.0.0",
-    "urlset": "^0.4.0",
-    "viewdata": "^0.1.4"
+    "text-to-paragraphs": "0.0.1"
   }
 }
