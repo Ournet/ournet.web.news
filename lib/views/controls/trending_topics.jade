@@ -5,8 +5,8 @@
     .list.ot-topic.view-trending
       each item in trendingTopics
         .item.media
-          a.media-left(href=links.topic(item.uniqueName, {ul: currentCulture.lang}))
+          a.media-left(href=links.news.topic(item.slug, {ul: currentCulture.lang}))
             img.media-object(alt='' src=util.entipicImage(item, currentCulture))
           .media-body
-            a(title=item.name, href=links.topic(item.uniqueName, {ul: currentCulture.lang}))= (item.abbr || item.name)
+            a(title=item.name, href=links.news.topic(item.slug, {ul: currentCulture.lang}))= (item.abbr || item.name)
             .details= '+'+item.counts.trend24h

@@ -1,8 +1,8 @@
 mixin storyItem(item, options)
-  .item.ot-story(class=('domain-' + (item.category || '0') + (item.importantKey ? ' is-important' : null)))
+  .item.ot-story(class=('domain-' + (item.category || '0') + (item.isImportant ? ' is-important' : null)))
     if (item.imageId && options.image!==false)
-      - var imageSrc = links.wi(options.imageSize || 'medium', item.imageId)
-      - var url=links.story(item.uniqueName, item.id, {ul: currentCulture.lang})
+      - var imageSrc = Links.cdn.wi.stories(options.imageSize || 'medium', item.imageId)
+      - var url=links.news.story(item.slug, item.id, {ul: currentCulture.lang})
       a.item-image(href=url, class=options.imageClass)
         if (options.lazyImage)
           img.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=imageSrc)
@@ -55,8 +55,8 @@ mixin newsSimpleView(list, options)
   - options = options || {};
   .list.ot-news.view-simple
     each item in list
-      - var url= links.item(item.uniqueName, item.id, {ul: currentCulture.lang})
-      - var imageUrl = links.wi.news('square', item.imageId);
+      - var url= links.news.item(item.slug, item.id, {ul: currentCulture.lang})
+      - var imageUrl = Links.cdn.wi.news('square', item.imageId);
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
@@ -79,29 +79,29 @@ mixin quotesList(list, options)
 mixin quoteItem(item, options)
   .item.ot-quote(class='domain-'+(item.category || '0'))
     .item-body
-      a.item-name(href=links.quote(item.id, {ul: currentCulture.lang}))
+      a.item-name(href=links.news.quote(item.id, {ul: currentCulture.lang}))
         h4
           span.quote-mark “
           = util.wrapAt(item.text, options.wrapAt || 200)
       i
     .item-author.media
-      a.media-left(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))
+      a.media-left(href=links.news.topic(item.author.slug, {ul: currentCulture.lang}))
         img.media-object.lazy(alt='', src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', data-original=util.entipicImage(item.author, currentCulture))
       .media-body
-        a.author-name(href=links.topic(item.author.uniqueName, {ul: currentCulture.lang}))= item.author.name
+        a.author-name(href=links.news.topic(item.author.slug, {ul: currentCulture.lang}))= item.author.name
         span.details , 
           = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
         if (!options.noPage)
-          if (currentDate.getTime() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
+          if (currentDate.toDate().getTime() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
             .details
-              a(href=links.item(item.webpage.uniqueName, item.webpage.id))= util.wrapAt(item.webpage.title, 90)
+              a(href=links.news.item(item.webpage.slug, item.webpage.id))= util.wrapAt(item.webpage.title, 90)
           else
             .details= util.wrapAt(item.webpage.title, 90)
 
 mixin topicListTags(topics)
   .list.ot-topic.view-tags
     each item in topics
-      a(title=item.name, href=links.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))
+      a(title=item.name, href=links.news.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))
         if (item.abbr)
           = item.abbr
         else if(item.name.length>30)

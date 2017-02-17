@@ -2,25 +2,28 @@ extends _layouts/normal
 
 block normal_content
   //- fresh news
-  +storiesLargeView(latestStories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
-  +storiesSimpleView(latestStories.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
-  if (latestStories.length>6)
-    +storiesSimpleView(latestStories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
+  if (latestStories)
+    +storiesLargeView(latestStories.slice(0, 3), {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+    +storiesSimpleView(latestStories.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
+    if (latestStories.length>6)
+      +storiesSimpleView(latestStories.slice(6, 9), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4'})
   //- pupular news
-  .section-header
-    h3.type-popular
-      a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
-      //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
-  +storiesLargeView(popularStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
-  .section-header
-    h3.type-quotes
-      a(href=links.quotes({ul: currentCulture.lang}))= __('latest_quotes')
-  +quotesList(latestQuotes.slice(0, 3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
-  +quotesList(latestQuotes.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+  if (popularStories)
+    .section-header
+      h3.type-popular
+        a(href=links.news.popular({ul: currentCulture.lang}))= __('popular_news')
+        //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
+    +storiesLargeView(popularStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
+  if (latestQuotes)
+    .section-header
+      h3.type-quotes
+        a(href=links.news.quotes({ul: currentCulture.lang}))= __('latest_quotes')
+    +quotesList(latestQuotes.slice(0, 3), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
+    +quotesList(latestQuotes.slice(3, 6), {listClass: 'row', itemClass: 'col-xs-12 col-sm-4', wrapAt: 120})
   //- important news
   if (importantStories)
     .section-header
       h3.type-important
-        a(href=links.important({ul: currentCulture.lang}))= __('important_news')
+        a(href=links.news.important({ul: currentCulture.lang}))= __('important_news')
         //- a(href=links.popular({ul: currentCulture.lang}))= __('popular_news')
     +storiesLargeView(importantStories, {itemClass: 'col-sm-4 col-xs-12', lazyImage: true})
