@@ -2,13 +2,13 @@ extends _layouts/news
 
 block append meta
   if (story.videoId)
-    meta(property='og:video', content='http://'+config.host+ links.videoFrame(story.videoId,{ul: currentCulture.lang}))
+    meta(property='og:video', content=config.protocol+'//'+config.host+ links.videoFrame(story.videoId,{ul: currentCulture.lang}))
 
 block main_content
   .content-box(class='domain-'+(category && category.id || '0'))
     #item-page
       h1
-        a(href=links.item(story.uniqueName, story.id))= story.title
+        a(href=links.news.item(story.uniqueName, story.id))= story.title
       .item-details
         time= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
       if (story.imageId)
@@ -22,8 +22,8 @@ block main_content
                     i
               else
                 .fine-image
-                  a(rel='nofollow', href=links.wi.news('master', story.imageId), target='_blank')
-                    img.story-img(alt=story.title, src=links.wi.news('large', story.imageId))
+                  a(rel='nofollow', href=Links.cdn.wi.news('master', story.imageId), target='_blank')
+                    img.story-img(alt=story.title, src=Links.cdn.wi.news('large', story.imageId))
                 .image-source=__('photo')+': '+ story.host
           .col-sm-4.col-xs-12
             +topicListTags(story.topics)
@@ -57,7 +57,7 @@ block append second_content
 
 block append scripts
   if (story.videoId)
-    - var videoFrame = links.videoFrame(story.videoId,{ul: currentCulture.lang});
+    - var videoFrame = links.news.videoFrame(story.videoId,{ul: currentCulture.lang});
     script.
       $(document).ready(function(){
         $('.has-video', '.story-image').click(function(){

@@ -101,7 +101,7 @@ mixin quoteItem(item, options)
 mixin topicListTags(topics)
   .list.ot-topic.view-tags
     each item in topics
-      a(title=item.name, href=links.news.topic(item.uniqueName || item.slug, {ul: currentCulture.lang}))
+      a(title=item.name, href=links.news.topic(item.slug, {ul: currentCulture.lang}))
         if (item.abbr)
           = item.abbr
         else if(item.name.length>30)
