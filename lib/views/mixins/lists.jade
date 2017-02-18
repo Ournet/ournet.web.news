@@ -56,7 +56,7 @@ mixin newsSimpleView(list, options)
   .list.ot-news.view-simple
     each item in list
       - var url= links.news.item(item.slug, item.id, {ul: currentCulture.lang})
-      - var imageUrl = Links.cdn.wi.news('square', item.imageId);
+      - var imageUrl = Links.cdn.wi.news('square', item.imageId||'');
       .list-item.ot-news
         .item.ot-news(class=(item.imageId? 'media': null))
           if (item.imageId)
