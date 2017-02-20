@@ -91,7 +91,7 @@ mixin quoteItem(item, options)
         a.author-name(href=links.news.topic(item.author.slug, {ul: currentCulture.lang}))= item.author.name
         span.details , 
           = util.moment(item.createdAt).locale(currentCulture.lang).from(currentDate, true)
-        if (!options.noPage)
+        if (!options.noPage && item.webpage)
           if (currentDate.toDate().getTime() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
             .details
               a(href=links.news.item(item.webpage.slug, item.webpage.id))= util.wrapAt(item.webpage.title, 90)
