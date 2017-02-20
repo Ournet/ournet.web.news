@@ -8,9 +8,9 @@ block main_content
       each item in sources
         li.item
           h4
-            a(href=links.source(item.host, {ul: currentCulture.lang}))= item.title
+            a(href=links.news.source(item.host, {ul: currentCulture.lang}))= item.title
           div
-            a.accent(rel='nofollow', target='_blank', href=links.url({url:item.host}))= item.host
+            a.accent(rel='nofollow', target='_blank', href=links.news.url({url:item.host}))= item.host
             |  ›
 
 block append second_content
