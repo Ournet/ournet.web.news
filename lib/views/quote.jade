@@ -11,15 +11,15 @@ block main_content
               = quote.text
           i
         .item-author.media
-          a.pull-left(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))
+          a.pull-left(href=links.news.topic(quote.author.slug, {ul: currentCulture.lang}))
             img.media-object(src=util.entipicImage(quote.author, currentCulture), alt='')
           .media-body
-            a.author-name(href=links.topic(quote.author.uniqueName, {ul: currentCulture.lang}))= quote.author.name
+            a.author-name(href=links.news.topic(quote.author.slug, {ul: currentCulture.lang}))= quote.author.name
             span.details , 
               = util.moment(quote.createdAt).locale(currentCulture.lang).from(currentDate, true)
-            if (currentDate.getTime() - new Date(quote.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
+            if (currentDate.toDate().getTime() - new Date(quote.createdAt).getTime() < 1000 * 60 * 60 * 24 * 10)
               .details
-                a(href=links.item(quote.webpage.uniqueName, quote.webpage.id))= util.wrapAt(quote.webpage.title, 100)
+                a(href=links.news.item(quote.webpage.slug, quote.webpage.id))= util.wrapAt(quote.webpage.title, 100)
             else
               .details= util.wrapAt(quote.webpage.title, 100)
     .text-right
@@ -36,12 +36,12 @@ block main_content
   .group
     .group-title
       h4
-        a(href=links.topicQuotes(quote.author.uniqueName, {ul: currentCulture.lang}))= util.format(__('quotes_by_author'), quote.author.name)
+        a(href=links.news.topicQuotes(quote.author.slug, {ul: currentCulture.lang}))= util.format(__('quotes_by_author'), quote.author.name)
     .group-content
       +quotesList(quotes)
 
 block append second_content
-  if (latestStories && latestStories.length>0)
+  if (latestStories && latestStories.length)
     .group
       .group-title
         h4= __('latest_news')

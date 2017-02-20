@@ -11,7 +11,7 @@ block main_content
           img(alt='', src=util.entipicImage(topic, currentCulture, 'b'))
       .media-body
         h1
-          a(href=links.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
+          a(href=links.news.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
           | :  
           = __('quotes')
         .details= subtitle
@@ -27,6 +27,6 @@ block append second_content
     .group-title
       h4= __('latest_news')
     .tab-content
-      +storiesSimpleView(latestNews)
+      +storiesSimpleView(latestStories)
 
 

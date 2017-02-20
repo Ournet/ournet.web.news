@@ -11,7 +11,7 @@ block main_content
           img(alt='', src=util.entipicImage(topic, currentCulture, 'b'))
       .media-body
         h1
-          a(href=links.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
+          a(href=links.news.topic(topic.slug, {ul: currentCulture.lang}))= topic.name
           | :  
           = __('stories')
         .details= subtitle
@@ -20,11 +20,11 @@ block main_content
             each item in config.shareDataServices
               div(class=item)
 
-    +storiesRowView(stories, {itemClass:'col-xs-4'})
+    +storiesRowView(topicStories, {itemClass:'col-xs-4'})
 
 block append second_content
   .group
     .group-title
       h4= __('latest_news')
     .group-content
-      +storiesSimpleView(latestNews)
+      +storiesSimpleView(latestStories)
