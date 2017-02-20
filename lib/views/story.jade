@@ -55,7 +55,7 @@ block main_content
     br
     +topicListTags(story.topics)
 
-    if (quotes && quotes.length>0)
+    if (quotes && quotes.length)
       br
       +quotesList(quotes)
     br
@@ -65,7 +65,7 @@ block main_content
     .fb-comments(data-href=site.head.canonical, data-numposts="5", data-width="100%")
 
 block append second_content
-  if (relatedNews && relatedNews.length>0)
+  if (relatedNews && relatedNews.length)
     .group
       .group-title
         h4= __('related_news')
