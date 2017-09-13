@@ -48,7 +48,22 @@ block main_content
             .social-likes(data-url=site.head.canonical)
               each item in config.shareDataServices
                 div(class=item)
-        .item-body!= util.summaryToParagraphs(story.summary)
+      .item-body!= util.summaryToParagraphs(story.summary)
+    if(storyNews && storyNews.length)
+    - currDate = currentDate.add(-24, 'h')
+      ul
+        each item in storyNews
+          li
+            a(href=links.news.item(item.slug, item.id))= util.wrapAt(item.title, 100)
+            div.item-details
+              - date = util.moment.tz(item.publishedAt, config.timezone).locale(currentCulture.lang)
+              if (date < currDate)
+                time=date.fromNow(true)
+              else
+                time=date.format('LT')
+              |  &#8211;  
+              - host=item.host.replace(/^www\./, '')
+              span.green-color= host[0].toUpperCase()+host.substr(1)
 
     a.read-source(rel='nofollow', target='_blank', href=util.toUrl(story))= util.format(__('read_more_on_source'), story.host.replace(/^www\./, ''))
     br
