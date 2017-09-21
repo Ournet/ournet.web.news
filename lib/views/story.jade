@@ -44,8 +44,8 @@ block main_content
                 i.icon.icon-views
               |  
               time(datetime=story.createdAt.toISOString())= util.moment.tz(story.createdAt, config.timezone).locale(currentCulture.lang).format('lll')
-          .col-xs-6.text-right
-            .social-likes(data-url=site.head.canonical)
+          .col-xs-6
+            .social-likes.pull-right(data-url=site.head.canonical)
               each item in config.shareDataServices
                 div(class=item)
       .item-body!= util.summaryToParagraphs(story.summary)

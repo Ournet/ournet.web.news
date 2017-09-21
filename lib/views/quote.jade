@@ -22,7 +22,7 @@ block main_content
                 a(href=links.news.item(quote.webpage.slug, quote.webpage.id))= util.wrapAt(quote.webpage.title, 100)
             else
               .details= util.wrapAt(quote.webpage.title, 100)
-    .text-right
+    .pull-right
       .social-likes(data-url=site.head.canonical)
         each item in config.shareDataServices
           div(class=item)

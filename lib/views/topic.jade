@@ -13,7 +13,7 @@ block main_content
         h1
           a(href=links.news.topic(topic.slug))= title
         .details= subtitle
-        .text-right
+        .pull-right
           .social-likes(data-url=site.head.canonical)
             each item in config.shareDataServices
               div(class=item)
