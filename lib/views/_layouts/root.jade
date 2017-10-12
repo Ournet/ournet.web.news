@@ -107,6 +107,7 @@ html(lang=currentCulture.language)
         script(type='text/javascript', src='//assets.ournetcdn.net/ournet/js/' + project.name + '/desktop/main-'+ config.assets.js.main +'.min.js')
     else
       script(type='text/javascript', src='http://localhost:8044/js/' + project.name + '/'+site.platform+'/main.js')
+    
     block scripts
     
     script.
@@ -117,6 +118,8 @@ html(lang=currentCulture.language)
       ga('create', '#{config.googleAnalyticsId}', '#{config.domain}');
       ga('set', 'dimension1', '#{project.name}');
       ga('send', 'pageview');
+    script.
+      OURNET.Counters.init('#{currentCulture.country}','#{config.prefix}');
     if (config.facebookPlugins)
       script.
         (function(d, s, id) {
