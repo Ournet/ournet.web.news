@@ -119,7 +119,7 @@ html(lang=currentCulture.language)
       ga('set', 'dimension1', '#{project.name}');
       ga('send', 'pageview');
     script.
-      OURNET.Counters.init('#{currentCulture.country}','#{config.prefix}');
+      OURNET.Counters.init('#{currentCulture.country}','#{project.name}');
     if (config.facebookPlugins)
       script.
         (function(d, s, id) {
