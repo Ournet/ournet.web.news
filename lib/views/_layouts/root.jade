@@ -37,8 +37,23 @@ html(lang=currentCulture.language)
     link(rel='dns-prefetch', href='//assets.ournetcdn.net')
     link(rel='dns-prefetch', href='//wi.ournetcdn.net')
     link(rel='dns-prefetch', href='//ajax.googleapis.com')
-    link(rel='dns-prefetch', href='//tpc.googlesyndication.com')
-    link(rel='dns-prefetch', href='//pagead2.googlesyndication.com')
+    
+    if (!noGoogleAds && config.dfp)
+      script(async='async', src='https://www.googletagservices.com/tag/js/gpt.js')
+      script.
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+      script.
+        googletag.cmd.push(function() {
+          var slots = !{JSON.stringify(Object.keys(config.dfp.slots).map(key=>{ return {key: key, id: config.dfp.slots[key].id, sizes: config.dfp.slots[key].sizes} }))}
+          for(var i=0;i<slots.length;i++) {
+            var slot = slots[i];
+            googletag.defineSlot(slot.key, slot.sizes, slot.id).addService(googletag.pubads());
+          }
+          googletag.pubads().enableSingleRequest();
+          googletag.enableServices();
+        });
+
 
   body(class=('country-'+currentCulture.country+' project-'+project.name+' language-'+currentCulture.language + ' '+site.platform + ' '+(site.pageLayoutCss||'')))
     #fb-root
@@ -95,8 +110,8 @@ html(lang=currentCulture.language)
               div
                 a(href='http://'+host)= __(key)
 
-    if (!noGoogleAds)
-      script(async='', src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+    if (!noGoogleAds && !config.dfp)
+      script(async='async', src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
     script.
       window.globalInitData={cn: '#{config.country}',ul:'#{currentCulture.language}'};
     script(type='text/javascript', src='//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')

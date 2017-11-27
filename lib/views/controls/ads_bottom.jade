@@ -1,4 +1,11 @@
-// Ournet news bottom
-ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-3959589883092051', data-ad-slot='8702367833', data-ad-format='auto')
-script.
-  (adsbygoogle = window.adsbygoogle || []).push({});
+if (config.dfp)
+  - var slot = config.dfp.slots[config.dfp.location.bottom1]
+
+  div(id=slot.id)
+    script.
+      googletag.cmd.push(function() { googletag.display('#{slot.id}'); });
+else
+  // Ournet news bottom
+  ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-3959589883092051', data-ad-slot='8702367833', data-ad-format='auto')
+  script.
+    (adsbygoogle = window.adsbygoogle || []).push({});
