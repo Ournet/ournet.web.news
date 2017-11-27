@@ -38,7 +38,7 @@
     "ournet.links": "^0.2.3",
     "ournet.logger": "^0.1.0",
     "ournet.utils": "^0.1.1",
-    "ournet.web.data": "^0.1.4",
+    "ournet.web.data": "^0.1.5",
     "response-time": "^2.2.0",
     "rss": "^1.2.1",
     "text-to-paragraphs": "0.0.1"
