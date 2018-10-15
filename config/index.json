@@ -15,5 +15,14 @@
 			"main": "3410dae95a",
 			"pageWidget": "571dffe604"
 		}
-	}
+	},
+	"internationalIds": [
+		"md",
+		"bg",
+		"it",
+		"ro",
+		"hu",
+		"cz",
+		"in"
+	]
 }

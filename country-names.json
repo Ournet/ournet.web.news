@@ -1,0 +1,129 @@
+{
+    "md": {
+        "it": "Moldova",
+        "en": "Moldova",
+        "ro": "Moldova",
+        "ru": "Молдова",
+        "bg": "Молдова",
+        "cs": "Moldavsko",
+        "hu": "Moldova",
+        "pl": "Mołdawia",
+        "sq": "Moldavi",
+        "tr": "Moldova"
+    },
+    "ro": {
+        "it": "Romania",
+        "en": "Romania",
+        "ro": "România",
+        "ru": "Румыния",
+        "bg": "Румъния",
+        "cs": "Rumunsko",
+        "hu": "Románia",
+        "pl": "Rumunia",
+        "sq": "Rumani",
+        "tr": "Romanya"
+    },
+    "ru": {
+        "it": "Russia",
+        "en": "Russia",
+        "ro": "Rusia",
+        "ru": "Россия",
+        "bg": "Руска федерация",
+        "cs": "Rusko",
+        "hu": "Oroszországi Föderáció",
+        "pl": "Rosja",
+        "sq": "Rusi",
+        "tr": "Rusya"
+    },
+    "it": {
+        "it": "Italia",
+        "en": "Italy",
+        "ro": "Italia",
+        "ru": "Италия",
+        "bg": "Италия",
+        "cs": "Itálie",
+        "hu": "Olaszország",
+        "pl": "Włochy",
+        "sq": "Itali",
+        "tr": "İtalya"
+    },
+    "bg": {
+        "it": "Bulgaria",
+        "en": "Bulgaria",
+        "ro": "Bulgaria",
+        "ru": "Болгария",
+        "cs": "Bulharsko",
+        "hu": "Bulgária",
+        "pl": "Bułgaria",
+        "sq": "Bulgari",
+        "tr": "Bulgaristan"
+    },
+    "hu": {
+        "it": "Hungary",
+        "en": "Hungary",
+        "ro": "Ungaria",
+        "ru": "Венгрия",
+        "bg": "Унгария",
+        "cs": "Maďarsko",
+        "pl": "Węgry",
+        "sq": "Hungari",
+        "tr": "Macaristan"
+    },
+    "cz": {
+        "it": "Cehia",
+        "en": "Czech Republic",
+        "ro": "Cehia",
+        "ru": "Чехия",
+        "bg": "Чешка република",
+        "hu": "Csehország",
+        "pl": "Czechy",
+        "sq": "Republika Çeke",
+        "tr": "Çekya"
+    },
+    "pl": {
+        "it": "Poland",
+        "en": "Poland",
+        "ro": "Polonia",
+        "ru": "Польша",
+        "bg": "Полша",
+        "cs": "Polsko",
+        "hu": "Lengyelország",
+        "sq": "Poloni"
+    },
+    "in": {
+        "it": "India",
+        "en": "India",
+        "ro": "India",
+        "ru": "Индия",
+        "bg": "Индия",
+        "cs": "Indie",
+        "hu": "India",
+        "pl": "Indie",
+        "sq": "Indi",
+        "tr": "Hindistan"
+    },
+    "al": {
+        "it": "Albania",
+        "en": "Albania",
+        "ro": "Albania",
+        "ru": "Албания",
+        "bg": "Албания",
+        "cs": "Albánie",
+        "hu": "Albánia",
+        "pl": "Albania",
+        "sq": "Shqipëri",
+        "tr": "Albanya"
+    },
+    "tr": {
+        "it": "Turchia",
+        "en": "Turkey",
+        "ro": "Turcia",
+        "ru": "Турция",
+        "bg": "Турция",
+        "cs": "Turecko",
+        "hu": "Törökország",
+        "pl": "Turcja",
+        "sq": "Turqia",
+        "tr": "Türkiye"
+    }
+}
