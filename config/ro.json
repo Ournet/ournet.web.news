@@ -1,0 +1,57 @@
+{
+	"$schema": "./schema.json",
+	"name": "Ournet.ro",
+	"language": "ro",
+	"languages": [
+		"ro"
+	],
+	"country": "ro",
+	"timezone": "Europe/Bucharest",
+	"domain": "ournet.ro",
+	"host": "meteo.ournet.ro",
+	"email": "info@ournet.ro",
+	"googleAnalyticsId": "UA-1490399-11",
+	"favicon": "//assets.ournetcdn.net/ournet/img/icons/ournet-icon-16.png",
+	"placesCount": 18000,
+	"widgetGoogleAnalyticsId": "UA-1490399-48",
+	"projects": [
+		"horoscope",
+		"news",
+		"weather",
+		"exchange"
+	],
+	"shareServices": [
+		"facebook",
+		"gplus",
+		"twitter"
+	],
+	"socialPluginsHtmlCode": "<iframe src=\"https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FOurNetro%2F156976714343293&amp;width=300&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:300px; height:255px;\" allowTransparency=\"true\"></iframe>",
+	"internationalIds": [
+		"bg",
+		"ru"
+	],
+	"capitalId": 683506,
+	"facebookId": "120256281349646",
+	"exchange": {
+		"currency": "RON",
+		"currencies": [
+			"EUR",
+			"USD",
+			"GBP",
+			"CHF",
+			"RUB",
+			"MDL",
+			"UAH",
+			"CAD",
+			"RSD",
+			"AUD",
+			"CZK",
+			"PLN"
+		],
+		"source": 3
+	},
+	"oneSignal": {
+		"appId": "20d478b4-fb13-42db-a663-75516e67ba9a",
+		"safari_web_id": "web.onesignal.auto.3f550615-46c0-4fa5-9ee8-42953ece3d19"
+	}
+}

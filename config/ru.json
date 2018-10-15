@@ -1,0 +1,62 @@
+{
+	"$schema": "./schema.json",
+	"prefix": "pogoda",
+	"name": "Zborg.ru",
+	"language": "ru",
+	"languages": [
+		"ru"
+	],
+	"country": "ru",
+	"timezone": "Europe/Moscow",
+	"domain": "zborg.ru",
+	"host": "pogoda.zborg.ru",
+	"hour_format": "HH:mm",
+	"email": "info@ournet-group.com",
+	"googleAnalyticsId": "UA-1490399-17",
+	"favicon": "//assets.ournetcdn.net/ournet/img/icons/zborg-icon-16.png",
+	"placesCount": 150000,
+	"widgetGoogleAnalyticsId": "UA-1490399-58",
+	"projects": [
+		"news",
+		"weather",
+		"horoscope",
+		"exchange"
+	],
+	"shareServices": [
+		"vkontakte",
+		"facebook",
+		"odnoklassniki",
+		"twitter"
+	],
+	"socialPluginsHtmlCode": "<iframe src=\"https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fzborg.ru&amp;width=300&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:300px; height:255px;\" allowTransparency=\"true\"></iframe>",
+	"internationalIds": [
+		"md",
+		"bg",
+		"it",
+		"ro",
+		"hu",
+		"cz",
+		"pl",
+		"al",
+		"in",
+		"tr"
+	],
+	"capitalId": 524901,
+	"facebookId": "406165206076337",
+	"exchange": {
+		"currency": "RUB",
+		"currencies": [
+			"EUR",
+			"USD",
+			"GBP",
+			"UAH",
+			"CHF",
+			"CAD",
+			"BYR",
+			"AUD",
+			"AZN",
+			"AMD"
+		],
+		"source": 78
+	}
+}

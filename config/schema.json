@@ -1,0 +1,140 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "title": "Config",
+    "type": "object",
+    "properties": {
+        "project": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "prefix": {
+            "type": "string"
+        },
+        "languages": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "country": {
+            "type": "string"
+        },
+        "timezone": {
+            "type": "string"
+        },
+        "domain": {
+            "type": "string"
+        },
+        "host": {
+            "type": "string"
+        },
+        "hourFormat": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "googleAnalyticsId": {
+            "type": "string"
+        },
+        "placesCount": {
+            "type": "number"
+        },
+        "widgetGoogleAnalyticsId": {
+            "type": "string"
+        },
+        "projects": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "shareDataServices": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "socialPluginsHtmlCode": {
+            "type": "string"
+        },
+        "internationalIds": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "mainPlaces": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "capitalId": {
+            "type": "number"
+        },
+        "fbId": {
+            "type": "string"
+        },
+        "exchange": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "currencies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "mainPlacesCount": {
+            "type": "number",
+            "minimum": 5,
+            "maximum": 50
+        },
+        "monthFormat": {
+            "type": "string"
+        },
+        "favicon": {
+            "type": "string"
+        },
+        "assets": {
+            "type": "object",
+            "properties": {
+                "css": {
+                    "type": "object",
+                    "properties": {
+                        "main": {
+                            "type": "string"
+                        },
+                        "pageWidget": {
+                            "type": "string"
+                        },
+                        "errorPage": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "js": {
+                    "type": "object",
+                    "properties": {
+                        "main": {
+                            "type": "string"
+                        },
+                        "pageWidget": {
+                            "type": "string"
+                        },
+                        "errorPage": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

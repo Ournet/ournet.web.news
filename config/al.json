@@ -1,0 +1,40 @@
+{
+	"$schema": "./schema.json",
+	"prefix": "mot",
+	"name": "Moti2.al",
+	"language": "sq",
+	"languages": [
+		"sq"
+	],
+	"country": "al",
+	"timezone": "Europe/Tirane",
+	"domain": "moti2.al",
+	"host": "moti2.al",
+	"hour_format": "HH:mm",
+	"email": "info@ournet-group.com",
+	"googleAnalyticsId": "UA-1490399-63",
+	"placesCount": 4000,
+	"widgetGoogleAnalyticsId": "UA-1490399-64",
+	"projects": [
+		"weather"
+	],
+	"shareServices": [
+		"facebook",
+		"gplus",
+		"twitter"
+	],
+	"socialPluginsHtmlCode": "<iframe src=\"http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FMoti2al%2F1491467111153725&amp;width=300&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:300px; height:255px;\" allowTransparency=\"true\"></iframe>",
+	"internationalIds": [
+		"bg",
+		"ro",
+		"cz",
+		"it",
+		"md",
+		"hu",
+		"ru",
+		"pl",
+		"in",
+		"tr"
+	],
+	"capitalId": 3183875
+}

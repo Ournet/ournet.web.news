@@ -1,0 +1,19 @@
+{
+	"$schema": "./schema.json",
+	"project": "horoscope",
+	"mainPlacesCount": 20,
+	"monthFormat": "D MMMM",
+	"favicon": "https://assets.ournetcdn.net/ournet/img/icons/ournet-icon-16.png",
+	"protocol": "http:",
+	"assets": {
+		"css": {
+			"main": "be424dfbea",
+			"pageWidget": "b14caa0588",
+			"errorPage": "61010b3d44"
+		},
+		"js": {
+			"main": "3410dae95a",
+			"pageWidget": "571dffe604"
+		}
+	}
+}

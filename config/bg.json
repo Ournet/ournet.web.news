@@ -1,0 +1,59 @@
+{
+    "$schema": "./schema.json",
+    "prefix": "prognoza",
+    "name": "Ournet.bg",
+    "language": "bg",
+    "languages": [
+        "bg"
+    ],
+    "country": "bg",
+    "timezone": "Europe/Sofia",
+    "domain": "ournet.bg",
+    "host": "vremeto.ournet.bg",
+    "hour_format": "HH:mm",
+    "email": "info@ournet-group.com",
+    "googleAnalyticsId": "UA-1490399-35",
+    "placesCount": 6000,
+    "widgetGoogleAnalyticsId": "UA-1490399-50",
+    "projects": [
+        "news",
+        "weather",
+        "horoscope",
+        "exchange"
+    ],
+    "shareServices": [
+        "facebook",
+        "gplus",
+        "twitter"
+    ],
+    "socialPluginsHtmlCode": "<iframe src=\"http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FOurnetbg%2F611978725607914&amp;width=300&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:300px; height:255px;\" allowTransparency=\"true\"></iframe>",
+    "internationalIds": [
+        "ro",
+        "cz",
+        "al",
+        "it",
+        "md",
+        "hu",
+        "ru",
+        "pl",
+        "in",
+        "tr"
+    ],
+    "capitalId": 727011,
+    "facebookId": "178864255588739",
+    "exchange": {
+        "currency": "BGN",
+        "currencies": [
+            "EUR",
+            "USD",
+            "GBP",
+            "CHF",
+            "CAD",
+            "BYR",
+            "AUD",
+            "AZN",
+            "AMD"
+        ],
+        "source": 100
+    }
+}

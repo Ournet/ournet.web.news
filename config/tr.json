@@ -1,0 +1,41 @@
+{
+    "$schema": "./schema.json",
+    "prefix": "durum",
+    "name": "Hava.one",
+    "language": "tr",
+    "languages": [
+        "tr"
+    ],
+    "country": "tr",
+    "timezone": "Europe/Istanbul",
+    "domain": "hava.one",
+    "host": "hava.one",
+    "hour_format": "HH:mm",
+    "email": "info@ournet-group.com",
+    "googleAnalyticsId": "UA-1490399-65",
+    "favicon": "//assets.ournetcdn.net/ournet/img/icons/ournet-icon-16.png",
+    "placesCount": 84000,
+    "widgetGoogleAnalyticsId": "UA-1490399-65",
+    "projects": [
+        "weather"
+    ],
+    "shareServices": [
+        "facebook",
+        "gplus",
+        "twitter"
+    ],
+    "internationalIds": [
+        "ru",
+        "ro",
+        "md",
+        "cz",
+        "it",
+        "bg",
+        "hu",
+        "pl",
+        "al",
+        "in"
+    ],
+    "capitalId": 745044,
+    "facebookId": "120256281349646"
+}

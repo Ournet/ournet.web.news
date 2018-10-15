@@ -1,0 +1,63 @@
+{
+    "$schema": "./schema.json",
+    "prefix": "vremea",
+    "name": "Click.md",
+    "language": "ro",
+    "languages": [
+        "ro",
+        "ru"
+    ],
+    "country": "md",
+    "timezone": "Europe/Bucharest",
+    "domain": "click.md",
+    "host": "meteo.click.md",
+    "hour_format": "HH:mm",
+    "email": "info@click.md",
+    "googleAnalyticsId": "UA-1490399-23",
+    "favicon": "http://assets.ournetcdn.net/ournet/img/icons/click-icon-16.png",
+    "placesCount": 1700,
+    "widgetGoogleAnalyticsId": "UA-1490399-49",
+    "projects": [
+        "news",
+        "weather",
+        "exchange"
+    ],
+    "shareServices": [
+        "facebook",
+        "odnoklassniki",
+        "twitter"
+    ],
+    "socialPluginsHtmlCode": "<iframe src=\"http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FClickmd%2F144591008926117&amp;width=300&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; width:300px; height:255px;\" allowTransparency=\"true\"></iframe>",
+    "internationalIds": [
+        "ro",
+        "ru",
+        "it",
+        "bg",
+        "hu",
+        "cz",
+        "pl",
+        "al",
+        "in",
+        "tr"
+    ],
+    "capitalId": 618426,
+    "fbId": "111558655578824",
+    "exchange": {
+        "currency": "MDL",
+        "currencies": [
+            "USD",
+            "EUR",
+            "RUB",
+            "RON",
+            "UAH",
+            "GBP",
+            "CAD",
+            "BYR",
+            "AUD",
+            "CHF",
+            "CZK",
+            "GEL"
+        ],
+        "source": 2
+    }
+}
