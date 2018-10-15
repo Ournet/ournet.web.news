@@ -70,6 +70,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "ellipsize": "^0.1.0",
+    "entipic.url": "^0.1.0",
     "express": "^4.16.3",
     "i18n": "^0.8.3",
     "lru-cache": "^4.1.3",

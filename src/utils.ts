@@ -1,5 +1,10 @@
 
 const ellipsize = require('ellipsize');
+const entipicUrlFn = require('entipic.url');
+
+export function entipicUrl(name: string, size?: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | string, lang?: string, country?: string): string {
+    return entipicUrlFn(name, size, lang, country)
+}
 
 export function truncateAt(text: string, maxLength: number): string {
     return ellipsize(text, maxLength, { truncate: false });

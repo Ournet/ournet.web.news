@@ -5,7 +5,6 @@ import { NewsEvent } from '@ournet/api-client';
 import { ImageStorageHelper } from '@ournet/images-domain';
 import { truncateAt } from '../../../utils';
 import moment = require('moment-timezone');
-import { LocalesNames } from '../../../locales-names';
 
 export type EventListItemProps = {
     root: RootViewModel
@@ -45,7 +44,6 @@ function mainItemView(props: EventListItemProps) {
             <div className='c-event-it__info'>
                 <div className='c-event-it__stats'>
                     <time dateTime={item.createdAt}>{createdAt.fromNow(true)}</time>
-                    <time dateTime={item.createdAt}>{item.countViews} {__(LocalesNames.views)}</time>
                 </div>
                 <a className='c-event-it__topic' title={mainTopic.name} href={links.news.topic(mainTopic.slug, { ul: lang })}>#{mainTopic.abbr || truncateAt(mainTopic.name, 30)}</a>
             </div>
@@ -57,13 +55,25 @@ function mainItemView(props: EventListItemProps) {
 }
 
 function cardItemView(props: EventListItemProps) {
-    const { item } = props;
+    const { item, root } = props;
+    const { links, lang, config, __ } = root;
+    const mainTopic = item.topics[0];
+    const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
+
     return (
         <div className='c-event-it c-event-it--card'>
-            <div className='c-event-it__media'>
-                <img src={ImageStorageHelper.eventUrl(item.imageId, 'medium')} alt={item.title} />
+            <a title={item.title} href={links.news.event(item.slug, item.id, { ul: lang })}>
+                <div className='c-event-it__media'>
+                    <img src={ImageStorageHelper.eventUrl(item.imageId, 'medium')} alt={item.title} />
+                </div>
+                <h3 className='c-event-it__title'>{truncateAt(item.title, 80)}</h3>
+            </a>
+            <div className='c-event-it__info'>
+                <div className='c-event-it__stats'>
+                    <time dateTime={item.createdAt}>{createdAt.fromNow(true)}</time>
+                </div>
+                <a className='c-event-it__topic' title={mainTopic.name} href={links.news.topic(mainTopic.slug, { ul: lang })}>#{mainTopic.abbr || truncateAt(mainTopic.name, 30)}</a>
             </div>
-            <h3 className='c-event-it__title'>{truncateAt(item.title, 80)}</h3>
         </div>
     )
 }

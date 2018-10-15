@@ -4,6 +4,7 @@ import { IndexViewModel } from '../../view-models/index-view-model';
 import CommonLayout from '../common-layout';
 import { LocalesNames } from '../../locales-names';
 import EventListItem from '../components/news/event-list-item';
+import QuoteListItem from '../components/news/quote-list-item';
 
 export default class IndexPage extends React.Component<IndexViewModel> {
     render() {
@@ -34,6 +35,12 @@ export default class IndexPage extends React.Component<IndexViewModel> {
                                 {restEvents.slice(0, 4).map(item => <div key={item.id} className='o-layout__item u-1/2'><EventListItem root={this.props} item={item} view='card' /></div>)}
                             </div>
                         </div>
+                    </div>
+                    <div className='o-layout'>
+                        {latestQuotes.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' /></div>)}
+                    </div>
+                    <div className='o-layout'>
+                        {restEvents.slice(4).map(item => <div key={item.id} className='o-layout__item u-1/2 u-1/4@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                     </div>
                 </main>
             </CommonLayout >

@@ -1505,6 +1505,11 @@ encodeurl@~1.0.2:
   resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
   integrity sha1-rT/0yG7C0CkyL1oCw6mmBslbP1k=
 
+entipic.url@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/entipic.url/-/entipic.url-0.1.0.tgz#af73d9afb712bc866b7346cec570d678305b5760"
+  integrity sha1-r3PZr7cSvIZrc0bOxXDWeDBbV2A=
+
 env-variable@0.0.x:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/env-variable/-/env-variable-0.0.5.tgz#913dd830bef11e96a039c038d4130604eba37f88"
