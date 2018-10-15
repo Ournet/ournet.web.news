@@ -4,7 +4,7 @@ import env from '../../env';
 
 export default class PageHead extends React.Component<PageViewModel> {
     render() {
-        const { config, head, lang, country } = this.props;
+        const { config, head, lang, country, project } = this.props;
 
         let shortDomainName = config.domain.split('.')[0]
         shortDomainName = ['click', 'zborg', 'diez'].indexOf(shortDomainName) > -1 ? shortDomainName : 'ournet';
@@ -12,9 +12,9 @@ export default class PageHead extends React.Component<PageViewModel> {
         const elements: JSX.Element[] = []
 
         if (env.isProduction) {
-            elements.push(<link key='1' type="text/css" rel="stylesheet" href={`//assets.ournetcdn.net/ournet/css/${config.project}/main-${config.assets.css.main}.css`} />);
+            elements.push(<link key='1' type="text/css" rel="stylesheet" href={`//assets.ournetcdn.net/ournet/css/${project}/main-${config.assets.css.main}.css`} />);
         } else {
-            elements.push(<link key='2' type="text/css" rel="stylesheet" href={`http://localhost:8080/css/${config.project}/main.css`} />)
+            elements.push(<link key='2' type="text/css" rel="stylesheet" href={`http://localhost:8080/css/${project}/main.css`} />)
         }
 
         head.elements = elements.concat(head.elements);
