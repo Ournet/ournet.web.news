@@ -7,6 +7,7 @@ yarn remove @ournet/places-domain
 yarn remove @ournet/images-domain
 yarn remove @ournet/horoscopes-domain
 yarn remove @ournet/news-domain
+yarn remove @ournet/topics-domain
 yarn remove ournet.links
 
 yarn link @ournet/domain
@@ -16,6 +17,7 @@ yarn link @ournet/places-domain
 yarn link @ournet/images-domain
 yarn link @ournet/horoscopes-domain
 yarn link @ournet/news-domain
+yarn link @ournet/topics-domain
 yarn link ournet.links
 
 yarn test

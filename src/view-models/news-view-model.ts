@@ -1,5 +1,16 @@
 import { PageViewModel, PageViewModelInput, PageViewModelBuilder } from "./page-view-model";
-import { Place, HourlyForecastDataPoint, HourlyForecastDataPointStringFields, NewsEvent, OurnetQueryApi, NewsTopic, NewsTopItem, NewsTopItemStringFields } from "@ournet/api-client";
+import {
+    Place,
+    HourlyForecastDataPoint,
+    HourlyForecastDataPointStringFields,
+    OurnetQueryApi,
+    NewsTopic,
+    NewsTopItem,
+    TopicStringFields,
+    NewsTopItemStringFields,
+    Topic,
+} from "@ournet/api-client";
+
 import { createQueryApiClient } from "../data/api";
 import logger from "../logger";
 import * as moment from "moment-timezone";
@@ -17,7 +28,7 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
     }
 
     async build() {
-        const apiClient = createQueryApiClient<T>();
+        const apiClient = createQueryApiClient<{ capital: Place, trendingTopics: NewsTopItem[] }>();
 
         const model = this.model;
         const { country, lang } = model;
@@ -25,24 +36,32 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
         const result = await apiClient
             .placesPlaceById('capital', { fields: 'id name names longitude latitude timezone' },
                 { id: model.config.capitalId })
+            .newsTrendingTopics('trendingTopics', { fields: NewsTopItemStringFields }, { params: { country, lang, limit: 10, period: '24h' } })
             .execute();
 
         if (result.errors && result.errors.length) {
             logger.error(result.errors[0]);
         }
 
-        if (result.data && result.data.capital) {
-            model.capital = result.data.capital
+        if (result.data) {
+            if (result.data.capital) {
+                model.capital = result.data.capital;
 
-            const { longitude,
-                latitude,
-                timezone, } = model.capital;
+                const { longitude,
+                    latitude,
+                    timezone, } = model.capital;
 
-            this.api.weatherNowPlaceForecast('capitalForecast', { fields: HourlyForecastDataPointStringFields },
-                { place: { longitude, latitude, timezone } });
+                this.api.weatherNowPlaceForecast('capitalForecast', { fields: HourlyForecastDataPointStringFields },
+                    { place: { longitude, latitude, timezone } });
+            }
+
+            this.model.trendingTopTopics = result.data.trendingTopics || [];
+
+            if (result.data.trendingTopics && result.data.trendingTopics.length) {
+                this.api.topicsTopicsByIds('trendingTopics', { fields: TopicStringFields },
+                    { ids: result.data.trendingTopics.map(item => item.id) });
+            }
         }
-
-        this.api.newsTrendingTopics('trendingTopics', { fields: NewsTopItemStringFields }, { params: { country, lang, limit: 10, period: '24h' } });
 
         return super.build();
     }
@@ -51,7 +70,14 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
         if (data.capitalForecast) {
             this.model.capitalForecast = data.capitalForecast;
         }
+
         this.model.trendingTopics = data.trendingTopics || [];
+        for (const topic of this.model.trendingTopics) {
+            const top = this.model.trendingTopTopics.find(item => item.id === topic.id);
+            if (top) {
+                topic.count = top.count;
+            }
+        }
 
         return super.formatModel(data);
     }
@@ -61,10 +87,15 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
 export interface NewsViewModel extends PageViewModel {
     capital: Place
     capitalForecast: HourlyForecastDataPoint
-    trendingTopics: NewsTopItem[]
+    trendingTopics: TrendingTopic[]
+    trendingTopTopics: NewsTopItem[]
 
     currentDate: moment.Moment
 
     title: string
     subTitle: string
+}
+
+export interface TrendingTopic extends Topic {
+    count: number
 }
