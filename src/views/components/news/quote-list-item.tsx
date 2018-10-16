@@ -9,6 +9,7 @@ export type QuoteListItemProps = {
     root: RootViewModel
     view: QuoteListItemViewName
     item: Quote
+    maxLength?: number
 }
 
 export type QuoteListItemViewName = 'card';
@@ -27,7 +28,7 @@ function getItemView(props: QuoteListItemProps) {
 }
 
 function cardItemView(props: QuoteListItemProps) {
-    const { item, root } = props;
+    const { item, root, maxLength } = props;
     const { links, lang, config, __, country } = root;
     const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
     const author = item.author;
@@ -35,7 +36,7 @@ function cardItemView(props: QuoteListItemProps) {
 
     return (
         <div className='c-quote-it c-quote-it--card'>
-            <a className='c-quote-it__text' title={author.name + ': ' + truncateAt(item.text, 80)} href={link}><i>“</i> {truncateAt(item.text, 100)}</a>
+            <a className='c-quote-it__text' title={author.name + ': ' + truncateAt(item.text, 80)} href={link}><i>“</i> {truncateAt(item.text, maxLength || 100)}</a>
             <div className='c-quote-it__media'>
                 <img className='c-quote-it__icon' src={entipicUrl(author.name, 'a', lang, country)} alt={author.name} />
                 <div className='c-quote-it__body'>
