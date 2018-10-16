@@ -4,18 +4,18 @@ import CommonLayout from '../common-layout';
 import { LocalesNames } from '../../locales-names';
 import EventListItem from '../components/news/event-list-item';
 import QuoteListItem from '../components/news/quote-list-item';
-import { QuotesViewModel } from '../../view-models/quotes-view-model';
 import PageTitle from '../components/page-title';
 import adCenter from '../components/ad-center';
 import GroupHeader from '../components/group-header';
+import { ImportantViewModel } from '../../view-models/important-view-model';
 import { Share } from '../components/share';
 
-export default class QuotesPage extends React.Component<QuotesViewModel> {
+export default class ImportantPage extends React.Component<ImportantViewModel> {
     render() {
-        const { lang, head, __, links, latestEvents, latestQuotes, config, title, subTitle } = this.props;
+        const { lang, head, __, links, importantEvents, latestQuotes, title, subTitle, config } = this.props;
 
-        const list1 = latestQuotes.slice(0, latestQuotes.length / 2);
-        const list2 = latestQuotes.slice(latestQuotes.length / 2);
+        const list1 = importantEvents.slice(0, importantEvents.length / 2);
+        const list2 = importantEvents.slice(importantEvents.length / 2);
 
         return (
             <CommonLayout {...this.props}>
@@ -24,17 +24,17 @@ export default class QuotesPage extends React.Component<QuotesViewModel> {
                     <PageTitle title={title || head.title} subTitle={subTitle || head.description} />
 
                     <div className='o-layout'>
-                        {list1.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' maxLength={120} /></div>)}
+                        {list1.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><EventListItem root={this.props} item={item} view='card' imageSize='large' /></div>)}
                     </div>
                     {adCenter()}
                     <div className='o-layout'>
-                        {list2.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' maxLength={120} /></div>)}
+                        {list2.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><EventListItem root={this.props} item={item} view='card' imageSize='large' /></div>)}
                     </div>
 
                     <div className='c-group'>
-                        <GroupHeader name={__(LocalesNames.latest_events)} link={links.news.home({ ul: lang })} type='new' />
+                        <GroupHeader name={__(LocalesNames.latest_quotes)} link={links.news.quotes({ ul: lang })} type='important' />
                         <div className='o-layout'>
-                            {latestEvents.map(item => <div key={item.id} className='o-layout__item u-1/2 u-1/4@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                            {latestQuotes.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' /></div>)}
                         </div>
                     </div>
                 </main>

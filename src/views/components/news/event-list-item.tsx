@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { RootViewModel } from '../../../view-models/root-view-model';
 import { NewsEvent } from '@ournet/api-client';
-import { ImageStorageHelper } from '@ournet/images-domain';
+import { ImageStorageHelper, ImageSizeName } from '@ournet/images-domain';
 import { truncateAt } from '../../../utils';
 import moment = require('moment-timezone');
 
@@ -10,6 +10,7 @@ export type EventListItemProps = {
     root: RootViewModel
     view: EventListItemViewName
     item: NewsEvent
+    imageSize?: ImageSizeName
 }
 
 export type EventListItemViewName = 'main' | 'card';
@@ -55,7 +56,7 @@ function mainItemView(props: EventListItemProps) {
 }
 
 function cardItemView(props: EventListItemProps) {
-    const { item, root } = props;
+    const { item, root, imageSize } = props;
     const { links, lang, config, __ } = root;
     const mainTopic = item.topics[0];
     const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
@@ -64,7 +65,7 @@ function cardItemView(props: EventListItemProps) {
         <div className='c-event-it c-event-it--card'>
             <a title={item.title} href={links.news.event(item.slug, item.id, { ul: lang })}>
                 <div className='c-event-it__media'>
-                    <img src={ImageStorageHelper.eventUrl(item.imageId, 'medium')} alt={item.title} />
+                    <img src={ImageStorageHelper.eventUrl(item.imageId, imageSize || 'medium')} alt={item.title} />
                 </div>
                 <h3 className='c-event-it__title'>{truncateAt(item.title, 80)}</h3>
             </a>

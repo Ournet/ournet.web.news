@@ -56,5 +56,7 @@
 	"latest_events_from_country": "Ultimele evenimente din %s",
 	"events_from_country": "Evenimente din %s",
 	"more": "Mai mult",
-	"horoscope": "Horoscop"
+	"horoscope": "Horoscop",
+	"important_news_in_last_7days": "Știri importante în ultimele 7 zile",
+	"most_important_news_in_last_7days_country": "Cele mai importante știri din presa din %s pentru ultimele 7 zile"
 }
