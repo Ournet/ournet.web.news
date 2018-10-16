@@ -38,9 +38,10 @@ function cardItemView(props: QuoteListItemProps) {
             <a className='c-quote-it__text' title={author.name + ': ' + truncateAt(item.text, 80)} href={link}><i>“</i> {truncateAt(item.text, 100)}</a>
             <div className='c-quote-it__media'>
                 <img className='c-quote-it__icon' src={entipicUrl(author.name, 'a', lang, country)} alt={author.name} />
-                <div className='c-quote-it__author'>
+                <div className='c-quote-it__body'>
                     <a className='c-quote-it__name' title={author.name} href={links.news.topic(author.slug, { ul: lang })}>{author.name}</a>, 
                     <time dateTime={createdAt.toISOString()}> {createdAt.fromNow(true)}</time>
+                    <div className='c-quote-it__ctx'>{truncateAt(item.source.title, 60)}</div>
                 </div>
             </div>
         </div>
