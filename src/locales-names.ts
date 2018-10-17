@@ -61,6 +61,7 @@ export enum LocalesNames {
     horoscope = "horoscope",
     important_news_in_last_7days = "important_news_in_last_7days",
     most_important_news_in_last_7days_country = "most_important_news_in_last_7days_country",
+    foto_video_from_event_format = "foto_video_from_event_format",
 }
 
 export class LocalesHelper {

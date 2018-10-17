@@ -33,3 +33,7 @@ export function startWithUpperCase(text: string) {
 export function isNullOrEmpty(val?: string) {
     return [null, undefined, ''].includes(val);
 }
+
+export function splitTextInParagraphs(text: string) {
+    return text.split(/\n+/g);
+}
