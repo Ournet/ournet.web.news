@@ -4,7 +4,7 @@ import CommonLayout from '../common-layout';
 import { EventViewModel } from '../../view-models/event-view-model';
 import { ImageStorageHelper } from '@ournet/images-domain';
 import EventMedia from './event-media';
-import { splitTextInParagraphs } from '../../utils';
+import getArticleContent from '../components/news/get-article-content';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
@@ -22,7 +22,8 @@ export default class EventPage extends React.Component<EventViewModel> {
 
         const link = links.news.event(event.slug, event.id, { ul: lang });
 
-        const paragraphs = splitTextInParagraphs(eventContent && eventContent.content || event.summary);
+        const paragraphs = eventContent && getArticleContent({ lang, content: eventContent, links, topics: event.topics })
+            || event.summary.split(/\n+/).map((item, index) => <p key={`phrase-s-${index}`}>{item}</p>);
 
         return (
             <CommonLayout {...this.props}>
@@ -38,7 +39,7 @@ export default class EventPage extends React.Component<EventViewModel> {
                                         <div className='o-layout__item u-5/6@tablet'>
                                             <h1 className='c-event__title'><a href={link} title={event.title}>{event.title}</a></h1>
                                             <div className='c-event__text'>
-                                                {paragraphs.map(p => <p>{p}</p>)}
+                                                {paragraphs}
                                             </div>
                                         </div>
                                     </div>
