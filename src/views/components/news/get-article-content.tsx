@@ -8,13 +8,14 @@ export type GetArticleContentPorps = {
     links: Sitemap
     content: ArticleContent
     topics: NewsTopic[]
+    maxPhrases: number
 }
 
 export default function getArticleContent(props: GetArticleContentPorps) {
 
-    const { lang, links, content, topics } = props;
+    const { lang, links, content, topics, maxPhrases } = props;
 
-    const phrases = content.content.split(/\n+/);
+    const phrases = content.content.split(/\n+/).slice(0, maxPhrases);
     const topicsMap: Dictionary<{
         index: number
         length: number

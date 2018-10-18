@@ -5,6 +5,12 @@ import { EventViewModel } from '../../view-models/event-view-model';
 import { ImageStorageHelper } from '@ournet/images-domain';
 import EventMedia from './event-media';
 import getArticleContent from '../components/news/get-article-content';
+import { outReadMoreLink } from '../components/news/out-read-more';
+import { startWithUpperCase } from '../../utils';
+import * as util from 'util';
+import { LocalesNames } from '../../locales-names';
+import moment = require('moment-timezone');
+import TopicListItem from '../components/news/topic-list-item';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
@@ -22,8 +28,10 @@ export default class EventPage extends React.Component<EventViewModel> {
 
         const link = links.news.event(event.slug, event.id, { ul: lang });
 
-        const paragraphs = eventContent && getArticleContent({ lang, content: eventContent, links, topics: event.topics })
+        const paragraphs = eventContent && getArticleContent({ lang, content: eventContent, links, topics: event.topics, maxPhrases: 2 })
             || event.summary.split(/\n+/).map((item, index) => <p key={`phrase-s-${index}`}>{item}</p>);
+
+        const createdAt = moment(event.createdAt).tz(config.timezone).locale(lang);
 
         return (
             <CommonLayout {...this.props}>
@@ -38,9 +46,18 @@ export default class EventPage extends React.Component<EventViewModel> {
                                         </div>
                                         <div className='o-layout__item u-5/6@tablet'>
                                             <h1 className='c-event__title'><a href={link} title={event.title}>{event.title}</a></h1>
+                                            <div className='c-event__stats'>
+                                                <time dateTime={event.createdAt}>{createdAt.format('lll')}</time>
+                                                {', ' + util.format(__(LocalesNames.news_count), event.countNews) + ', '}
+                                                {util.format(__(LocalesNames.count_views_format), event.countViews)}
+                                            </div>
                                             <div className='c-event__text'>
                                                 {paragraphs}
                                             </div>
+                                            {outReadMoreLink({ url: event.source.host + event.source.path, source: startWithUpperCase(event.source.sourceId), links, __ })}
+                                            <ul className='c-event__tags'>
+                                                {event.topics.map(item => <li key={item.id}><TopicListItem links={links} lang={lang} item={item} view='tag' /></li>)}
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
