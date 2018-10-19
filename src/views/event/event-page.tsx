@@ -13,10 +13,11 @@ import moment = require('moment-timezone');
 import TopicListItem from '../components/news/topic-list-item';
 import { Share } from '../components/share';
 import EventNewsItems from './event-news-items';
+import QuoteListItem from '../components/news/quote-list-item';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
-        const { lang, head, __, links, latestEvents, event, config, eventContent } = this.props;
+        const { lang, head, __, links, latestEvents, event, config, eventContent, eventQuotes } = this.props;
 
         const imageLargeUrl = ImageStorageHelper.eventUrl(event.imageId, 'large');
 
@@ -58,10 +59,13 @@ export default class EventPage extends React.Component<EventViewModel> {
                                                 {paragraphs}
                                             </div>
                                             {outReadMoreLink({ url: event.source.host + event.source.path, source: startWithUpperCase(event.source.sourceId), links, __ })}
+                                            {eventQuotes && <div className='c-event_quotes'>{eventQuotes.map(item => <QuoteListItem key={item.id} item={item} root={this.props} view='card' maxLength={200} />)}</div>}
+                                            <hr/>
+                                            <EventNewsItems root={this.props} event={event} />
+                                            <hr/>
                                             <ul className='c-event__tags'>
                                                 {event.topics.map(item => <li key={item.id}><TopicListItem links={links} lang={lang} item={item} view='tag' /></li>)}
                                             </ul>
-                                            <EventNewsItems root={this.props} event={event}/>
                                         </div>
                                     </div>
                                 </div>

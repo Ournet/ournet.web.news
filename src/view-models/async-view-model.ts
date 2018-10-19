@@ -10,14 +10,19 @@ export class AsyncViewModelBuilder<T extends RootViewModel, I extends RootViewMo
     }
 
     async build() {
-        const apiResult = await this.api.execute();
-        if (apiResult.errors) {
-            throw badImplementation(apiResult.errors[0].message);
-        }
-        return this.formatModel(apiResult.data);
+        const data = await this.executeApi(this.api);
+        return this.formatModel(data);
     }
 
     protected formatModel(_data: T): T {
         return this.model;
+    }
+
+    protected async executeApi<APIT>(api: OurnetQueryApi<APIT>) {
+        const apiResult = await api.execute();
+        if (apiResult.errors) {
+            throw badImplementation(apiResult.errors[0].message);
+        }
+        return apiResult.data;
     }
 }

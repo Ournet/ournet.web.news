@@ -22,7 +22,7 @@ export default class EventNewsItems extends React.Component<EventNewsItemsProps>
 
         return (
             <ul className='c-event__items'>
-                {event.items.map(item => <li key={item.id}><span>{startWithUpperCase(item.sourceId)}</span>: <a title={item.title} href={links.news.item(item.id, { ul: lang })}>{truncateAt(item.title, 100)}</a></li>)}
+                {event.items.map(item => <li key={item.id}><span>{startWithUpperCase(item.sourceId)}</span> <a title={item.title} href={links.news.item(item.id, { ul: lang })}>{truncateAt(item.title, 100)}</a></li>)}
             </ul>
         );
 

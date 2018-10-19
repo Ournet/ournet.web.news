@@ -15,7 +15,12 @@ export default function getArticleContent(props: GetArticleContentPorps) {
 
     const { lang, links, content, topics, maxPhrases } = props;
 
-    const phrases = content.content.split(/\n+/).slice(0, maxPhrases);
+    let phrases = content.content.split(/\n+/);
+
+    const addPhrases = phrases.reduce<number>((total, phrase) => total + (phrase.length < 100 ? 1 : 0), 0);
+
+    phrases = phrases.slice(0, maxPhrases + addPhrases);
+    
     const topicsMap: Dictionary<{
         index: number
         length: number
