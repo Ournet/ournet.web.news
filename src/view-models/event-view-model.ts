@@ -4,7 +4,8 @@ import { PageViewModelInput } from "./page-view-model";
 import { NewsEvent, NewsEventStringFields, ArticleContent, ArticleContentStringFields, Quote, QuoteStringFields } from "@ournet/api-client";
 import { notFound } from "boom";
 import { ArticleContentBuilder } from '@ournet/news-domain';
-import { createQueryApiClient } from "../data/api";
+import { createQueryApiClient, createMutationApiClient } from "../data/api";
+import logger from "../logger";
 
 export interface EventViewModelInput extends PageViewModelInput {
     id: string
@@ -38,6 +39,12 @@ export class EventViewModelBuilder extends NewsViewModelBuilder<EventViewModel, 
         head.description = event.summary;
 
         this.setCanonical(links.news.event(event.slug, event.id, { ul: lang }));
+
+        createMutationApiClient<{ countViews: number }>()
+            .newsViewNewsEvent('countViews', { id })
+            .execute()
+            .then(result => logger.info(JSON.stringify(result)))
+            .catch(e => logger.error(e));
 
         this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 13 } });
         if (event.hasContent) {
