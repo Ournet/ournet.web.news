@@ -43,7 +43,6 @@ export class EventViewModelBuilder extends NewsViewModelBuilder<EventViewModel, 
         createMutationApiClient<{ countViews: number }>()
             .newsViewNewsEvent('countViews', { id })
             .execute()
-            .then(result => logger.info(JSON.stringify(result)))
             .catch(e => logger.error(e));
 
         this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 13 } });

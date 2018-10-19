@@ -37,9 +37,7 @@ function mainItemView(props: EventListItemProps) {
     return (
         <div className='c-event-it c-event-it--main'>
             <a title={item.title} href={links.news.event(item.slug, item.id, { ul: lang })}>
-                <span className='c-event-it__media'>
-                    <img src={ImageStorageHelper.eventUrl(item.imageId, 'large')} alt={item.title} />
-                </span>
+            <span className='c-event-it__media o-lazy' data-src={ImageStorageHelper.eventUrl(item.imageId, 'large')}></span>
                 <h2 className='c-event-it__title'>{truncateAt(item.title, 100)}</h2>
             </a>
             <div className='c-event-it__info'>
@@ -64,9 +62,7 @@ function cardItemView(props: EventListItemProps) {
     return (
         <div className='c-event-it c-event-it--card'>
             <a title={item.title} href={links.news.event(item.slug, item.id, { ul: lang })}>
-                <div className='c-event-it__media'>
-                    <img src={ImageStorageHelper.eventUrl(item.imageId, imageSize || 'medium')} alt={item.title} />
-                </div>
+                <span className='c-event-it__media o-lazy' data-src={ImageStorageHelper.eventUrl(item.imageId, imageSize || 'medium')}></span>
                 <h3 className='c-event-it__title'>{truncateAt(item.title, 80)}</h3>
             </a>
             <div className='c-event-it__info'>
