@@ -12,6 +12,7 @@ import { LocalesNames } from '../../locales-names';
 import moment = require('moment-timezone');
 import TopicListItem from '../components/news/topic-list-item';
 import { Share } from '../components/share';
+import EventNewsItems from './event-news-items';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
@@ -60,6 +61,7 @@ export default class EventPage extends React.Component<EventViewModel> {
                                             <ul className='c-event__tags'>
                                                 {event.topics.map(item => <li key={item.id}><TopicListItem links={links} lang={lang} item={item} view='tag' /></li>)}
                                             </ul>
+                                            <EventNewsItems root={this.props} event={event}/>
                                         </div>
                                     </div>
                                 </div>
