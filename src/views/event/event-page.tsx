@@ -11,6 +11,7 @@ import * as util from 'util';
 import { LocalesNames } from '../../locales-names';
 import moment = require('moment-timezone');
 import TopicListItem from '../components/news/topic-list-item';
+import { Share } from '../components/share';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
@@ -46,6 +47,7 @@ export default class EventPage extends React.Component<EventViewModel> {
                                         </div>
                                         <div className='o-layout__item u-5/6@tablet'>
                                             <h1 className='c-event__title'><a href={link} title={event.title}>{event.title}</a></h1>
+                                            <Share url={head.canonical} align='right' services={config.shareServices} lang={lang} />
                                             <div className='c-event__stats'>
                                                 <time dateTime={event.createdAt}>{createdAt.format('lll')}</time>
                                                 {', ' + util.format(__(LocalesNames.news_count), event.countNews) + ', '}

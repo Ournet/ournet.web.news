@@ -15,6 +15,6 @@ export type OutReadMoreProps = {
 export function outReadMoreLink(props: OutReadMoreProps) {
     const { links, url, __, source } = props;
     return (
-        <div className='c-out'><a target='_blank' rel='nofollow noindex' href={links.news.url.news(url)}>{util.format(__(LocalesNames.read_more_on_source), source)} ›</a></div>
+        <div className='c-out'><a target='_blank' rel='nofollow noindex' href={links.news.url({url})}>{util.format(__(LocalesNames.read_more_on_source), source)} ›</a></div>
     )
 }
