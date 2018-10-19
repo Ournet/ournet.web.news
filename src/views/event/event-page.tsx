@@ -14,10 +14,12 @@ import TopicListItem from '../components/news/topic-list-item';
 import { Share } from '../components/share';
 import EventNewsItems from './event-news-items';
 import QuoteListItem from '../components/news/quote-list-item';
+import GroupHeader from '../components/group-header';
+import EventListItem from '../components/news/event-list-item';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
-        const { lang, head, __, links, latestEvents, event, config, eventContent, eventQuotes } = this.props;
+        const { lang, head, __, links, latestEvents, event, config, eventContent, eventQuotes, similarEvents } = this.props;
 
         const imageLargeUrl = ImageStorageHelper.eventUrl(event.imageId, 'large');
 
@@ -60,9 +62,9 @@ export default class EventPage extends React.Component<EventViewModel> {
                                             </div>
                                             {outReadMoreLink({ url: event.source.host + event.source.path, source: startWithUpperCase(event.source.sourceId), links, __ })}
                                             {eventQuotes && <div className='c-event_quotes'>{eventQuotes.map(item => <QuoteListItem key={item.id} item={item} root={this.props} view='card' maxLength={200} />)}</div>}
-                                            <hr/>
+                                            <hr />
                                             <EventNewsItems root={this.props} event={event} />
-                                            <hr/>
+                                            <hr />
                                             <ul className='c-event__tags'>
                                                 {event.topics.map(item => <li key={item.id}><TopicListItem links={links} lang={lang} item={item} view='tag' /></li>)}
                                             </ul>
@@ -70,6 +72,12 @@ export default class EventPage extends React.Component<EventViewModel> {
                                     </div>
                                 </div>
                             </article>
+                            <div className='c-group'>
+                                <GroupHeader name={__(LocalesNames.related_news)} link={links.news.home({ ul: lang })} type='new' />
+                                <div className='o-layout'>
+                                    {similarEvents.slice(0,2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                                </div>
+                            </div>
                         </div>
                         <div className='o-layout__item u-2/6@desktop'>
 

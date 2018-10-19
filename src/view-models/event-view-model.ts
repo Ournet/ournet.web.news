@@ -6,6 +6,7 @@ import { notFound } from "boom";
 import { ArticleContentBuilder } from '@ournet/news-domain';
 import { createQueryApiClient, createMutationApiClient } from "../data/api";
 import logger from "../logger";
+import { getIrrelevantTopicIds } from "../irrelevant-topic-ids";
 
 export interface EventViewModelInput extends PageViewModelInput {
     id: string
@@ -13,6 +14,7 @@ export interface EventViewModelInput extends PageViewModelInput {
 
 export interface EventViewModel extends NewsViewModel {
     latestEvents: NewsEvent[]
+    similarEvents: NewsEvent[]
     event: NewsEvent
     eventContent?: ArticleContent
     eventQuotes?: Quote[]
@@ -45,7 +47,12 @@ export class EventViewModelBuilder extends NewsViewModelBuilder<EventViewModel, 
             .execute()
             .catch(e => logger.error(e));
 
-        this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 13 } });
+        const irrelevantTopicIds = getIrrelevantTopicIds({ lang, country });
+        const relevaltTopicsIds = event.topics.filter(topic => !irrelevantTopicIds.includes(topic.id)).map(item => item.id);
+
+        this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 3 } })
+            .newsSimilarEventsByTopics('similarEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 3, topicIds: relevaltTopicsIds.slice(0, 2), exceptId: event.id } });
+
         if (event.hasContent) {
             this.api.newsArticleContentById('eventContent', { fields: ArticleContentStringFields }, { id: ArticleContentBuilder.createId({ refId: id, refType: 'EVENT' }) });
         }
@@ -58,6 +65,7 @@ export class EventViewModelBuilder extends NewsViewModelBuilder<EventViewModel, 
     protected formatModel(data: EventViewModel) {
 
         this.model.latestEvents = data.latestEvents || [];
+        this.model.similarEvents = data.similarEvents || [];
         this.model.eventContent = data.eventContent;
         this.model.eventQuotes = data.eventQuotes;
 
