@@ -39,15 +39,19 @@ export class ImportantViewModelBuilder extends NewsViewModelBuilder<ImportantVie
     protected async getImportantEventsIds(limit: number) {
         const { lang, country, currentDate } = this.model;
         const api = createQueryApiClient<Dictionary<NewsEvent[]>>();
-        const date = currentDate.clone();
+        const maxDate = currentDate.clone().add(1, 'day');
+        const minDate = currentDate.clone();
+
         const countDays = 7;
         for (let i = 0; i < countDays; i++) {
-            api.newsEventsLatest(`day${i}`, { fields: 'id countNews' }, { params: { limit: 100, lang, country, minDate: date.format('YYYY-MM-DD'), maxDate: date.add(1, 'day').format('YYYY-MM-DD') } })
+            api.newsEventsLatest(`day${i}`, { fields: 'id countNews' }, { params: { limit: 100, lang, country, maxDate: maxDate.format('YYYY-MM-DD'), minDate: minDate.format('YYYY-MM-DD') } })
+            maxDate.add(-1, 'day');
+            minDate.add(-1, 'day');
         }
 
-        const result = await api.execute();
+        const result = await this.executeApi(api);
 
-        const allEvents: NewsEvent[] = Object.keys(result.data).reduce<NewsEvent[]>((list, key) => list.concat(result.data[key]), []);
+        const allEvents: NewsEvent[] = Object.keys(result).reduce<NewsEvent[]>((list, key) => list.concat(result[key]), []);
 
         const mostPopularIds = uniq(allEvents.sort((a, b) => b.countNews - a.countNews).map(item => item.id)).slice(0, limit);
 
@@ -57,7 +61,12 @@ export class ImportantViewModelBuilder extends NewsViewModelBuilder<ImportantVie
     protected formatModel(data: ImportantViewModel) {
 
         this.model.importantEvents = (data.importantEvents || []).sort((a, b) => {
-            if (a.createdAt < b.createdAt) {
+            const aDate = a.createdAt.substr(0, 10);
+            const bDate = b.createdAt.substr(0, 10);
+            if (aDate === bDate) {
+                return b.countNews - a.countNews;
+            }
+            if (aDate < bDate) {
                 return 1;
             }
             return -1;

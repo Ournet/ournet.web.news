@@ -81,7 +81,12 @@ export default class EventPage extends React.Component<EventViewModel> {
                             </div>
                         </div>
                         <div className='o-layout__item u-2/6@desktop'>
-
+                        <div className='c-section'>
+                                <SectionHeader name={__(LocalesNames.latest_events)} link={links.news.home({ul:lang})} />
+                                <ul className='o-list-bare'>
+                                    {latestEvents.map(item => <li key={item.id} className='o-list-bare__item'><EventListItem root={this.props} item={item} view='media-left' /></li>)}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </main>

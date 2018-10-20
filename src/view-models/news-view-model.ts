@@ -4,7 +4,6 @@ import {
     HourlyForecastDataPoint,
     HourlyForecastDataPointStringFields,
     OurnetQueryApi,
-    NewsTopic,
     NewsTopItem,
     TopicStringFields,
     NewsTopItemStringFields,
@@ -14,6 +13,7 @@ import {
 import { createQueryApiClient } from "../data/api";
 import logger from "../logger";
 import * as moment from "moment-timezone";
+import { filterIrrelevantTopics } from "../irrelevant-topic-ids";
 
 
 export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewModelInput> extends PageViewModelBuilder<T, I> {
@@ -36,7 +36,7 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
         const result = await apiClient
             .placesPlaceById('capital', { fields: 'id name names longitude latitude timezone' },
                 { id: model.config.capitalId })
-            .newsTrendingTopics('trendingTopics', { fields: NewsTopItemStringFields }, { params: { country, lang, limit: 10, period: '24h' } })
+            .newsTrendingTopics('trendingTopics', { fields: NewsTopItemStringFields }, { params: { country, lang, limit: 15, period: '24h' } })
             .execute();
 
         if (result.errors && result.errors.length) {
@@ -55,11 +55,11 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
                     { place: { longitude, latitude, timezone } });
             }
 
-            this.model.trendingTopTopics = result.data.trendingTopics || [];
+            const trendingTopTopics = filterIrrelevantTopics({ lang, country }, result.data.trendingTopics || []).slice(0, 12);
 
-            if (result.data.trendingTopics && result.data.trendingTopics.length) {
+            if (trendingTopTopics.length) {
                 this.api.topicsTopicsByIds('trendingTopics', { fields: TopicStringFields },
-                    { ids: result.data.trendingTopics.map(item => item.id) });
+                    { ids: trendingTopTopics.map(item => item.id) });
             }
         }
 
@@ -72,12 +72,12 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
         }
 
         this.model.trendingTopics = data.trendingTopics || [];
-        for (const topic of this.model.trendingTopics) {
-            const top = this.model.trendingTopTopics.find(item => item.id === topic.id);
-            if (top) {
-                topic.count = top.count;
-            }
-        }
+        // for (const topic of this.model.trendingTopics) {
+        //     const top = this.model.trendingTopTopics.find(item => item.id === topic.id);
+        //     if (top) {
+        //         topic.count = top.count;
+        //     }
+        // }
 
         return super.formatModel(data);
     }
@@ -88,7 +88,7 @@ export interface NewsViewModel extends PageViewModel {
     capital: Place
     capitalForecast: HourlyForecastDataPoint
     trendingTopics: TrendingTopic[]
-    trendingTopTopics: NewsTopItem[]
+    // trendingTopTopics: NewsTopItem[]
 
     currentDate: moment.Moment
 
