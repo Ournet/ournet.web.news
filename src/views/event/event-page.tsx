@@ -17,6 +17,7 @@ import QuoteListItem from '../components/news/quote-list-item';
 import GroupHeader from '../components/group-header';
 import EventListItem from '../components/news/event-list-item';
 import SectionHeader from '../components/section-header';
+import adAside from '../components/ad-aside';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
@@ -76,13 +77,14 @@ export default class EventPage extends React.Component<EventViewModel> {
                             <div className='c-section'>
                                 <SectionHeader name={__(LocalesNames.related_news)} />
                                 <div className='o-layout'>
-                                    {similarEvents.slice(0,2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                                    {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                                 </div>
                             </div>
                         </div>
                         <div className='o-layout__item u-2/6@desktop'>
-                        <div className='c-section'>
-                                <SectionHeader name={__(LocalesNames.latest_events)} link={links.news.home({ul:lang})} />
+                            {adAside()}
+                            <div className='c-section'>
+                                <SectionHeader name={__(LocalesNames.latest_events)} link={links.news.home({ ul: lang })} />
                                 <ul className='o-list-bare'>
                                     {latestEvents.map(item => <li key={item.id} className='o-list-bare__item'><EventListItem root={this.props} item={item} view='media-left' /></li>)}
                                 </ul>

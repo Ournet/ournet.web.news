@@ -15,12 +15,21 @@ export default function getArticleContent(props: GetArticleContentPorps) {
 
     const { lang, links, content, topics, maxPhrases } = props;
 
-    let phrases = content.content.split(/\n+/);
+    let initialPhrases = content.content.split(/\n+/);
+
+    let phrases: string[] = [];
+    for (const phrase of initialPhrases) {
+        if (phrase.length > 600) {
+            phrases = phrases.concat(textToParagraphs(phrase, 400));
+        } else {
+            phrases.push(phrase);
+        }
+    }
 
     const addPhrases = phrases.reduce<number>((total, phrase) => total + (phrase.length < 100 ? 1 : 0), 0);
 
     phrases = phrases.slice(0, maxPhrases + addPhrases);
-    
+
     const topicsMap: Dictionary<{
         index: number
         length: number
@@ -73,4 +82,33 @@ export default function getArticleContent(props: GetArticleContentPorps) {
     });
 
     return list;
+}
+
+
+function textToParagraphs(text: string, maxLength: number) {
+    if (text.length <= maxLength) {
+        return [text];
+    }
+
+    let position = 0;
+    const sentences = text.split(/[.?!]\s/).map((item) => {
+        item = item + text.substr(position + item.length, 2);
+        position += item.length;
+
+        return item;
+    });
+
+    const paragraphs: string[] = [''];
+
+    for (const sentence of sentences) {
+        let p = paragraphs[paragraphs.length - 1] + sentence;
+        if (p.length > maxLength) {
+            paragraphs.push(sentence);
+        } else {
+            paragraphs[paragraphs.length - 1] = p;
+        }
+    }
+
+
+    return paragraphs;
 }
