@@ -14,6 +14,6 @@ export function quotesHandler(input: QuotesViewModelInput, next: NextFunction) {
 
     new QuotesViewModelBuilder(input, api)
         .build()
-        .then(data => renderPage(input.res, <QuotesPage {...data} />))
+        .then(data => renderPage(input.res, <QuotesPage {...data} />, data.redirect))
         .catch(next);
 }

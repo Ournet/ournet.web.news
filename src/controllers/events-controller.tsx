@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NextFunction } from "express";
-import { maxageIndex } from '../maxage';
+import { maxageIndex, maxage } from '../maxage';
 import { ImportantViewModelInput, ImportantViewModel, ImportantViewModelBuilder } from '../view-models/important-view-model';
 import { createQueryApiClient } from '../data/api';
 import { renderPage } from '../renderer';
@@ -16,17 +16,17 @@ export function importantHandler(input: ImportantViewModelInput, next: NextFunct
 
     new ImportantViewModelBuilder(input, api)
         .build()
-        .then(data => renderPage(input.res, <ImportantPage {...data} />))
+        .then(data => renderPage(input.res, <ImportantPage {...data} />, data.redirect))
         .catch(next);
 }
 
 export function eventHandler(input: EventViewModelInput, next: NextFunction) {
     const api = createQueryApiClient<EventViewModel>();
 
-    maxageIndex(input.res);
+    maxage(input.res, 10);
 
     new EventViewModelBuilder(input, api)
         .build()
-        .then(data => renderPage(input.res, <EventPage {...data} />))
+        .then(data => renderPage(input.res, <EventPage {...data} />, data.redirect))
         .catch(next);
 }

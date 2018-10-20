@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { AppConfig, initAppConfig } from "../config";
 import { initLocale, I18nFn } from "../locale";
 import { OurnetProjects } from "../data/common";
+import { RedirectInfo } from "../renderer";
 const version = require('../../package.json').version;
 
 export class RootModelBuilder<T extends RootViewModel, I extends RootViewModelInput> {
@@ -42,4 +43,6 @@ export interface RootViewModel {
     __: I18nFn
     version: string
     project: OurnetProjects
+
+    redirect?: RedirectInfo
 }

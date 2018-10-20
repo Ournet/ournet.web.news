@@ -14,6 +14,6 @@ export function indexHandler(input: IndexViewModelInput, next: NextFunction) {
 
     new IndexViewModelBuilder(input, api)
         .build()
-        .then(data => renderPage(input.res, <IndexPage {...data} />))
+        .then(data => renderPage(input.res, <IndexPage {...data} />, data.redirect))
         .catch(next);
 }
