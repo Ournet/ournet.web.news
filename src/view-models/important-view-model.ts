@@ -39,6 +39,7 @@ export class ImportantViewModelBuilder extends NewsViewModelBuilder<ImportantVie
     protected async getImportantEventsIds(limit: number) {
         const { lang, country, currentDate } = this.model;
         const api = createQueryApiClient<Dictionary<NewsEvent[]>>();
+
         const maxDate = currentDate.clone().add(1, 'day');
         const minDate = currentDate.clone();
 

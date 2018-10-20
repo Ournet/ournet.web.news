@@ -87,7 +87,7 @@ function mediaItemView(props: EventListItemProps) {
     const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
 
     return (
-        <div className={'c-event-it c-event-it--media o-media' + (view === 'media-right' ? ' o-media--reverse' : '')}>
+        <div className={'c-event-it c-event-it--media o-media o-media--small' + (view === 'media-right' ? ' o-media--reverse' : '')}>
             <div className='o-media__img'>
                 <span className='c-event-it__media o-lazy' data-src={ImageStorageHelper.eventUrl(item.imageId, imageSize || 'square')}></span>
             </div>

@@ -75,10 +75,12 @@ export default class EventPage extends React.Component<EventViewModel> {
                                 </div>
                             </article>
                             <div className='c-section'>
-                                <SectionHeader name={__(LocalesNames.related_news)} />
-                                <div className='o-layout'>
-                                    {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
-                                </div>
+                                {similarEvents.length > 0 ?
+                                    [<SectionHeader name={__(LocalesNames.related_news)} />,
+                                    <div className='o-layout'>
+                                        {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                                    </div>] : null
+                                }
                             </div>
                         </div>
                         <div className='o-layout__item u-2/6@desktop'>

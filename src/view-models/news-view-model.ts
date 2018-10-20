@@ -36,7 +36,7 @@ export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewMod
         const result = await apiClient
             .placesPlaceById('capital', { fields: 'id name names longitude latitude timezone' },
                 { id: model.config.capitalId })
-            .newsTrendingTopics('trendingTopics', { fields: NewsTopItemStringFields }, { params: { country, lang, limit: 15, period: '24h' } })
+            .newsTrendingTopics('trendingTopics', { fields: NewsTopItemStringFields }, { params: { country, lang, limit: 20, period: '24h' } })
             .execute();
 
         if (result.errors && result.errors.length) {
