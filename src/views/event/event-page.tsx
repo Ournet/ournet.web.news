@@ -16,6 +16,7 @@ import EventNewsItems from './event-news-items';
 import QuoteListItem from '../components/news/quote-list-item';
 import GroupHeader from '../components/group-header';
 import EventListItem from '../components/news/event-list-item';
+import SectionHeader from '../components/section-header';
 
 export default class EventPage extends React.Component<EventViewModel> {
     render() {
@@ -72,8 +73,8 @@ export default class EventPage extends React.Component<EventViewModel> {
                                     </div>
                                 </div>
                             </article>
-                            <div className='c-group'>
-                                <GroupHeader name={__(LocalesNames.related_news)} link={links.news.home({ ul: lang })} type='new' />
+                            <div className='c-section'>
+                                <SectionHeader name={__(LocalesNames.related_news)} />
                                 <div className='o-layout'>
                                     {similarEvents.slice(0,2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                                 </div>
