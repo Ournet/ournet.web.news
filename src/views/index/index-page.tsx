@@ -13,6 +13,7 @@ export default class IndexPage extends React.Component<IndexViewModel> {
         const { lang, head, __, links, latestEvents, latestQuotes, currentDate } = this.props;
 
         head.elements.push(<link key='events-rss' rel="alternate" type="application/rss+xml" title={__(LocalesNames.events)} href={links.news.rss.stories({ ul: lang })}></link>);
+        head.elements.push(<link key='imortant-rss' rel="alternate" type="application/rss+xml" title={__(LocalesNames.important_news)} href={links.news.rss.stories.important({ ul: lang })}></link>);
 
         const recentDate = currentDate.clone().add(-12, 'hours').toISOString();
 

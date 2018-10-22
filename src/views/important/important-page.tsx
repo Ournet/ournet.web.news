@@ -14,6 +14,8 @@ export default class ImportantPage extends React.Component<ImportantViewModel> {
     render() {
         const { lang, head, __, links, importantEvents, latestQuotes, title, subTitle, config } = this.props;
 
+        head.elements.push(<link key='important-rss' rel="alternate" type="application/rss+xml" title={__(LocalesNames.important_news)} href={links.news.rss.stories.important({ ul: lang })}></link>);
+
         const list1 = importantEvents.slice(0, importantEvents.length / 2);
         const list2 = importantEvents.slice(importantEvents.length / 2);
 

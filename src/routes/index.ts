@@ -6,6 +6,7 @@ import homeRoute from './home'
 import quotesRoute from './quotes'
 import eventsRoute from './events'
 import itemsRoute from './items'
+import rssRoute from './rss'
 
 export default function (app: Express) {
     app.use(redirectRoute);
@@ -13,4 +14,5 @@ export default function (app: Express) {
     app.use(quotesRoute);
     app.use(eventsRoute);
     app.use(itemsRoute);
+    app.use(rssRoute);
 }

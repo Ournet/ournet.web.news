@@ -18,15 +18,6 @@ import { filterIrrelevantTopics } from "../irrelevant-topic-ids";
 
 export class NewsViewModelBuilder<T extends NewsViewModel, I extends PageViewModelInput> extends PageViewModelBuilder<T, I> {
 
-    constructor(input: I, api: OurnetQueryApi<T>) {
-        super(input, api);
-
-        const model = this.model;
-        const { lang, config, __ } = model;
-
-        model.currentDate = moment().tz(config.timezone).locale(lang);
-    }
-
     async build() {
         const apiClient = createQueryApiClient<{ capital: Place, trendingTopics: NewsTopItem[] }>();
 
@@ -89,8 +80,6 @@ export interface NewsViewModel extends PageViewModel {
     capitalForecast: HourlyForecastDataPoint
     trendingTopics: TrendingTopic[]
     // trendingTopTopics: NewsTopItem[]
-
-    currentDate: moment.Moment
 
     title: string
     subTitle: string
