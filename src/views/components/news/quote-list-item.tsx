@@ -32,11 +32,10 @@ function cardItemView(props: QuoteListItemProps) {
     const { links, lang, config, __, country } = root;
     const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
     const author = item.author;
-    const link = links.news.quote(item.id, { ul: lang });
 
     return (
         <div className='c-quote-it c-quote-it--card'>
-            <a className='c-quote-it__text' title={author.name + ': ' + truncateAt(item.text, 80)} href={link}><i>“</i> {truncateAt(item.text, maxLength || 100)}</a>
+            <div className='c-quote-it__text' tabIndex={0}><i>“</i> {truncateAt(item.text, maxLength || 500)}</div>
             <div className='c-quote-it__media'>
                 <div className='c-quote-it__icon o-lazy' data-src={entipicUrl(author.name, 'a', lang, country)}></div>
                 <div className='c-quote-it__body'>

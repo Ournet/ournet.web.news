@@ -24,11 +24,11 @@ export default class QuotesPage extends React.Component<QuotesViewModel> {
                     <PageTitle title={title || head.title} subTitle={subTitle || head.description} />
 
                     <div className='o-layout'>
-                        {list1.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' maxLength={120} /></div>)}
+                        {list1.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' /></div>)}
                     </div>
                     {adCenter()}
                     <div className='o-layout'>
-                        {list2.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' maxLength={120} /></div>)}
+                        {list2.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><QuoteListItem root={this.props} item={item} view='card' /></div>)}
                     </div>
 
                     <div className='c-group'>

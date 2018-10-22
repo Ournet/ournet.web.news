@@ -63,7 +63,7 @@ export default class EventPage extends React.Component<EventViewModel> {
                                                 {paragraphs}
                                             </div>
                                             {outReadMoreLink({ url: event.source.host + event.source.path, source: startWithUpperCase(event.source.sourceId), links, __ })}
-                                            {eventQuotes && <div className='c-event_quotes'>{eventQuotes.map(item => <QuoteListItem key={item.id} item={item} root={this.props} view='card' maxLength={200} />)}</div>}
+                                            {eventQuotes && <div className='c-event_quotes'>{eventQuotes.map(item => <QuoteListItem key={item.id} item={item} root={this.props} view='card' />)}</div>}
                                             <hr />
                                             <EventNewsItems root={this.props} event={event} />
                                             <hr />
