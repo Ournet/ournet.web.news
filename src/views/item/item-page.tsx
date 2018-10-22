@@ -42,7 +42,7 @@ export default class ItemPage extends React.Component<ItemViewModel> {
         const paragraphs = articleContent && getArticleContent({ lang, content: articleContent, links, topics: item.topics||[], maxPhrases: 2 })
             || item.summary.split(/\n+/).map((item, index) => <p key={`phrase-s-${index}`}>{item}</p>);
 
-        const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
+        const createdAt = moment(item.publishedAt).tz(config.timezone).locale(lang);
 
         return (
             <CommonLayout {...this.props}>
@@ -76,8 +76,8 @@ export default class ItemPage extends React.Component<ItemViewModel> {
                             </article>
                             <div className='c-section'>
                                 {similarEvents.length > 0 ?
-                                    [<SectionHeader name={__(LocalesNames.related_news)} />,
-                                    <div className='o-layout'>
+                                    [<SectionHeader key='sheader' name={__(LocalesNames.related_news)} />,
+                                    <div key='layout' className='o-layout'>
                                         {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                                     </div>] : null
                                 }
