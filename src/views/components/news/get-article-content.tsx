@@ -26,7 +26,7 @@ export default function getArticleContent(props: GetArticleContentPorps) {
         }
     }
 
-    const addPhrases = phrases.reduce<number>((total, phrase) => total + (phrase.length < 100 ? 1 : 0), 0);
+    const addPhrases = phrases.slice(0, maxPhrases).reduce<number>((total, phrase) => total + (phrase.length < 100 ? 1 : 0), 0);
 
     phrases = phrases.slice(0, maxPhrases + addPhrases);
 
@@ -92,8 +92,8 @@ function textToParagraphs(text: string, maxLength: number) {
 
     let position = 0;
     const sentences = text.split(/[.?!]\s/).map((item) => {
-        item = item + text.substr(position + item.length, 2);
-        position += item.length;
+        item = item + text.substr(position + item.length, 1);
+        position += item.length + 1;
 
         return item;
     });
@@ -101,7 +101,7 @@ function textToParagraphs(text: string, maxLength: number) {
     const paragraphs: string[] = [''];
 
     for (const sentence of sentences) {
-        let p = paragraphs[paragraphs.length - 1] + sentence;
+        let p = (paragraphs[paragraphs.length - 1] + ' ' + sentence).trim();
         if (p.length > maxLength) {
             paragraphs.push(sentence);
         } else {

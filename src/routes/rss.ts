@@ -9,14 +9,75 @@ import * as util from 'util';
 import { Sitemap } from 'ournet.links';
 import { createQueryApiClient } from '../data/api';
 import { NewsEvent } from '@ournet/news-domain';
-import { NewsEventStringFields } from '@ournet/api-client';
-import { badImplementation } from 'boom';
+import { NewsEventStringFields, Topic, TopicStringFields } from '@ournet/api-client';
+import { badImplementation, notFound } from 'boom';
 import { ImageStorageHelper } from '@ournet/images-domain';
 import { getImportantEventsIds } from '../view-models/important-view-model';
+import { TopicHelper } from '../../../../packages/topics-domain/lib';
 
 const route: Router = Router();
 
 export default route;
+
+//topic stories
+route.get(`/:ul${LOCALE_ROUTE_PREFIX}?/rss/stories/topic/:slug.xml`, async (req, res, next) => {
+
+    const root = new RootModelBuilder({ req, res }).build() as RootViewModel;
+    const { lang, country, links, __, config, schema, host } = root;
+    const cacheTtl = 30;
+
+    const slug = (req.params.slug as string).trim().toLowerCase();
+
+    maxage(res, cacheTtl);
+
+    let topicApi = createQueryApiClient<{ topic: Topic }>();
+
+    const id = TopicHelper.formatIdFromSlug(slug, { lang, country });
+
+    topicApi.topicsTopicById('topic', { fields: TopicStringFields }, { id });
+
+    const topicApiResult = await topicApi.execute();
+    if (topicApiResult.errors) {
+        return next(badImplementation(topicApiResult.errors[0].message));
+    }
+
+    const topic = topicApiResult.data.topic;
+
+    if (!topic) {
+        return next(notFound(`Not found topic by slug==${slug}`));
+    }
+
+    const title = util.format(__(LocalesNames.topic_latest_news), topic.name);
+
+    const feed = new Rss({
+        title,
+        // description,
+        feed_url: schema + '//' + host + links.news.rss.stories.topic(slug, { ul: lang }),
+        site_url: schema + '//' + host,
+        language: lang,
+        pubDate: new Date(),
+        ttl: cacheTtl * 60,
+        generator: config.name
+    });
+
+    const api = createQueryApiClient<{ events: NewsEvent[] }>();
+
+    api.newsEventsLatestByTopic('events', { fields: NewsEventStringFields }, { params: { lang, country, topicId: topic.id, limit: 10 } });
+
+    const apiResult = await api.execute();
+    if (apiResult.errors) {
+        return next(badImplementation(apiResult.errors[0].message));
+    }
+
+    const events = apiResult.data && apiResult.data.events || [];
+
+    events.forEach(function (story) {
+        feed.item(createFeedItem(links, story, lang, schema, host));
+    });
+
+    res.set('Content-Type', 'application/rss+xml');
+    res.send(feed.xml());
+});
 
 //latest stories
 route.get(`/:ul${LOCALE_ROUTE_PREFIX}?/rss/stories.xml`, async (req, res, next) => {
@@ -104,7 +165,7 @@ route.get(`/:ul${LOCALE_ROUTE_PREFIX}?/rss/stories/important.xml`, async (req, r
 });
 
 function createFeedItem(links: Sitemap, story: NewsEvent, lang: string, schema: string, host: string) {
-    const url = schema + '//' + host + links.news.event(story.slug, story.id, { ul: lang, utm_source: 'rss', utm_medium: 'link', utm_campaign: 'rss' });
+    const url = schema + '//' + host + links.news.story(story.slug, story.id, { ul: lang, utm_source: 'rss', utm_medium: 'link', utm_campaign: 'rss' });
 
     const item = {
         title: story.title,

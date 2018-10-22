@@ -33,9 +33,9 @@ export default class EventPage extends React.Component<EventViewModel> {
             head.elements.push(<meta key={`tag-${tag.id}`} property="article:tag" content={tag.name} />);
         }
 
-        const link = links.news.event(event.slug, event.id, { ul: lang });
+        const link = links.news.story(event.slug, event.id, { ul: lang });
 
-        const paragraphs = eventContent && getArticleContent({ lang, content: eventContent, links, topics: event.topics, maxPhrases: 2 })
+        const paragraphs = eventContent && getArticleContent({ lang, content: eventContent, links, topics: event.topics, maxPhrases: 3 })
             || event.summary.split(/\n+/).map((item, index) => <p key={`phrase-s-${index}`}>{item}</p>);
 
         const createdAt = moment(event.createdAt).tz(config.timezone).locale(lang);
@@ -76,8 +76,8 @@ export default class EventPage extends React.Component<EventViewModel> {
                             </article>
                             <div className='c-section'>
                                 {similarEvents.length > 0 ?
-                                    [<SectionHeader name={__(LocalesNames.related_news)} />,
-                                    <div className='o-layout'>
+                                    [<SectionHeader key='sheader' name={__(LocalesNames.related_news)} />,
+                                    <div key='slayout' className='o-layout'>
                                         {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                                     </div>] : null
                                 }
@@ -93,6 +93,7 @@ export default class EventPage extends React.Component<EventViewModel> {
                             </div>
                         </div>
                     </div>
+                    <script dangerouslySetInnerHTML={{__html:`(function(){var img=new Image();img.src='${links.news.actions.viewStory(event.id,{ul: lang})}';}());`}}></script>
                 </main>
             </CommonLayout >
         )

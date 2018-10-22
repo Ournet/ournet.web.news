@@ -4,8 +4,7 @@ import { PageViewModelInput } from "./page-view-model";
 import { NewsEvent, NewsEventStringFields, ArticleContent, ArticleContentStringFields, Quote, QuoteStringFields } from "@ournet/api-client";
 import { notFound } from "boom";
 import { ArticleContentBuilder } from '@ournet/news-domain';
-import { createQueryApiClient, createMutationApiClient } from "../data/api";
-import logger from "../logger";
+import { createQueryApiClient } from "../data/api";
 import { filterIrrelevantTopics } from "../irrelevant-topic-ids";
 
 export interface EventViewModelInput extends PageViewModelInput {
@@ -40,12 +39,7 @@ export class EventViewModelBuilder extends NewsViewModelBuilder<EventViewModel, 
         head.title = event.title;
         head.description = event.summary;
 
-        this.setCanonical(links.news.event(event.slug, event.id, { ul: lang }));
-
-        createMutationApiClient<{ countViews: number }>()
-            .newsViewNewsEvent('countViews', { id })
-            .execute()
-            .catch(e => logger.error(e));
+        this.setCanonical(links.news.story(event.slug, event.id, { ul: lang }));
 
         const relevaltTopicsIds = filterIrrelevantTopics({ lang, country }, event.topics).map(item => item.id);
 

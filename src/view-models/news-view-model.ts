@@ -3,7 +3,6 @@ import {
     Place,
     HourlyForecastDataPoint,
     HourlyForecastDataPointStringFields,
-    OurnetQueryApi,
     NewsTopItem,
     TopicStringFields,
     NewsTopItemStringFields,
@@ -12,7 +11,6 @@ import {
 
 import { createQueryApiClient } from "../data/api";
 import logger from "../logger";
-import * as moment from "moment-timezone";
 import { filterIrrelevantTopics } from "../irrelevant-topic-ids";
 
 

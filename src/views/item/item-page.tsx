@@ -93,6 +93,7 @@ export default class ItemPage extends React.Component<ItemViewModel> {
                             </div>
                         </div>
                     </div>
+                    <script dangerouslySetInnerHTML={{__html:`(function(){var img=new Image();img.src='${links.news.actions.viewItem(item.id,{ul: lang})}';}());`}}></script>
                 </main>
             </CommonLayout >
         )

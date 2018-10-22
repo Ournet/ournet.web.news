@@ -4,8 +4,7 @@ import { PageViewModelInput } from "./page-view-model";
 import { NewsItem, NewsItemStringFields, ArticleContent, ArticleContentStringFields, NewsEvent, NewsEventStringFields } from "@ournet/api-client";
 import { notFound } from "boom";
 import { ArticleContentBuilder } from '@ournet/news-domain';
-import { createQueryApiClient, createMutationApiClient } from "../data/api";
-import logger from "../logger";
+import { createQueryApiClient } from "../data/api";
 import { filterIrrelevantTopics } from "../irrelevant-topic-ids";
 
 export interface ItemViewModelInput extends PageViewModelInput {
@@ -42,11 +41,6 @@ export class ItemViewModelBuilder extends NewsViewModelBuilder<ItemViewModel, It
 
         this.setCanonical(links.news.item(newsItem.id, { ul: lang }));
 
-        createMutationApiClient<{ countViews: number }>()
-            .newsViewNewsItem('countViews', { id })
-            .execute()
-            .catch(e => logger.error(e));
-
         const relevaltTopicsIds = newsItem.topics && filterIrrelevantTopics({ lang, country }, newsItem.topics).map(item => item.id) || [];
 
         this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 3 } });
@@ -75,7 +69,7 @@ export class ItemViewModelBuilder extends NewsViewModelBuilder<ItemViewModel, It
         if (this.model.event && this.model.event.source.id === this.model.item.id) {
             this.model.redirect = {
                 code: 301,
-                url: this.model.links.news.event(this.model.event.slug, this.model.event.id, { ul: this.model.lang })
+                url: this.model.links.news.story(this.model.event.slug, this.model.event.id, { ul: this.model.lang })
             }
             return this.model;
         }

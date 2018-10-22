@@ -14,9 +14,9 @@ export default class SectionHeader extends React.Component<SectionHeaderProps> {
 
         let hElement: JSX.Element | null = null;
         if (h === 'h3') {
-            hElement = <h3>{link ? <a href={link} title='name'>{name}</a> : name}</h3>;
+            hElement = <h3>{link ? <a href={link} title={name}>{name}</a> : name}</h3>;
         } else if (h === 'h4') {
-            hElement = <h4>{link ? <a href={link} title='name'>{name}</a> : name}</h4>;
+            hElement = <h4>{link ? <a href={link} title={name}>{name}</a> : name}</h4>;
         }
 
         return (

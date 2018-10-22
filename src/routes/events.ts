@@ -7,12 +7,12 @@ const route: Router = Router();
 
 export default route;
 
-// important
+// /important
 route.get(`/:ul${LOCALE_ROUTE_PREFIX}?/important`, (req, res, next) =>
     importantHandler({ req, res }, next));
 
-// event
-route.get(`/:ul${LOCALE_ROUTE_PREFIX}?/event/:slug-:id([a-z0-9]+)`, (req, res, next) =>
+// /story
+route.get(`/:ul${LOCALE_ROUTE_PREFIX}?/story/:slug-:id([a-z0-9]+)`, (req, res, next) =>
     eventHandler({ req, res, id: req.params.id }, next));
 
 

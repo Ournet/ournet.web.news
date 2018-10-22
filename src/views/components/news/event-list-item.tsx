@@ -40,7 +40,7 @@ function mainItemView(props: EventListItemProps) {
     const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
     return (
         <div className='c-event-it c-event-it--main'>
-            <a title={item.title} href={links.news.event(item.slug, item.id, { ul: lang })}>
+            <a title={item.title} href={links.news.story(item.slug, item.id, { ul: lang })}>
                 <span className='c-event-it__media o-lazy' data-src={ImageStorageHelper.eventUrl(item.imageId, 'large')}></span>
                 <h2 className='c-event-it__title'>{truncateAt(item.title, 100)}</h2>
             </a>
@@ -65,7 +65,7 @@ function cardItemView(props: EventListItemProps) {
 
     return (
         <div className='c-event-it c-event-it--card'>
-            <a title={item.title} href={links.news.event(item.slug, item.id, { ul: lang })}>
+            <a title={item.title} href={links.news.story(item.slug, item.id, { ul: lang })}>
                 <span className='c-event-it__media o-lazy' data-src={ImageStorageHelper.eventUrl(item.imageId, imageSize || 'medium')}></span>
                 <h3 className='c-event-it__title'>{truncateAt(item.title, 80)}</h3>
             </a>
@@ -83,7 +83,7 @@ function mediaItemView(props: EventListItemProps) {
     const { item, root, imageSize, view } = props;
     const { links, lang, country, config } = root;
     const mainTopic = getMainTopic({ lang, country }, item.topics);
-    const link = links.news.event(item.slug, item.id, { ul: lang });
+    const link = links.news.story(item.slug, item.id, { ul: lang });
     const createdAt = moment(item.createdAt).tz(config.timezone).locale(lang);
 
     return (
