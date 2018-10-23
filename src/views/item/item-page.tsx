@@ -78,7 +78,7 @@ export default class ItemPage extends React.Component<ItemViewModel> {
                                 {similarEvents.length > 0 ?
                                     [<SectionHeader key='sheader' name={__(LocalesNames.related_news)} />,
                                     <div key='layout' className='o-layout'>
-                                        {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                                        {similarEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@tablet'><EventListItem root={this.props} item={item} view='zen' /></div>)}
                                     </div>] : null
                                 }
                             </div>

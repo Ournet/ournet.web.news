@@ -25,7 +25,7 @@ export class IndexViewModelBuilder extends NewsViewModelBuilder<IndexViewModel, 
 
         this.setCanonical(links.news.home({ ul: lang }));
 
-        this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 13 } })
+        this.api.newsEventsLatest('latestEvents', { fields: NewsEventStringFields }, { params: { lang, country, limit: 14 } })
             .quotesLatest('latestQuotes', { fields: QuoteStringFields }, { params: { lang, country, limit: 6 } });
 
         return super.build();

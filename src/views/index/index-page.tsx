@@ -30,14 +30,25 @@ export default class IndexPage extends React.Component<IndexViewModel> {
             <CommonLayout {...this.props}>
                 <main>
                     <div className='o-layout'>
-                        <div className='o-layout__item u-2/5@tablet'>
-                            <EventListItem root={this.props} item={mainEvent} view='main' />
+                        <div className='o-layout__item u-2/4@tablet'>
+                            <EventListItem root={this.props} item={mainEvent} view='zen-wide' imageSize='large' />
                         </div>
-                        <div className='o-layout__item u-3/5@tablet'>
+                        <div className='o-layout__item u-2/4@tablet'>
                             <div className='o-layout'>
-                                {restEvents.slice(0, 4).map(item => <div key={item.id} className='o-layout__item u-1/2'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                                {restEvents.slice(0, 2).map(item => <div key={item.id} className='o-layout__item u-1/2@mobile'><EventListItem root={this.props} item={item} view='zen' /></div>)}
                             </div>
                         </div>
+                    </div>
+                    <div className='o-layout'>
+                        <div className='o-layout__item u-1/4@tablet u-1/2@mobile'>
+                            top topics
+                        </div>
+                        <div className='o-layout__item u-1/4@tablet u-1/2@mobile'>
+                            <EventListItem root={this.props} item={restEvents[2]} view='zen' />
+                        </div>
+
+                        {restEvents.slice(3, 5).map(item => <div key={item.id} className='o-layout__item u-1/4@tablet u-1/2@mobile'><EventListItem root={this.props} item={item} view='zen' /></div>)}
+
                     </div>
                     <div className='c-group'>
                         <GroupHeader name={__(LocalesNames.latest_quotes)} link={links.news.quotes({ ul: lang })} type='important' />
@@ -46,7 +57,7 @@ export default class IndexPage extends React.Component<IndexViewModel> {
                         </div>
                     </div>
                     <div className='o-layout'>
-                        {restEvents.slice(4).map(item => <div key={item.id} className='o-layout__item u-1/2 u-1/4@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                        {restEvents.slice(5).map(item => <div key={item.id} className='o-layout__item u-1/2 u-1/4@tablet'><EventListItem root={this.props} item={item} view='zen' /></div>)}
                     </div>
                     <HoroscopeGroup {...this.props} />
                 </main>

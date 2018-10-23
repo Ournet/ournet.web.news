@@ -57,7 +57,7 @@ export default class ItemMedia extends React.Component<ItemMediaProps> {
 
         return (
             <a className='c-event-media js-media-dialog' data-gallery={JSON.stringify(galleryModel)} style={{ backgroundColor: `#${imageColor}` }} href={image.masterUrl} target='_blank' title={mediaTitle}>
-                <img className='c-event-media__pic' alt={event.title} src={image.largeUrl} srcSet={`${image.masterUrl} 1200w, ${image.largeUrl} 640w`} />
+                <img className='c-event-media__pic' alt={item.title} src={image.largeUrl} srcSet={`${image.masterUrl} 1200w, ${image.largeUrl} 640w`} />
                 <span className='c-event-media__copy'>© {image.host}</span>
                 {item.videoId && <i className='c-event-media__vi'></i>}
                 {galleryResources(config)}

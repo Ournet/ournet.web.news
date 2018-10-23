@@ -62,6 +62,11 @@
   resolved "https://registry.yarnpkg.com/@types/boom/-/boom-7.2.0.tgz#19c36cbb5811a7493f0f2e37f31d42b28df1abc1"
   integrity sha512-HonbGsHFbskh9zRAzA6tabcw18mCOsSEOL2ibGAuVqk6e7nElcRmWO5L4UfIHpDbWBWw+eZYFdsQ1+MEGgpcVA==
 
+"@types/chroma-js@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-1.4.0.tgz#1d215474b54e227bd0204572c0483b98593eabd0"
+  integrity sha512-pY0EVvIUizkmvSZo9c74hska0Gv1vXzdGCQ8FoBBNpV8jtMUstu55VVa+AKtaQyUZOPRBralYzzqFRXVk4Iznw==
+
 "@types/connect@*":
   version "3.4.32"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.32.tgz#aa0e9616b9435ccad02bc52b5b454ffc2c70ba28"

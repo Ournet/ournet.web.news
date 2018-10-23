@@ -37,3 +37,7 @@ export function isNullOrEmpty(val?: string) {
 export function splitTextInParagraphs(text: string) {
     return text.split(/\n+/g);
 }
+
+export function getImageColorFromId(imageId: string){
+    return imageId.split(/-/g)[1];
+}
