@@ -61,12 +61,12 @@ export interface AppConfig {
     assets: {
         css: {
             main: string,
-            pageWidget: string,
             errorPage: string,
+            gallery: string,
         },
         js: {
             main: string,
-            pageWidget: string,
+            gallery: string,
         }
     },
     oneSignal?: {

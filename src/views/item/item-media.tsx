@@ -8,6 +8,8 @@ import { LocalesNames } from '../../locales-names';
 import { truncateAt } from '../../utils';
 import * as moment from 'moment-timezone';
 import EventMedia, { EventMediaPropsImage } from '../event/event-media';
+import { createMediaGalleryModel } from '../../view-models/media-gallery-model';
+import galleryResources from '../components/news/gallery-resources';
 
 export type ItemMediaProps = {
     root: RootViewModel
@@ -21,7 +23,7 @@ export default class ItemMedia extends React.Component<ItemMediaProps> {
     render() {
 
         const { root, item, event } = this.props;
-        const { __ } = root;
+        const { __, config } = root;
 
         if (!item.imagesIds && !event) {
             return null;
@@ -51,14 +53,14 @@ export default class ItemMedia extends React.Component<ItemMediaProps> {
         const mediaTitle = util.format(__(LocalesNames.foto_video_from_event_format), truncateAt(item.title, 70));
         const imageColor = image.id.split(/-/g)[1];
 
+        const galleryModel = createMediaGalleryModel({event, item});
+
         return (
-            <a className='c-event-media js-media-dialog' style={{ backgroundColor: `#${imageColor}` }} href={image.masterUrl} target='_blank' title={mediaTitle}>
-                <picture className='c-event-media__pic'>
-                    <source srcSet={image.masterUrl} media="(min-width: 700px)" />
-                    <img alt={item.title} src={image.largeUrl} />
-                </picture>
+            <a className='c-event-media js-media-dialog' data-gallery={JSON.stringify(galleryModel)} style={{ backgroundColor: `#${imageColor}` }} href={image.masterUrl} target='_blank' title={mediaTitle}>
+                <img className='c-event-media__pic' alt={event.title} src={image.largeUrl} srcSet={`${image.masterUrl} 1200w, ${image.largeUrl} 640w`} />
                 <span className='c-event-media__copy'>© {image.host}</span>
                 {item.videoId && <i className='c-event-media__vi'></i>}
+                {galleryResources(config)}
             </a>
         );
     }

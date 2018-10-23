@@ -12,7 +12,7 @@ export default class CommonLayout extends React.Component<NewsViewModel> {
                 <TrendingTopicsMenu lang={lang} links={links} topics={trendingTopics} />
                 {this.props.children}
                 {env.isProduction ?
-                    <script key='3' async={true} src={`//assets.ournetcdn.net/ournet/css/${project}/main-${config.assets.js.main}.js`} />
+                    <script key='3' async={true} src={`//assets.ournetcdn.net/ournet/js/${project}/main-${config.assets.js.main}.js`} />
                     : <script key='4' async={true} src={`http://localhost:8080/js/${project}/main.js`} />
                 }
             </RootLayout>
