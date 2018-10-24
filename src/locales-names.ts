@@ -63,6 +63,9 @@ export enum LocalesNames {
     most_important_news_in_last_7days_country = "most_important_news_in_last_7days_country",
     foto_video_from_event_format = "foto_video_from_event_format",
     count_views_format = "count_views_format",
+    error = "error",
+    error_404_info = "error_404_info",
+    error_500_info = "error_500_info",
 }
 
 export class LocalesHelper {

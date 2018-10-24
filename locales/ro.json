@@ -60,5 +60,8 @@
 	"important_news_in_last_7days": "Știri importante în ultimele 7 zile",
 	"most_important_news_in_last_7days_country": "Cele mai importante știri din presa din %s pentru ultimele 7 zile",
 	"foto_video_from_event_format": "Foto și Video: %s",
-	"count_views_format": "%s vizualizări"
+	"count_views_format": "%s vizualizări",
+	"error": "Eroare",
+	"error_404_info": "Pagina nu a fost găsită",
+	"error_500_info": "Eroare necunoscută"
 }

@@ -48,9 +48,9 @@ function startApp() {
 
     mountRoutes(app);
 
-    // app.use(function (error: any, req: any, res: Response, _next: any) {
-    //     catchError(req, res, error);
-    // });
+    app.use(function (error: any, req: express.Request, res: express.Response, _next: any) {
+        catchError(req, res, error);
+    });
 
     app.all('*', function (req, res) {
         var error: any = new Error('Page not found');
