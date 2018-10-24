@@ -48,7 +48,7 @@ export default class TopicPage extends React.Component<TopicViewModel> {
                                 <div className='c-section'>
                                     <SectionHeader name={(topic.abbr || commonName) + ' - ' + __(LocalesNames.latest_events)} h="h4" />
                                     <div className='o-layout'>
-                                        {topicEvents.map(item => <div key={item.id} className='o-layout__item u-1/2'><EventListItem root={this.props} item={item} view='zen' /></div>)}
+                                        {topicEvents.map(item => <div key={item.id} className='o-layout__item u-1/2'><EventListItem root={this.props} item={item} view='card' /></div>)}
                                     </div>
                                 </div>
                                 : null
@@ -71,7 +71,7 @@ export default class TopicPage extends React.Component<TopicViewModel> {
                     <div className='c-section'>
                         <SectionHeader name={__(LocalesNames.latest_events)} link={links.news.home({ ul: lang })} />
                         <div className='o-layout'>
-                            {latestEvents.map(item => <div key={item.id} className='o-layout__item u-1/2@tablet u-1/4@desktop'><EventListItem root={this.props} item={item} view='zen' /></div>)}
+                            {latestEvents.map(item => <div key={item.id} className='o-layout__item u-1/2@mobile u-1/4@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                         </div>
                     </div>
 

@@ -26,11 +26,11 @@ export default class ImportantPage extends React.Component<ImportantViewModel> {
                     <PageTitle title={title || head.title} subTitle={subTitle || head.description} />
 
                     <div className='o-layout'>
-                        {list1.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><EventListItem root={this.props} item={item} view='zen' imageSize='large' /></div>)}
+                        {list1.map(item => <div key={item.id} className='o-layout__item u-1/2@mobile u-1/3@desktop'><EventListItem root={this.props} item={item} view='card' imageSize='large' /></div>)}
                     </div>
                     {adCenter()}
                     <div className='o-layout'>
-                        {list2.map(item => <div key={item.id} className='o-layout__item u-1/3@tablet'><EventListItem root={this.props} item={item} view='zen' imageSize='large' /></div>)}
+                        {list2.map(item => <div key={item.id} className='o-layout__item u-1/2@mobile u-1/3@desktop'><EventListItem root={this.props} item={item} view='card' imageSize='large' /></div>)}
                     </div>
 
                     <div className='c-group'>
