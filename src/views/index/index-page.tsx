@@ -6,7 +6,7 @@ import { LocalesNames } from '../../locales-names';
 import EventListItem from '../components/news/event-list-item';
 import QuoteListItem from '../components/news/quote-list-item';
 import GroupHeader from '../components/group-header';
-import HoroscopeGroup from '../components/horoscope/horoscope-group';
+import HoroscopeCard from '../components/horoscope/horoscope-card';
 
 export default class IndexPage extends React.Component<IndexViewModel> {
     render() {
@@ -41,7 +41,7 @@ export default class IndexPage extends React.Component<IndexViewModel> {
                     </div>
                     <div className='o-layout'>
                         <div className='o-layout__item u-1/4@tablet u-1/2@mobile'>
-                            top topics
+                            <HoroscopeCard {...this.props} />
                         </div>
                         <div className='o-layout__item u-1/4@tablet u-1/2@mobile'>
                             <EventListItem root={this.props} item={restEvents[2]} view='card' />
@@ -57,9 +57,8 @@ export default class IndexPage extends React.Component<IndexViewModel> {
                         </div>
                     </div>
                     <div className='o-layout'>
-                        {restEvents.slice(5).map(item => <div key={item.id} className='o-layout__item u-1/2 u-1/4@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
+                        {restEvents.slice(5).map(item => <div key={item.id} className='o-layout__item u-1/2@mobile u-1/4@tablet'><EventListItem root={this.props} item={item} view='card' /></div>)}
                     </div>
-                    <HoroscopeGroup {...this.props} />
                 </main>
             </CommonLayout >
         )
